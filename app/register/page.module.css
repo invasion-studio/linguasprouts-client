@@ -1,0 +1,37 @@
+.page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.page h1 {
+  font-size: xx-large;
+  font-weight: 600;
+  max-width: 420px;
+  margin-bottom: 20px;
+}
+
+.page p {
+  font-size: larger;
+  max-width: 420px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+@media (prefers-color-scheme: dark) {
+  .page p {
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+.page span {
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.page div {
+  max-width: 600px;
+  width: 100%;
+}
