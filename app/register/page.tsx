@@ -1,15 +1,23 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import style from "./page.module.css";
+import { createCheckoutSession } from "@/lib/api";
 
 const STEPS = ["Parent Info", "Child Info", "Payments"] as const;
 const CAMP_OPTIONS = ["French Class", "Spanish Class"] as const;
 
+// Map UI camp names to backend enum values
+const CAMP_NAME_MAP: Record<string, "french" | "spanish"> = {
+  "French Class": "french",
+  "Spanish Class": "spanish",
+};
+
 export default function RegisterPage() {
   const [activeStep, setActiveStep] = useState(0);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   // Parent form
   const [parentForm, setParentForm] = useState({
@@ -59,7 +67,6 @@ export default function RegisterPage() {
   }
 
   function addChild() {
-    // Save current unsaved child first
     const updated = children.map((c) => (c.firstName ? { ...c, saved: true } : c));
     setChildren([
       ...updated,
@@ -67,16 +74,49 @@ export default function RegisterPage() {
     ]);
   }
 
-  const [paid, setPaid] = useState(false);
-
   function handleNext() {
     if (activeStep < STEPS.length - 1) {
       setActiveStep(activeStep + 1);
     }
   }
 
-  function handlePay() {
-    setPaid(true);
+  async function handlePay() {
+    setError(null);
+    setSubmitting(true);
+
+    try {
+      // Build the payload matching backend expectations
+      const validChildren = children.filter((c) => c.firstName && c.camps.length > 0);
+
+      if (!parentForm.firstName || !parentForm.email) {
+        throw new Error("Please fill in parent first name and email.");
+      }
+      if (validChildren.length === 0) {
+        throw new Error("Please add at least one child with a class selected.");
+      }
+
+      const payload = {
+        parent: {
+          fullName: `${parentForm.firstName} ${parentForm.lastName}`.trim(),
+          email: parentForm.email,
+          phone: parentForm.phone,
+        },
+        children: validChildren.map((c) => ({
+          fullName: `${c.firstName} ${c.lastName}`.trim(),
+          age: parseInt(c.age, 10) || 0,
+          allergies: c.allergies || null,
+          classNames: c.camps.map((camp) => CAMP_NAME_MAP[camp]).filter(Boolean),
+        })),
+      };
+
+      const result = await createCheckoutSession(payload);
+
+      // Redirect to Stripe checkout
+      window.location.href = result.data.sessionUrl;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -89,102 +129,70 @@ export default function RegisterPage() {
         </Link>
       </header>
 
-      {paid ? (
-        <>
-          {/* Success page */}
-          <main className={style.main}>
-            <div className={style.successContainer}>
-              <div className={style.successInner}>
-                <div className={style.successHero}>
-                  <div className={style.successText}>
-                    <h1 className={style.successTitle}>Thank You!!</h1>
-                    <p className={style.successSubtitle}>
-                      We are pleased to have you at Summer Camp 2026
-                    </p>
-                  </div>
-                  <Image
-                    src="/registration-success.png"
-                    alt="Registration success"
-                    width={340}
-                    height={263}
-                    className={style.successImage}
-                  />
+      {/* Main */}
+      <main className={style.main}>
+        <div className={style.card}>
+          {/* Sidebar */}
+          <aside className={style.sidebar}>
+            <h1 className={style.campTitle}>
+              French/Spanish Summer
+              <br />
+              Camp 2026
+            </h1>
+            <p className={style.campSubtitle}>Complete your registration</p>
+            <hr className={style.divider} />
+            <nav className={style.steps}>
+              {STEPS.map((label, i) => (
+                <div
+                  key={label}
+                  className={`${style.step} ${i === activeStep ? style.stepActive : ""}`}
+                  onClick={() => setActiveStep(i)}
+                >
+                  {label}
                 </div>
-                <div className={style.successMessage}>
-                  <p className={style.successMessageText}>
-                    We will reach out to you soon. You can also send us a message at{" "}
-                    <a href="mailto:info@linguasprouts.ca" className={style.successLink}>
-                      info@linguasprouts.ca
-                    </a>
-                  </p>
-                </div>
+              ))}
+            </nav>
+          </aside>
+
+          {/* Form content */}
+          <section className={style.content}>
+            <h2 className={style.sectionTitle}>{STEPS[activeStep]}</h2>
+            <hr className={style.sectionDivider} />
+
+            {activeStep === 0 && (
+              <ParentInfoForm form={parentForm} onChange={handleParentChange} />
+            )}
+
+            {activeStep === 1 && (
+              <ChildInfoForm
+                children={children}
+                onChildChange={handleChildChange}
+                onToggleCamp={toggleCamp}
+                onAddChild={addChild}
+                onSaveChild={saveChild}
+                onEditChild={editChild}
+              />
+            )}
+
+            {activeStep === 2 && (
+              <PaymentsSection
+                children={children}
+                onPay={handlePay}
+                submitting={submitting}
+                error={error}
+              />
+            )}
+
+            {activeStep < 2 && (
+              <div className={style.actions}>
+                <button type="button" className={style.nextBtn} onClick={handleNext}>
+                  Next
+                </button>
               </div>
-            </div>
-          </main>
-        </>
-      ) : (
-        <>
-          {/* Main */}
-          <main className={style.main}>
-            <div className={style.card}>
-              {/* Sidebar */}
-              <aside className={style.sidebar}>
-                <h1 className={style.campTitle}>
-                  French/Spanish Summer
-                  <br />
-                  Camp 2026
-                </h1>
-                <p className={style.campSubtitle}>Complete your registration</p>
-                <hr className={style.divider} />
-                <nav className={style.steps}>
-                  {STEPS.map((label, i) => (
-                    <div
-                      key={label}
-                      className={`${style.step} ${i === activeStep ? style.stepActive : ""}`}
-                      onClick={() => setActiveStep(i)}
-                    >
-                      {label}
-                    </div>
-                  ))}
-                </nav>
-              </aside>
-
-              {/* Form content */}
-              <section className={style.content}>
-                <h2 className={style.sectionTitle}>{STEPS[activeStep]}</h2>
-                <hr className={style.sectionDivider} />
-
-                {activeStep === 0 && (
-                  <ParentInfoForm form={parentForm} onChange={handleParentChange} />
-                )}
-
-                {activeStep === 1 && (
-                  <ChildInfoForm
-                    children={children}
-                    onChildChange={handleChildChange}
-                    onToggleCamp={toggleCamp}
-                    onAddChild={addChild}
-                    onSaveChild={saveChild}
-                    onEditChild={editChild}
-                  />
-                )}
-
-                {activeStep === 2 && (
-                  <PaymentsSection children={children} onPay={handlePay} />
-                )}
-
-                {activeStep < 2 && (
-                  <div className={style.actions}>
-                    <button type="button" className={style.nextBtn} onClick={handleNext}>
-                      Next
-                    </button>
-                  </div>
-                )}
-              </section>
-            </div>
-          </main>
-        </>
-      )}
+            )}
+          </section>
+        </div>
+      </main>
 
       {/* Footer */}
       <footer className={style.footer}>
@@ -443,9 +451,13 @@ const PRICE_PER_CHILD = 299;
 function PaymentsSection({
   children,
   onPay,
+  submitting,
+  error,
 }: {
   children: { firstName: string; camps: string[] }[];
   onPay: () => void;
+  submitting: boolean;
+  error: string | null;
 }) {
   // Group children by camp
   const campGroups: Record<string, string[]> = {};
@@ -501,11 +513,25 @@ function PaymentsSection({
         <p className={style.totalLabel}>Total cost</p>
       </div>
 
+      {error && (
+        <p className={style.payError}>{error}</p>
+      )}
+
       <div className={style.paymentActions}>
-        <button type="button" className={style.payCardBtn} onClick={onPay}>
-          Pay with card
+        <button
+          type="button"
+          className={style.payCardBtn}
+          onClick={onPay}
+          disabled={submitting}
+        >
+          {submitting ? "Redirecting to checkout..." : "Pay with card"}
         </button>
-        <button type="button" className={style.payInteracBtn} onClick={onPay}>
+        <button
+          type="button"
+          className={style.payInteracBtn}
+          onClick={onPay}
+          disabled={submitting}
+        >
           Pay with Interac
         </button>
       </div>

@@ -1,0 +1,239 @@
+/* ── Page layout ─────────────────────────────────────── */
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ── Header ─────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  padding: 16px 40px;
+  background: #ffffff;
+  border-bottom: 3px solid var(--brand-green);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 0;
+  text-decoration: none;
+}
+
+.logoBlue {
+  color: var(--brand-blue);
+}
+
+.logoGreen {
+  color: var(--brand-green);
+}
+
+/* ── Main ───────────────────────────────────────────── */
+.main {
+  flex: 1;
+  background: var(--gray-bg);
+  padding: 40px;
+}
+
+/* ── Loading / Error ────────────────────────────────── */
+.loadingContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 80px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.loadingText {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 32px;
+  color: var(--gray-text);
+  margin: 0;
+}
+
+.retryLink {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 22px;
+  color: #ffffff;
+  background: #75C30A;
+  border-radius: 100px;
+  padding: 8px 28px;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.retryLink:hover {
+  background: #68ad09;
+}
+
+/* ── Success page ───────────────────────────────────── */
+.successContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.successInner {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 787px;
+}
+
+.successHero {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  border-radius: 16px;
+}
+
+.successText {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 383px;
+  flex-shrink: 0;
+}
+
+.successTitle {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 500;
+  font-size: 61px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: var(--brand-blue);
+  margin: 0;
+}
+
+.successSubtitle {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25.6px;
+  letter-spacing: 0;
+  color: var(--gray-text);
+  margin: 0;
+}
+
+.successImage {
+  width: 340px;
+  height: 263px;
+  flex-shrink: 0;
+}
+
+.successMessage {
+  border: 1px solid var(--gray-light);
+  border-radius: 16px;
+  padding: 24px 32px;
+}
+
+.successMessageText {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25.6px;
+  letter-spacing: 0;
+  color: var(--foreground);
+  margin: 0;
+  text-align: center;
+}
+
+.successLink {
+  color: var(--brand-blue);
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.successLink:hover {
+  text-decoration: underline;
+}
+
+/* ── Footer ─────────────────────────────────────────── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background: var(--gray-bg);
+  border-top: 1px solid var(--gray-light);
+}
+
+.footerCopy {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25.6px;
+  letter-spacing: 0;
+  color: var(--foreground);
+  margin: 0;
+}
+
+.footerNav {
+  display: flex;
+  gap: 32px;
+}
+
+.footerLink {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25.6px;
+  letter-spacing: 0;
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+.footerLink:hover {
+  text-decoration: underline;
+}
+
+/* ── Responsive ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .header {
+    padding: 16px 20px;
+  }
+
+  .main {
+    padding: 20px;
+  }
+
+  .successContainer {
+    padding: 40px 20px;
+  }
+
+  .successHero {
+    flex-direction: column;
+    text-align: center;
+    gap: 32px;
+  }
+
+  .successText {
+    width: 100%;
+  }
+
+  .successTitle {
+    font-size: 40px;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    padding: 20px;
+  }
+}

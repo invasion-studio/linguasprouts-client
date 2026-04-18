@@ -1,0 +1,256 @@
+/* ── Page layout ─────────────────────────────────────── */
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ── Header ─────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 40px;
+  background: #ffffff;
+  border-bottom: 3px solid var(--brand-green);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 0;
+  text-decoration: none;
+}
+
+.logoBlue {
+  color: var(--brand-blue);
+}
+
+.logoGreen {
+  color: var(--brand-green);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.registerBtn {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0;
+  color: #ffffff;
+  background: #75C30A;
+  border: none;
+  border-radius: 100px;
+  padding: 8px 28px;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.registerBtn:hover {
+  background: #68ad09;
+}
+
+/* ── Main ───────────────────────────────────────────── */
+.main {
+  flex: 1;
+  background: var(--gray-bg);
+}
+
+/* ── Hero ───────────────────────────────────────────── */
+.hero {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 64px;
+  padding: 80px 60px;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 520px;
+}
+
+.heroTitle {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 110%;
+  letter-spacing: 0;
+  color: var(--foreground);
+  margin: 0;
+}
+
+.heroYear {
+  color: var(--brand-green);
+}
+
+.heroSubtitle {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25.6px;
+  letter-spacing: 0;
+  color: var(--gray-text);
+  margin: 0;
+}
+
+.heroCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: #ffffff;
+  background: #75C30A;
+  border-radius: 100px;
+  padding: 12px 40px;
+  text-decoration: none;
+  width: fit-content;
+  transition: background 0.15s ease;
+}
+
+.heroCta:hover {
+  background: #68ad09;
+}
+
+.heroImageWrap {
+  flex-shrink: 0;
+}
+
+.heroImage {
+  width: 400px;
+  height: auto;
+}
+
+/* ── Features ───────────────────────────────────────── */
+.features {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  padding: 0 60px 80px;
+}
+
+.feature {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.featureIcon {
+  font-size: 36px;
+  line-height: 1;
+}
+
+.featureTitle {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+  letter-spacing: 0;
+  color: var(--foreground);
+  margin: 0;
+}
+
+.featureDesc {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25.6px;
+  letter-spacing: 0;
+  color: var(--gray-text);
+  margin: 0;
+}
+
+/* ── Footer ─────────────────────────────────────────── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background: var(--gray-bg);
+  border-top: 1px solid var(--gray-light);
+}
+
+.footerCopy {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25.6px;
+  letter-spacing: 0;
+  color: var(--foreground);
+  margin: 0;
+}
+
+.footerNav {
+  display: flex;
+  gap: 32px;
+}
+
+.footerLink {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25.6px;
+  letter-spacing: 0;
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+.footerLink:hover {
+  text-decoration: underline;
+}
+
+/* ── Responsive ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .header {
+    padding: 16px 20px;
+  }
+
+  .hero {
+    flex-direction: column;
+    padding: 40px 20px;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .heroContent {
+    align-items: center;
+  }
+
+  .heroTitle {
+    font-size: 36px;
+  }
+
+  .heroImage {
+    width: 280px;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+    padding: 0 20px 40px;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    padding: 20px;
+  }
+}
