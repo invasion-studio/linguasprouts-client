@@ -1,37 +1,625 @@
+/* ── Page layout ─────────────────────────────────────── */
 .page {
-  min-height: 100vh;
-  width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.page h1 {
-  font-size: xx-large;
-  font-weight: 600;
-  max-width: 420px;
+/* ── Header ─────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  padding: 16px 40px;
+  background: #ffffff;
+  border-bottom: 3px solid var(--brand-green);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 0;
+  text-decoration: none;
+}
+
+.logoBlue {
+  color: var(--brand-blue);
+}
+
+.logoGreen {
+  color: var(--brand-green);
+}
+
+/* ── Main content ───────────────────────────────────── */
+.main {
+  flex: 1;
+  background: var(--gray-bg);
+  padding: 40px;
+}
+
+.card {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 8px;
+  display: flex;
+  min-height: 480px;
+}
+
+/* ── Sidebar ────────────────────────────────────────── */
+.sidebar {
+  width: 320px;
+  min-width: 320px;
+  padding: 40px 32px;
+  border-right: 1px solid var(--gray-light);
+}
+
+.campTitle {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+  letter-spacing: 0;
+  color: var(--foreground);
+  margin: 0 0 8px 0;
+}
+
+.campSubtitle {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25.6px;
+  letter-spacing: 0;
+  color: var(--gray-text);
+  margin: 0;
+}
+
+.divider {
+  height: 1px;
+  background: var(--gray-light);
+  border: none;
+  margin: 24px 0;
+}
+
+/* ── Step navigation ────────────────────────────────── */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-left: 2px solid var(--gray-light);
+}
+
+.step {
+  padding: 12px 20px;
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25.6px;
+  letter-spacing: 0;
+  color: var(--gray-text);
+  position: relative;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  margin-left: -2px;
+}
+
+.stepActive {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--foreground);
+  border-left-color: var(--brand-green);
+}
+
+/* ── Form content area ──────────────────────────────── */
+.content {
+  flex: 1;
+  padding: 40px 48px;
+}
+
+.sectionTitle {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: var(--foreground);
+  margin: 0 0 16px 0;
+}
+
+.sectionDivider {
+  height: 1px;
+  background: var(--gray-light);
+  border: none;
+  margin: 0 0 40px 0;
+}
+
+/* ── Child summary card ─────────────────────────────── */
+.childCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 28px;
+  border: 1px solid var(--gray-light);
+  border-radius: 12px;
   margin-bottom: 20px;
 }
 
-.page p {
-  font-size: larger;
-  max-width: 420px;
-  color: rgba(0, 0, 0, 0.7);
+.childCardInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-@media (prefers-color-scheme: dark) {
-  .page p {
-    color: rgba(255, 255, 255, 0.6);
-  }
+.childCardName {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: var(--foreground);
+  margin: 0;
 }
 
-.page span {
-  font-weight: 600;
+.childCardDetails {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0;
+  color: var(--gray-text);
+  margin: 0;
+}
+
+.editBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  border: 1px solid var(--gray-light);
+  border-radius: 9999px;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0;
+  color: var(--foreground);
+  transition: background 0.15s ease;
+}
+
+.editBtn:hover {
+  background: var(--gray-bg);
+}
+
+.editIcon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* ── Child form card ───────────────────────────────── */
+.childFormCard {
+  padding: 28px;
+  border: 1px solid var(--gray-light);
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+/* ── Form grid ──────────────────────────────────────── */
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 48px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25.6px;
+  letter-spacing: 0;
+  color: var(--foreground);
+  border: none;
+  border-bottom: 1px solid var(--gray-light);
+  padding: 8px 0;
+  outline: none;
+  background: transparent;
+  width: 100%;
+}
+
+.input::placeholder {
+  color: var(--gray-text);
+  font-weight: 400;
+}
+
+.input:focus {
+  border-bottom-color: var(--foreground);
+}
+
+/* ── Actions ────────────────────────────────────────── */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 48px;
+}
+
+.nextBtn {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: #ffffff;
+  background: var(--btn-green);
+  border: none;
+  border-radius: 9999px;
+  padding: 10px 36px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.nextBtn:hover {
+  background: #7aa332;
+}
+
+/* ── Footer ─────────────────────────────────────────── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background: var(--gray-bg);
+  border-top: 1px solid var(--gray-light);
+}
+
+.footerCopy {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25.6px;
+  letter-spacing: 0;
+  color: var(--foreground);
+  margin: 0;
+}
+
+.footerNav {
+  display: flex;
+  gap: 32px;
+}
+
+.footerLink {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25.6px;
+  letter-spacing: 0;
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+.footerLink:hover {
+  text-decoration: underline;
+}
+
+/* ── Multi-select dropdown ──────────────────────────── */
+.selectField {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.selectLabel {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0;
+  color: var(--gray-text);
+  margin-bottom: 0;
+}
+
+.selectTrigger {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25.6px;
+  letter-spacing: 0;
+  color: var(--foreground);
+  border: none;
+  border-bottom: 1px solid var(--gray-light);
+  padding: 8px 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  outline: none;
+}
+
+.selectTrigger:focus {
+  border-bottom-color: var(--foreground);
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  padding: 8px 0;
+  z-index: 10;
+  margin-top: 4px;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.1s ease;
+}
+
+.dropdownItem:hover {
+  background: var(--gray-bg);
+}
+
+.checkbox {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  border: 2px solid var(--gray-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.checkboxChecked {
+  background: var(--btn-green);
+  border-color: var(--btn-green);
+}
+
+.checkmark {
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.dropdownLabel {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0;
   color: var(--foreground);
 }
 
-.page div {
-  max-width: 600px;
+/* ── Add Another Child button ──────────────────────── */
+.addChildBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   width: 100%;
+  padding: 14px 24px;
+  border: 1px solid var(--gray-light);
+  border-radius: 9999px;
+  background: transparent;
+  cursor: pointer;
+  margin-top: 32px;
+  transition: background 0.15s ease;
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: var(--foreground);
+}
+
+.addChildBtn:hover {
+  background: var(--gray-bg);
+}
+
+.addChildPlus {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+/* ── Payments ───────────────────────────────────────── */
+.paymentsCard {
+  border: 1px solid var(--gray-light);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.classRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 24px 28px;
+}
+
+.classRow + .classRow {
+  border-top: 1px solid var(--gray-light);
+}
+
+.classInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.className {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: var(--foreground);
+  margin: 0;
+}
+
+.classEnrolling {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0;
+  color: var(--gray-text);
+  margin: 0;
+}
+
+.classPricing {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.classPrice {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+  letter-spacing: 0;
+  color: var(--foreground);
+  margin: 0;
+  text-align: right;
+}
+
+.classPricePerChild {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0;
+  color: var(--gray-text);
+  margin: 0;
+  text-align: right;
+}
+
+.totalSection {
+  margin-top: 40px;
+}
+
+.totalAmount {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 44px;
+  letter-spacing: 0;
+  color: var(--foreground);
+  margin: 0;
+}
+
+.totalLabel {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0;
+  color: var(--gray-text);
+  margin: 4px 0 0 0;
+}
+
+.paymentActions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.payCardBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 42px;
+  border: none;
+  border-radius: 100px;
+  background: #75C30A;
+  cursor: pointer;
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0;
+  color: #ffffff;
+  transition: background 0.15s ease;
+}
+
+.payCardBtn:hover {
+  background: #68ad09;
+}
+
+.payInteracBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 42px;
+  border: 1px solid var(--gray-light);
+  border-radius: 100px;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0;
+  color: var(--foreground);
+  transition: background 0.15s ease;
+}
+
+.payInteracBtn:hover {
+  background: var(--gray-bg);
+}
+
+/* ── Responsive ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .header {
+    padding: 16px 20px;
+  }
+
+  .main {
+    padding: 20px;
+  }
+
+  .card {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-width: unset;
+    border-right: none;
+    border-bottom: 1px solid var(--gray-light);
+    padding: 24px 20px;
+  }
+
+  .content {
+    padding: 24px 20px;
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    padding: 20px;
+  }
 }
