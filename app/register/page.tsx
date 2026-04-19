@@ -513,7 +513,7 @@ function CampSelect({
 
 /* ── Payments Section ──────────────────────────────── */
 
-const PRICE_PER_CHILD = 299;
+const PRICE_PER_CHILD = 249;
 
 function PaymentsSection({
   children,
