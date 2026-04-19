@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { verifyPayment } from "@/lib/api";
 import style from "./page.module.css";
+import AppBar from "@/components/ui/AppBar/AppBar";
 
 type Status = "loading" | "paid" | "pending" | "failed";
 
@@ -16,7 +17,7 @@ function SuccessContent() {
 
   useEffect(() => {
     if (!sessionId) {
-      setStatus("failed");
+      // setStatus("failed");
       return;
     }
 
@@ -33,6 +34,42 @@ function SuccessContent() {
         setStatus("paid");
       });
   }, [sessionId]);
+
+  if (!sessionId) {
+    return (
+      <div className={style.successContainer}>
+        <div className={style.successInner}>
+          <div className={style.successHero}>
+            <div className={style.successText}>
+              <h1 className={style.successTitle}>Thank You!!</h1>
+              <p className={style.successSubtitle}>
+                We are pleased to have you at Summer Camp 2026
+              </p>
+            </div>
+            <Image
+              src="/registration-success.png"
+              alt="Registration success"
+              width={340}
+              height={263}
+              className={style.successImage}
+            />
+          </div>
+          <div className={style.successMessage}>
+            <p className={style.successMessageText}>
+              We will reach out to you soon with your order information so that
+              you can complete your payment. You can also send us a message at{" "}
+              <a
+                href="mailto:info@linguasprouts.ca"
+                className={style.successLink}
+              >
+                info@linguasprouts.ca
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -63,7 +100,10 @@ function SuccessContent() {
             <div className={style.successMessage}>
               <p className={style.successMessageText}>
                 We will reach out to you soon. You can also send us a message at{" "}
-                <a href="mailto:info@linguasprouts.ca" className={style.successLink}>
+                <a
+                  href="mailto:info@linguasprouts.ca"
+                  className={style.successLink}
+                >
                   info@linguasprouts.ca
                 </a>
               </p>
@@ -90,12 +130,7 @@ export default function SuccessPage() {
   return (
     <div className={style.page}>
       {/* Header */}
-      <header className={style.header}>
-        <Link href="/" className={style.logo}>
-          <span className={style.logoBlue}>Lingua</span>
-          <span className={style.logoGreen}>Sprouts</span>
-        </Link>
-      </header>
+      <AppBar />
 
       <main className={style.main}>
         <Suspense

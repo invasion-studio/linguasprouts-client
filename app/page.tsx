@@ -6,10 +6,16 @@ export default function Home() {
   return (
     <div className={style.page}>
       {/* Header */}
+
       <header className={style.header}>
-        <Link href="/" className={style.logo}>
-          <span className={style.logoBlue}>Lingua</span>
-          <span className={style.logoGreen}>Sprouts</span>
+        <Link href="/">
+          <Image
+            src={"/Logo-LinguaSprouts.svg"}
+            alt="Logo"
+            width={132}
+            height={26}
+            loading="eager"
+          />
         </Link>
         <nav className={style.nav}>
           <Link href="/register" className={style.registerBtn}>
@@ -31,8 +37,8 @@ export default function Home() {
             </h1>
             <p className={style.heroSubtitle}>
               Give your child the gift of language this summer. Immersive French
-              and Spanish camps designed for young learners in a fun,
-              supportive environment.
+              and Spanish camps designed for young learners in a fun, supportive
+              environment.
             </p>
             <Link href="/register" className={style.heroCta}>
               Register Now
@@ -56,21 +62,24 @@ export default function Home() {
             <div className={style.featureIcon}>🇫🇷</div>
             <h3 className={style.featureTitle}>French Classes</h3>
             <p className={style.featureDesc}>
-              Interactive lessons with native speakers in a playful camp setting.
+              Interactive lessons with native speakers in a playful camp
+              setting.
             </p>
           </div>
           <div className={style.feature}>
             <div className={style.featureIcon}>🇪🇸</div>
             <h3 className={style.featureTitle}>Spanish Classes</h3>
             <p className={style.featureDesc}>
-              Build conversational skills through games, songs, and creative activities.
+              Build conversational skills through games, songs, and creative
+              activities.
             </p>
           </div>
           <div className={style.feature}>
             <div className={style.featureIcon}>☀️</div>
             <h3 className={style.featureTitle}>Summer Fun</h3>
             <p className={style.featureDesc}>
-              Outdoor activities, arts &amp; crafts, and cultural experiences all summer long.
+              Outdoor activities, arts &amp; crafts, and cultural experiences
+              all summer long.
             </p>
           </div>
         </div>

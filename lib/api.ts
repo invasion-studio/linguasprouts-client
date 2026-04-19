@@ -37,7 +37,7 @@ export interface PaymentVerifyResponse {
 }
 
 export async function createCheckoutSession(
-  payload: RegistrationPayload
+  payload: RegistrationPayload,
 ): Promise<CheckoutResponse> {
   const res = await fetch(`${API_BASE}/registrations/stripe-checkout-session`, {
     method: "POST",
@@ -48,7 +48,7 @@ export async function createCheckoutSession(
   if (!res.ok) {
     const errorData = await res.json().catch(() => null);
     throw new Error(
-      errorData?.message || `Registration failed (${res.status})`
+      errorData?.message || `Registration failed (${res.status})`,
     );
   }
 
@@ -56,18 +56,55 @@ export async function createCheckoutSession(
 }
 
 export async function verifyPayment(
-  sessionId: string
+  sessionId: string,
 ): Promise<PaymentVerifyResponse> {
   const res = await fetch(
-    `${API_BASE}/payments/verify?session_id=${encodeURIComponent(sessionId)}`
+    `${API_BASE}/payments/verify?session_id=${encodeURIComponent(sessionId)}`,
   );
 
   if (!res.ok) {
     const errorData = await res.json().catch(() => null);
     throw new Error(
-      errorData?.message || `Payment verification failed (${res.status})`
+      errorData?.message || `Payment verification failed (${res.status})`,
     );
   }
 
   return res.json();
+}
+
+export interface InteracPayment {
+  interacPaymentId: string;
+  name: string;
+  email: string;
+  registrationId: string;
+  amountToPay: number;
+  paymentStatus: "paid" | "pending";
+  orderId: string | null;
+}
+
+export interface GetInteracPaymentsResponse {
+  success: boolean;
+  message: string;
+  data: InteracPayment[];
+  error: null;
+}
+
+export interface VerifyInteracPaymentResponse {
+  success: boolean;
+  message: string;
+  data: any;
+  error: any;
+}
+
+export interface InteracCheckoutResponse {
+  success: boolean;
+  message: string;
+  data: {
+    paymentUrl: string;
+    registrationResult: {
+      registration: { registrationId: string };
+      parent: { parentId: string; fullName: string };
+      children: { childId: string; fullName: string }[];
+    };
+  };
 }

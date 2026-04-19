@@ -25,3 +25,41 @@ body {
   line-height: 25.6px;
   letter-spacing: 0%;
 }
+
+h1 {
+  font: var(--font-h1);
+}
+h2 {
+  font: var(--font-h2);
+}
+h3 {
+  font: var(--font-h3);
+}
+h4 {
+  font: var(--font-h4);
+}
+h5 {
+  font: var(--font-subtitle1);
+}
+h6 {
+  font: var(--font-subtitle2);
+}
+p {
+  font: var(--font-body1);
+}
+
+.layout {
+  padding: 0px 60px;
+}
+
+@media (max-width: 1024px) {
+  .layout {
+    padding: 0px 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .layout {
+    padding: 0px 20px;
+  }
+}

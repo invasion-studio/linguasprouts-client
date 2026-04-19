@@ -4,6 +4,10 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import style from "./page.module.css";
 import { createCheckoutSession } from "@/lib/api";
+import Image from "next/image";
+import AppBar from "@/components/ui/AppBar/AppBar";
+import { useInteracPayments } from "@/hooks/useInteracPayments";
+import { useRouter } from "next/navigation";
 
 const STEPS = ["Parent Info", "Child Info", "Payments"] as const;
 const CAMP_OPTIONS = ["French Class", "Spanish Class"] as const;
@@ -18,6 +22,9 @@ export default function RegisterPage() {
   const [activeStep, setActiveStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
+
+  const createPayment = useInteracPayments();
 
   // Parent form
   const [parentForm, setParentForm] = useState({
@@ -28,16 +35,33 @@ export default function RegisterPage() {
   });
 
   // Children form
-  type ChildData = { firstName: string; lastName: string; age: string; allergies: string; camps: string[]; saved: boolean };
+  type ChildData = {
+    firstName: string;
+    lastName: string;
+    age: string;
+    allergies: string;
+    camps: string[];
+    saved: boolean;
+  };
   const [children, setChildren] = useState<ChildData[]>([
-    { firstName: "", lastName: "", age: "", allergies: "", camps: [], saved: false },
+    {
+      firstName: "",
+      lastName: "",
+      age: "",
+      allergies: "",
+      camps: [],
+      saved: false,
+    },
   ]);
 
   function handleParentChange(e: React.ChangeEvent<HTMLInputElement>) {
     setParentForm({ ...parentForm, [e.target.name]: e.target.value });
   }
 
-  function handleChildChange(index: number, e: React.ChangeEvent<HTMLInputElement>) {
+  function handleChildChange(
+    index: number,
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) {
     const updated = [...children];
     updated[index] = { ...updated[index], [e.target.name]: e.target.value };
     setChildren(updated);
@@ -47,7 +71,10 @@ export default function RegisterPage() {
     const updated = [...children];
     const camps = updated[childIndex].camps;
     if (camps.includes(camp)) {
-      updated[childIndex] = { ...updated[childIndex], camps: camps.filter((c) => c !== camp) };
+      updated[childIndex] = {
+        ...updated[childIndex],
+        camps: camps.filter((c) => c !== camp),
+      };
     } else {
       updated[childIndex] = { ...updated[childIndex], camps: [...camps, camp] };
     }
@@ -67,10 +94,19 @@ export default function RegisterPage() {
   }
 
   function addChild() {
-    const updated = children.map((c) => (c.firstName ? { ...c, saved: true } : c));
+    const updated = children.map((c) =>
+      c.firstName ? { ...c, saved: true } : c,
+    );
     setChildren([
       ...updated,
-      { firstName: "", lastName: "", age: "", allergies: "", camps: [], saved: false },
+      {
+        firstName: "",
+        lastName: "",
+        age: "",
+        allergies: "",
+        camps: [],
+        saved: false,
+      },
     ]);
   }
 
@@ -86,7 +122,9 @@ export default function RegisterPage() {
 
     try {
       // Build the payload matching backend expectations
-      const validChildren = children.filter((c) => c.firstName && c.camps.length > 0);
+      const validChildren = children.filter(
+        (c) => c.firstName && c.camps.length > 0,
+      );
 
       if (!parentForm.firstName || !parentForm.email) {
         throw new Error("Please fill in parent first name and email.");
@@ -105,29 +143,35 @@ export default function RegisterPage() {
           fullName: `${c.firstName} ${c.lastName}`.trim(),
           age: parseInt(c.age, 10) || 0,
           allergies: c.allergies || null,
-          classNames: c.camps.map((camp) => CAMP_NAME_MAP[camp]).filter(Boolean),
+          classNames: c.camps
+            .map((camp) => CAMP_NAME_MAP[camp])
+            .filter(Boolean),
         })),
       };
 
-      const result = await createCheckoutSession(payload);
+      await createPayment.mutateAsync(payload, {
+        onSuccess() {
+          router.push("/success");
+        },
+        onError() {
+          setError("Something went wrong. Please try again.");
+        },
+      });
 
-      // Redirect to Stripe checkout
-      window.location.href = result.data.sessionUrl;
+      setSubmitting(false);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again.",
+      );
       setSubmitting(false);
     }
   }
 
   return (
     <div className={style.page}>
-      {/* Header */}
-      <header className={style.header}>
-        <Link href="/" className={style.logo}>
-          <span className={style.logoBlue}>Lingua</span>
-          <span className={style.logoGreen}>Sprouts</span>
-        </Link>
-      </header>
+      <AppBar />
 
       {/* Main */}
       <main className={style.main}>
@@ -185,7 +229,11 @@ export default function RegisterPage() {
 
             {activeStep < 2 && (
               <div className={style.actions}>
-                <button type="button" className={style.nextBtn} onClick={handleNext}>
+                <button
+                  type="button"
+                  className={style.nextBtn}
+                  onClick={handleNext}
+                >
                   Next
                 </button>
               </div>
@@ -275,8 +323,18 @@ function ChildInfoForm({
   onSaveChild,
   onEditChild,
 }: {
-  children: { firstName: string; lastName: string; age: string; allergies: string; camps: string[]; saved: boolean }[];
-  onChildChange: (index: number, e: React.ChangeEvent<HTMLInputElement>) => void;
+  children: {
+    firstName: string;
+    lastName: string;
+    age: string;
+    allergies: string;
+    camps: string[];
+    saved: boolean;
+  }[];
+  onChildChange: (
+    index: number,
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => void;
   onToggleCamp: (childIndex: number, camp: string) => void;
   onAddChild: () => void;
   onSaveChild: (index: number) => void;
@@ -340,7 +398,7 @@ function ChildInfoForm({
               </div>
             </div>
           </div>
-        )
+        ),
       )}
       <button type="button" className={style.addChildBtn} onClick={onAddChild}>
         <span className={style.addChildPlus}>+</span>
@@ -356,12 +414,20 @@ function ChildSummaryCard({
   child,
   onEdit,
 }: {
-  child: { firstName: string; lastName: string; age: string; allergies: string; camps: string[] };
+  child: {
+    firstName: string;
+    lastName: string;
+    age: string;
+    allergies: string;
+    camps: string[];
+  };
   onEdit: () => void;
 }) {
   const details = [
     child.age ? `${child.age} years` : "",
-    child.camps.length > 0 ? child.camps.map((c) => c.replace(" Class", "")).join(", ") : "",
+    child.camps.length > 0
+      ? child.camps.map((c) => c.replace(" Class", "")).join(", ")
+      : "",
     child.allergies || "",
   ].filter(Boolean);
 
@@ -371,9 +437,7 @@ function ChildSummaryCard({
         <p className={style.childCardName}>
           {child.firstName} {child.lastName}
         </p>
-        <p className={style.childCardDetails}>
-          {details.join("  ·  ")}
-        </p>
+        <p className={style.childCardDetails}>{details.join("  ·  ")}</p>
       </div>
       <button type="button" className={style.editBtn} onClick={onEdit}>
         <span className={style.editIcon}>✎</span>
@@ -405,9 +469,10 @@ function CampSelect({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const displayValue = selected.length > 0
-    ? selected.map((s) => s.replace(" Class", "")).join(", ")
-    : "";
+  const displayValue =
+    selected.length > 0
+      ? selected.map((s) => s.replace(" Class", "")).join(", ")
+      : "";
 
   return (
     <div className={style.selectField} ref={ref}>
@@ -431,7 +496,9 @@ function CampSelect({
                 className={style.dropdownItem}
                 onClick={() => onToggle(camp)}
               >
-                <div className={`${style.checkbox} ${checked ? style.checkboxChecked : ""}`}>
+                <div
+                  className={`${style.checkbox} ${checked ? style.checkboxChecked : ""}`}
+                >
                   {checked && <span className={style.checkmark}>✓</span>}
                 </div>
                 <span className={style.dropdownLabel}>{camp}</span>
@@ -472,7 +539,7 @@ function PaymentsSection({
   const entries = Object.entries(campGroups);
   const totalCost = entries.reduce(
     (sum, [, names]) => sum + names.length * PRICE_PER_CHILD,
-    0
+    0,
   );
 
   function formatNames(names: string[]): string {
@@ -513,9 +580,7 @@ function PaymentsSection({
         <p className={style.totalLabel}>Total cost</p>
       </div>
 
-      {error && (
-        <p className={style.payError}>{error}</p>
-      )}
+      {error && <p className={style.payError}>{error}</p>}
 
       <div className={style.paymentActions}>
         <button
@@ -524,16 +589,16 @@ function PaymentsSection({
           onClick={onPay}
           disabled={submitting}
         >
-          {submitting ? "Redirecting to checkout..." : "Pay with card"}
+          {submitting ? "Creating Order..." : "Pay with Interac"}
         </button>
-        <button
+        {/* <button
           type="button"
           className={style.payInteracBtn}
           onClick={onPay}
           disabled={submitting}
         >
           Pay with Interac
-        </button>
+        </button> */}
       </div>
     </>
   );
