@@ -34,6 +34,21 @@
 .nav {
   display: flex;
   align-items: center;
+  gap: 24px;
+}
+
+.adminLink {
+  font-family: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  color: #525252;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.adminLink:hover {
+  color: #75C30A;
 }
 
 .registerBtn {
