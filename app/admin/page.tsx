@@ -77,37 +77,66 @@ const PaymentCard = (props: {
     <Box padding={"20px"} bgcolor={"white"} borderRadius={"16px"}>
       <Stack gap={"12px"} marginBottom={"20px"}>
         <Typography variant="subtitle1">{payment.name}</Typography>
-        <Stack flexDirection={"row"} justifyContent={"space-between"}>
+        <Stack
+          flexDirection={"row"}
+          justifyContent={"space-between"}
+          gap={"20px"}
+        >
           <Typography variant="body2" color="textSecondary">
             Order id
           </Typography>
-          <Typography variant="subtitle2" color="textSecondary">
+          <Typography
+            variant="subtitle2"
+            color="textSecondary"
+            sx={{ wordBreak: "break-all" }}
+          >
             {payment.orderId || "N/A"}
           </Typography>
         </Stack>
-        <Stack flexDirection={"row"} justifyContent={"space-between"}>
+        <Stack
+          flexDirection={"row"}
+          justifyContent={"space-between"}
+          gap={"20px"}
+        >
           <Typography variant="body2" color="textSecondary">
             Email
           </Typography>
-          <Typography variant="subtitle2" color="textSecondary">
+          <Typography
+            variant="subtitle2"
+            color="textSecondary"
+            sx={{ wordBreak: "break-all" }}
+          >
             {payment.email}
           </Typography>
         </Stack>
-        <Stack flexDirection={"row"} justifyContent={"space-between"}>
+        <Stack
+          flexDirection={"row"}
+          justifyContent={"space-between"}
+          gap={"20px"}
+        >
           <Typography variant="body2" color="textSecondary">
             Amount
           </Typography>
-          <Typography variant="subtitle2" color="textSecondary">
+          <Typography
+            variant="subtitle2"
+            color="textSecondary"
+            sx={{ wordBreak: "break-all" }}
+          >
             CA${payment.amountToPay}
           </Typography>
         </Stack>
-        <Stack flexDirection={"row"} justifyContent={"space-between"}>
+        <Stack
+          flexDirection={"row"}
+          justifyContent={"space-between"}
+          gap={"20px"}
+        >
           <Typography variant="body2" color="textSecondary">
             Payment status
           </Typography>
           <Typography
             variant="subtitle2"
             color={payment.paymentStatus === "paid" ? "#34C759" : "#FF8D28"}
+            sx={{ wordBreak: "break-all" }}
           >
             {payment.paymentStatus}
           </Typography>
