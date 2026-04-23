@@ -12,16 +12,15 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import { useAdminAuth } from "@/context/AdminAuthContext";
+import { login } from "@/actions/login";
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { login } = useAdminAuth();
   const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
@@ -30,10 +29,10 @@ export default function AdminLoginPage() {
       return;
     }
 
-    const success = login(email, password);
-    if (success) {
+    try {
+      await login(email, password);
       router.push("/admin");
-    } else {
+    } catch (err) {
       setError("Invalid email or password.");
     }
   };

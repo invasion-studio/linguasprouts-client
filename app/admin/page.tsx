@@ -14,28 +14,10 @@ import { useGetInteracPayments } from "@/hooks/usegetInteracPayments";
 import { useVerifyInteracPayment } from "@/hooks/useVerifyInteracPayments";
 import { InteracPayment } from "@/lib/api";
 import { useEffect } from "react";
-import { useAdminAuth } from "@/context/AdminAuthContext";
-import { useRouter } from "next/navigation";
 
 export default function Adminpage() {
-  const { isAuthenticated } = useAdminAuth();
-  const router = useRouter();
   const { data, isPending, error } = useGetInteracPayments();
   const verifyMutation = useVerifyInteracPayment();
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      router.replace("/admin/login");
-    }
-  }, [isAuthenticated, router]);
-
-  if (!isAuthenticated) {
-    return (
-      <Stack minHeight="100vh" justifyContent="center" alignItems="center">
-        <CircularProgress />
-      </Stack>
-    );
-  }
 
   return (
     <Box bgcolor={(theme) => theme.palette.ibmgrey[10]} minHeight={"100vh"}>
