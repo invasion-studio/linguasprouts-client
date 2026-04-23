@@ -18,7 +18,7 @@ export default function Home() {
           />
         </Link>
         <nav className={style.nav}>
-          <Link href="/admin/login" className={style.adminLink}>
+          <Link href="/admin" className={style.adminLink}>
             Admin
           </Link>
           <Link href="/register" className={style.registerBtn}>
