@@ -3,8 +3,9 @@
 import AdminMetrics, {
   AdminMetric,
 } from "@/components/AdminMetrics/AdminMetrics";
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { useGetRegistrationMetrics } from "@/hooks/useGetRegistrationMetrics";
+import RegisteredTable from "@/components/RegisteredTable/RegisteredTable";
 
 export default function RegistrationsPage() {
   const { data } = useGetRegistrationMetrics();
@@ -28,8 +29,9 @@ export default function RegistrationsPage() {
   }
 
   return (
-    <Box>
+    <Stack gap={"24px"}>
       <AdminMetrics metrics={metrics} lenght={3} />
-    </Box>
+      <RegisteredTable />
+    </Stack>
   );
 }
