@@ -5,7 +5,7 @@ import Link from "next/link";
 import style from "./page.module.css";
 import { createCheckoutSession } from "@/lib/api";
 import Image from "next/image";
-import AppBar from "@/components/ui/AppBar/AppBar";
+import AppBar from "@/components/AppBar/AppBar";
 import { useInteracPayments } from "@/hooks/useInteracPayments";
 import { useRouter } from "next/navigation";
 

@@ -141,3 +141,95 @@ const theme = createTheme({
 });
 
 export default theme;
+
+export const adminTheme = createTheme({
+  colorSchemes: {
+    light: true,
+  },
+
+  cssVariables: { cssVarPrefix: "" },
+  typography: {
+    fontFamily: "var(--font-plus-jakarta-sans), Plus Jakarta Sans, sans-serif",
+    h1: {
+      fontSize: "61px",
+      fontWeight: 400,
+      fontFamily: "Plus Jakarta Sans, sans-serif",
+    },
+    h2: {
+      fontSize: "49px",
+      fontWeight: 600,
+      fontFamily: "Plus Jakarta Sans, sans-serif",
+    },
+    h3: {
+      fontSize: "28px",
+      lineHeight: "44px",
+      fontWeight: 600,
+      fontFamily: "Plus Jakarta Sans, sans-serif",
+    },
+    h4: {
+      fontSize: "20px",
+      lineHeight: "32px",
+      fontWeight: 700,
+      fontFamily: "Plus Jakarta Sans, sans-serif",
+    },
+    h5: {
+      fontSize: "16px",
+      fontWeight: 700,
+      fontFamily: "Plus Jakarta Sans, sans-serif",
+      lineHeight: "24px",
+    },
+    h6: {
+      fontSize: "14px",
+      fontWeight: 700,
+      fontFamily: "Plus Jakarta Sans, sans-serif",
+      lineHeight: "22px",
+    },
+    subtitle1: {
+      fontSize: "16px",
+      fontWeight: 700,
+      fontFamily: "Plus Jakarta Sans, sans-serif",
+      lineHeight: "24px",
+    },
+    subtitle2: {
+      fontSize: "14px",
+      fontWeight: 700,
+      fontFamily: "Plus Jakarta Sans, sans-serif",
+      lineHeight: "22px",
+    },
+    body1: {
+      fontSize: "16px",
+      fontWeight: 400,
+      fontFamily: "Plus Jakarta Sans, sans-serif",
+      lineHeight: "32px",
+    },
+    body2: {
+      fontSize: "14px",
+      fontWeight: 400,
+      fontFamily: "Plus Jakarta Sans, sans-serif",
+      lineHeight: "22px",
+    },
+    caption: {
+      fontSize: "12px",
+      fontWeight: 400,
+      fontFamily: "Plus Jakarta Sans, sans-serif",
+    },
+  },
+  palette: {
+    primary: {
+      main: "#12DE12",
+    },
+    secondary: {
+      main: "#12C3DE",
+    },
+    error: {
+      main: "#DF221D",
+    },
+    text: {
+      primary: Ibmgrey[100],
+      secondary: Ibmgrey[70],
+      disabled: Ibmgrey[40],
+    },
+    ibmgrey: Ibmgrey,
+    divider: "#EBEBEB",
+  },
+});

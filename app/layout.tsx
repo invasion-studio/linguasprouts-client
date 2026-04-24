@@ -26,9 +26,7 @@ export default function RootLayout({
     <html lang="en" className={`${plusJakartaSans.variable} h-full`}>
       <body className="min-h-full flex flex-col">
         <AppRouterCacheProvider>
-          <ThemeProvider theme={theme}>
-            <Providers>{children}</Providers>
-          </ThemeProvider>
+          <Providers>{children}</Providers>
         </AppRouterCacheProvider>
       </body>
     </html>

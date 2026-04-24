@@ -1,0 +1,23 @@
+#container {
+  flex-direction: row;
+  gap: 24px;
+}
+
+#card {
+  padding: 24px;
+  border-radius: 8px;
+}
+
+@media (max-width: 1024px) {
+  #container {
+    flex-direction: column;
+    gap: 4px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  #card {
+    padding: 16px;
+    border-radius: 0px;
+  }
+}

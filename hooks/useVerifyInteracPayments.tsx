@@ -8,6 +8,8 @@ export function useVerifyInteracPayment() {
     mutationFn: verifyInteracPayment,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["interacPayments"] });
+      queryClient.invalidateQueries({ queryKey: ["registrationMetrics"] });
+      queryClient.invalidateQueries({ queryKey: ["classlistMetrics"] });
     },
   });
 }

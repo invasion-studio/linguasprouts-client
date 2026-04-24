@@ -10,6 +10,16 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+
+  redirects() {
+    return [
+      {
+        source: "/admin",
+        destination: "/admin/orders",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

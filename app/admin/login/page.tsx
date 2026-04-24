@@ -13,14 +13,17 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { login } from "@/actions/login";
+import theme from "@/theme";
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
+    setLoading(true);
     e.preventDefault();
     setError("");
 
@@ -34,37 +37,18 @@ export default function AdminLoginPage() {
       router.push("/admin");
     } catch (err) {
       setError("Invalid email or password.");
+      setLoading(false);
     }
+    setLoading(false);
   };
 
   return (
     <Box
       minHeight="100vh"
-      bgcolor="#f4f4f4"
+      bgcolor={(theme) => theme.palette.ibmgrey[10]}
       display="flex"
       flexDirection="column"
     >
-      {/* Header */}
-      <Box
-        component="header"
-        display="flex"
-        alignItems="center"
-        justifyContent="space-between"
-        px={{ xs: "20px", md: "40px" }}
-        py="16px"
-        bgcolor="#ffffff"
-        borderBottom="3px solid var(--brand-green)"
-      >
-        <Link href="/">
-          <Image
-            src="/Logo-LinguaSprouts.svg"
-            alt="Logo"
-            width={132}
-            height={26}
-          />
-        </Link>
-      </Box>
-
       {/* Login Form */}
       <Box
         flex={1}
@@ -76,16 +60,26 @@ export default function AdminLoginPage() {
         <Box
           component="form"
           onSubmit={handleSubmit}
-          bgcolor="#ffffff"
+          bgcolor="white"
           borderRadius="16px"
-          p={{ xs: "32px", sm: "40px" }}
+          p={{ xs: "24px", sm: "32px" }}
           width="100%"
           maxWidth="440px"
         >
-          <Stack gap="24px">
-            <Box textAlign="center">
-              <Typography variant="h3" gutterBottom>
-                Admin Login
+          <Stack gap="40px">
+            <Box textAlign="left">
+              <Image
+                src={"/LiguaSprouts-Admin-Logo.svg"}
+                alt="Logo"
+                width={169.8}
+                height={24}
+                loading="eager"
+                style={{
+                  marginBottom: 28,
+                }}
+              />
+              <Typography variant="h3" marginBottom={"4px"}>
+                Welcome Back
               </Typography>
               <Typography variant="body2" color="textSecondary">
                 Sign in to manage payments
@@ -94,38 +88,59 @@ export default function AdminLoginPage() {
 
             {error && <Alert severity="error">{error}</Alert>}
 
-            <TextField
-              label="Email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              fullWidth
-              autoComplete="email"
-            />
+            <Stack gap={"24px"}>
+              <TextField
+                label="Email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                fullWidth
+                autoComplete="email"
+                variant="filled"
+                slotProps={{
+                  inputLabel: { shrink: true },
+                }}
+                sx={{
+                  "& .MuiInputBase-input:-webkit-autofill": {
+                    WebkitBoxShadow: "0 0 0 100px #ECFDEC inset",
+                    WebkitTextFillColor: "rgba(0,0,0,0.85)",
+                    caretColor: "#000",
+                  },
+                }}
+              />
 
-            <TextField
-              label="Password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              fullWidth
-              autoComplete="current-password"
-            />
+              <TextField
+                label="Password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                fullWidth
+                autoComplete="current-password"
+                variant="filled"
+                slotProps={{
+                  inputLabel: { shrink: true },
+                }}
+                sx={{
+                  "& .MuiInputBase-input:-webkit-autofill": {
+                    WebkitBoxShadow: "0 0 0 100px #ECFDEC inset",
+                    WebkitTextFillColor: "rgba(0,0,0,0.85)",
+                    caretColor: "#000",
+                  },
+                }}
+              />
+            </Stack>
 
             <Button
               type="submit"
               variant="contained"
+              disableElevation
               fullWidth
+              loading={loading}
               sx={{
-                bgcolor: "#75C30A",
                 borderRadius: "100px",
-                padding: "12px 40px",
-                fontWeight: 700,
-                fontSize: "16px",
+                padding: "10px 40px",
                 textTransform: "none",
-                "&:hover": {
-                  bgcolor: "#68ad09",
-                },
+                color: "white",
               }}
             >
               Sign In
