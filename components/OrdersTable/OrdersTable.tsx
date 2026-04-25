@@ -304,7 +304,7 @@ const DesktopTable = ({
             key={r[keyProp]}
             flexDirection={"row"}
             gap={"20px"}
-            padding={"16px 0px"}
+            padding={"14px 0px"}
             borderTop={"1px solid"}
             borderColor={(theme) => theme.palette.divider}
             alignItems={"center"}
@@ -341,7 +341,6 @@ const DesktopTable = ({
                   sx={{
                     borderRadius: "200px",
                     borderColor: (theme) => theme.palette.ibmgrey[30],
-                    padding: "6px 24px",
                     color: (theme) => theme.palette.primary.main,
                     fontWeight: 600,
                     textTransform: "capitalize",
@@ -352,9 +351,20 @@ const DesktopTable = ({
               </Box>
             )}
             {payment.paymentStatus !== "pending" && (
-              <Typography variant="body2" flex={1} noWrap>
-                Null
-              </Typography>
+              <Box flex={1}>
+                <Button
+                  color="inherit"
+                  variant="outlined"
+                  disabled
+                  sx={{
+                    borderRadius: "200px",
+                    fontWeight: 600,
+                    textTransform: "capitalize",
+                  }}
+                >
+                  Verifed
+                </Button>
+              </Box>
             )}
           </Stack>
         );
