@@ -9,7 +9,12 @@ export default async function TabLayout({ children }: { children: ReactNode }) {
   return (
     <Box minHeight={"100vh"} bgcolor={"var(--palette-ibmgrey-10)"}>
       <AppBar variant="admin" />
-      <Box component={"div"} className="adminLayout" marginTop={"20px"}>
+      <Box
+        component={"div"}
+        className="adminLayout"
+        marginTop={"20px"}
+        marginBottom={"20px"}
+      >
         <AdminTab />
         {children}
       </Box>

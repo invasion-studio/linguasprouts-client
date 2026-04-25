@@ -27,8 +27,8 @@ export default function AppBar({
               : "/Logo-LinguaSprouts.svg"
           }
           alt="Logo"
-          width={184}
-          height={26}
+          width={variant == "admin" ? 169 : 132}
+          height={variant == "admin" ? 24 : 26}
           loading="eager"
         />
       </Link>

@@ -135,12 +135,13 @@ export default function RegisterPage() {
 
       const payload = {
         parent: {
-          fullName: `${parentForm.firstName} ${parentForm.lastName}`.trim(),
-          email: parentForm.email,
+          fullName:
+            `${parentForm.firstName.trim()} ${parentForm.lastName.trim()}`.trim(),
+          email: parentForm.email.trim(),
           phone: parentForm.phone,
         },
         children: validChildren.map((c) => ({
-          fullName: `${c.firstName} ${c.lastName}`.trim(),
+          fullName: `${c.firstName.trim()} ${c.lastName.trim()}`.trim(),
           age: parseInt(c.age, 10) || 0,
           allergies: c.allergies || null,
           classNames: c.camps
