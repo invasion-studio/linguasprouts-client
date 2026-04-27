@@ -1,23 +1,32 @@
 "use server";
-import { GetInteracPaymentsResponse } from "@/lib/api";
+
+import axios from "@/lib/axios";
+
+export interface InteracPayment {
+  interacPaymentId: string;
+  name: string;
+  email: string;
+  registrationId: string;
+  amountToPay: number;
+  paymentStatus: "paid" | "pending";
+  orderId: string | null;
+}
+
+export interface GetInteracPaymentsResponse {
+  success: boolean;
+  message: string;
+  data: InteracPayment[];
+  error: null;
+}
 
 export async function getInteracPayments(
   status?: string | null,
 ): Promise<GetInteracPaymentsResponse> {
-  const params = new URLSearchParams();
+  const response = await axios.get("/payments/interac", {
+    params: {
+      status: status || undefined,
+    },
+  });
 
-  if (status) {
-    params.set("status", status);
-  }
-
-  const url = `${process.env.BACKEND_BASE}/payments/interac${
-    params.toString() ? `?${params.toString()}` : ""
-  }`;
-  const res = await fetch(url);
-
-  if (!res.ok) {
-    throw new Error(`Failed to fetch Interac payments: ${res.status}`);
-  }
-
-  return res.json();
+  return response.data;
 }

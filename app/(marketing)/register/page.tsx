@@ -6,7 +6,7 @@ import style from "./page.module.css";
 import { createCheckoutSession } from "@/lib/api";
 import Image from "next/image";
 import AppBar from "@/components/AppBar/AppBar";
-import { useInteracPayments } from "@/hooks/useInteracPayments";
+import { useCreateInteracPayments } from "@/hooks/useCreateInteracPayments";
 import { useRouter } from "next/navigation";
 
 const STEPS = ["Parent Info", "Child Info", "Payments"] as const;
@@ -24,7 +24,7 @@ export default function RegisterPage() {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-  const createPayment = useInteracPayments();
+  const createPayment = useCreateInteracPayments();
 
   // Parent form
   const [parentForm, setParentForm] = useState({

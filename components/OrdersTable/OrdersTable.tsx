@@ -11,11 +11,17 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
+  Divider,
 } from "@mui/material";
 import { useGetInteracPayments } from "@/hooks/usegetInteracPayments";
 import { InteracPayment } from "@/lib/api";
 import theme from "@/theme";
 import FilterGroup, { FilterButton } from "../FilterGroup/FilterGroup";
+import {
+  DesktopTableSkeleton,
+  MobileTableSkeleton,
+  NoDataSkeleton,
+} from "../AdminTableSkeleton/AdminTableSkeleton";
 
 type ColumnProp = { key: string; header: string }[];
 const columns = [
@@ -33,16 +39,12 @@ export default function OrdersTable({
   onVerify: (paymentId: string) => void;
   isVerifying: boolean;
 }) {
-  const { data } = useGetInteracPayments();
+  const { data, isPending } = useGetInteracPayments();
   const rows = data?.data || [];
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedPayment, setSelectedPayment] = useState<InteracPayment | null>(
     null,
   );
-
-  useEffect(() => {
-    console.log(selectedPayment);
-  }, [selectedPayment]);
 
   const handleOpenDialog = (payment: InteracPayment) => {
     setSelectedPayment(payment);
@@ -72,6 +74,7 @@ export default function OrdersTable({
         keyProp="interacPaymentId"
         onOpenDialog={handleOpenDialog}
         isVerifying={isVerifying}
+        isPending={isPending}
       />
       <MobileTable
         columns={columns}
@@ -79,6 +82,7 @@ export default function OrdersTable({
         keyProp="interacPaymentId"
         onOpenDialog={handleOpenDialog}
         isVerifying={isVerifying}
+        isPending={isPending}
       />
 
       <Dialog
@@ -143,12 +147,14 @@ const MobileTable = ({
   keyProp,
   onOpenDialog,
   isVerifying,
+  isPending,
 }: {
   columns: ColumnProp;
   rows: { [key: string]: any }[];
   keyProp: string;
   onOpenDialog: (payment: InteracPayment) => void;
   isVerifying: boolean;
+  isPending: boolean;
 }) => {
   return (
     <Stack
@@ -165,6 +171,12 @@ const MobileTable = ({
           <FilterButton queryValue={"pending"}>Pending</FilterButton>
         </FilterGroup>
       </Box>
+
+      {/* Skeleton */}
+      {isPending && <MobileTableSkeleton />}
+
+      {/* Row Empty */}
+      {rows.length === 0 && !isPending && <NoDataSkeleton />}
 
       {rows.map((r) => (
         <MobileItem
@@ -265,12 +277,14 @@ const DesktopTable = ({
   keyProp,
   onOpenDialog,
   isVerifying,
+  isPending,
 }: {
   columns: ColumnProp;
   rows: { [key: string]: any }[];
   keyProp: string;
   onOpenDialog: (payment: InteracPayment) => void;
   isVerifying: boolean;
+  isPending: boolean;
 }) => {
   const theme = useTheme();
   return (
@@ -308,6 +322,17 @@ const DesktopTable = ({
           </Typography>
         ))}
       </Stack>
+
+      {/* Rows Skeleton */}
+      {isPending && <DesktopTableSkeleton columns={columns} />}
+
+      {/* Row Empty */}
+      {rows.length === 0 && !isPending && (
+        <>
+          <Divider />
+          <NoDataSkeleton />
+        </>
+      )}
 
       {/* Rows */}
       {rows.map((r) => {

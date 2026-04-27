@@ -1,8 +1,13 @@
 "use client";
 
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Divider, Stack, Typography } from "@mui/material";
 import { useGetRegisteredChildren } from "@/hooks/useGetRegisteredChildren";
 import FilterGroup, { FilterButton } from "../FilterGroup/FilterGroup";
+import {
+  DesktopTableSkeleton,
+  MobileTableSkeleton,
+  NoDataSkeleton,
+} from "../AdminTableSkeleton/AdminTableSkeleton";
 
 type ColumnProp = { key: string; header: string }[];
 const columns = [
@@ -13,13 +18,23 @@ const columns = [
 ];
 
 export default function ClassListTable() {
-  const { data } = useGetRegisteredChildren();
+  const { data, isPending } = useGetRegisteredChildren();
   const rows = data?.data || [];
 
   return (
     <>
-      <DesktopTable columns={columns} rows={rows} keyProp="childId" />
-      <MobileTable columns={columns} rows={rows} keyProp="childId" />
+      <DesktopTable
+        columns={columns}
+        rows={rows}
+        keyProp="childId"
+        isPending={isPending}
+      />
+      <MobileTable
+        columns={columns}
+        rows={rows}
+        keyProp="childId"
+        isPending={isPending}
+      />
     </>
   );
 }
@@ -28,10 +43,12 @@ const MobileTable = ({
   columns,
   rows,
   keyProp,
+  isPending,
 }: {
   columns: ColumnProp;
   rows: { [key: string]: any }[];
   keyProp: string;
+  isPending: boolean;
 }) => {
   return (
     <Stack
@@ -48,6 +65,12 @@ const MobileTable = ({
           <FilterButton queryValue={"spanish"}>Spanish</FilterButton>
         </FilterGroup>
       </Box>
+
+      {/* Skeleton */}
+      {isPending && <MobileTableSkeleton />}
+
+      {/* Row Empty */}
+      {rows.length === 0 && !isPending && <NoDataSkeleton />}
 
       {rows.map((r, i) => (
         <MobileItem key={i} columns={columns} row={r} />
@@ -112,10 +135,12 @@ const DesktopTable = ({
   columns,
   rows,
   keyProp,
+  isPending,
 }: {
   columns: ColumnProp;
   rows: { [key: string]: any }[];
   keyProp: string;
+  isPending: boolean;
 }) => {
   return (
     <Box
@@ -147,6 +172,17 @@ const DesktopTable = ({
           </Typography>
         ))}
       </Stack>
+
+      {/* Rows Skeleton */}
+      {isPending && <DesktopTableSkeleton columns={columns} />}
+
+      {/* Row Empty */}
+      {rows.length === 0 && !isPending && (
+        <>
+          <Divider />
+          <NoDataSkeleton />
+        </>
+      )}
 
       {/* Rows */}
       {rows.map((r, i) => (
