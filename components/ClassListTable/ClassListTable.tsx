@@ -2,6 +2,7 @@
 
 import { Box, Stack, Typography } from "@mui/material";
 import { useGetRegisteredChildren } from "@/hooks/useGetRegisteredChildren";
+import FilterGroup, { FilterButton } from "../FilterGroup/FilterGroup";
 
 type ColumnProp = { key: string; header: string }[];
 const columns = [
@@ -39,6 +40,15 @@ const MobileTable = ({
       gap={"4px"}
       sx={{ display: { xs: "flex", md: "none" } }}
     >
+      {/* Filter */}
+      <Box padding={"16px"} bgcolor={"white"}>
+        <FilterGroup queryKey="class">
+          <FilterButton queryValue={null}>All</FilterButton>
+          <FilterButton queryValue={"french"}>French</FilterButton>
+          <FilterButton queryValue={"spanish"}>Spanish</FilterButton>
+        </FilterGroup>
+      </Box>
+
       {rows.map((r, i) => (
         <MobileItem key={i} columns={columns} row={r} />
       ))}
@@ -114,6 +124,15 @@ const DesktopTable = ({
       borderRadius={"8px"}
       sx={{ display: { xs: "none", md: "block" } }}
     >
+      {/* Filter */}
+      <Box marginBottom={"20px"} marginTop={"16px"}>
+        <FilterGroup queryKey="class">
+          <FilterButton queryValue={null}>All</FilterButton>
+          <FilterButton queryValue={"french"}>French</FilterButton>
+          <FilterButton queryValue={"spanish"}>Spanish</FilterButton>
+        </FilterGroup>
+      </Box>
+
       {/* Header */}
       <Stack flexDirection={"row"} gap={"20px"} padding={"12px 0px"}>
         {columns.map((c) => (

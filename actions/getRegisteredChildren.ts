@@ -18,7 +18,14 @@ export interface GetRegisteredChildrenResponse {
   error: null;
 }
 
-export async function getRegisteredChildren(): Promise<GetRegisteredChildrenResponse> {
-  const res = await axios.get("/registrations/children");
-  return res.data;
+export async function getRegisteredChildren(
+  selectedClass?: string | null,
+): Promise<GetRegisteredChildrenResponse> {
+  const response = await axios.get("/registrations/children", {
+    params: {
+      class: selectedClass || undefined,
+    },
+  });
+
+  return response.data;
 }

@@ -15,6 +15,7 @@ import {
 import { useGetInteracPayments } from "@/hooks/usegetInteracPayments";
 import { InteracPayment } from "@/lib/api";
 import theme from "@/theme";
+import FilterGroup, { FilterButton } from "../FilterGroup/FilterGroup";
 
 type ColumnProp = { key: string; header: string }[];
 const columns = [
@@ -156,6 +157,15 @@ const MobileTable = ({
       gap={"4px"}
       sx={{ display: { xs: "flex", md: "none" } }}
     >
+      {/* Filter */}
+      <Box padding={"16px"} bgcolor={"white"}>
+        <FilterGroup queryKey="status">
+          <FilterButton queryValue={null}>All</FilterButton>
+          <FilterButton queryValue={"paid"}>Paid</FilterButton>
+          <FilterButton queryValue={"pending"}>Pending</FilterButton>
+        </FilterGroup>
+      </Box>
+
       {rows.map((r) => (
         <MobileItem
           key={r[keyProp]}
@@ -270,6 +280,15 @@ const DesktopTable = ({
       borderRadius={"8px"}
       sx={{ display: { xs: "none", md: "block" } }}
     >
+      {/* Filter */}
+      <Box marginBottom={"20px"} marginTop={"16px"}>
+        <FilterGroup queryKey="status">
+          <FilterButton queryValue={null}>All</FilterButton>
+          <FilterButton queryValue={"paid"}>Paid</FilterButton>
+          <FilterButton queryValue={"pending"}>Pending</FilterButton>
+        </FilterGroup>
+      </Box>
+
       {/* Header */}
       <Stack
         flexDirection={"row"}
