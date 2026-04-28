@@ -3,6 +3,7 @@
 import {
   Checkbox,
   FormControl,
+  FormHelperText,
   InputLabel,
   ListItemText,
   MenuItem,
@@ -34,7 +35,10 @@ type CampSelectProps = {
 };
 
 type ChildSummaryCardProps = {
-  child: Pick<ChildData, "firstName" | "lastName" | "age" | "allergies" | "camps">;
+  child: Pick<
+    ChildData,
+    "firstName" | "lastName" | "age" | "allergies" | "camps"
+  >;
   onEdit: () => void;
 };
 
@@ -156,14 +160,14 @@ function CampSelect({ selectId, selected, onToggle }: CampSelectProps) {
 
   return (
     <FormControl variant="standard" fullWidth className={style.field}>
-      <InputLabel id={`${selectId}-label`}>Summer Class Camp</InputLabel>
+      <InputLabel id={`${selectId}-label`}>Select Class</InputLabel>
       <Select
         labelId={`${selectId}-label`}
         id={selectId}
         multiple
         value={selected}
         onChange={handleChange}
-        label="Summer Class Camp"
+        label="Select Class"
         renderValue={(value) =>
           value.map((camp) => camp.replace(" Class", "")).join(", ")
         }
@@ -175,6 +179,7 @@ function CampSelect({ selectId, selected, onToggle }: CampSelectProps) {
           </MenuItem>
         ))}
       </Select>
+      <FormHelperText>Choose one or more classes</FormHelperText>
     </FormControl>
   );
 }
