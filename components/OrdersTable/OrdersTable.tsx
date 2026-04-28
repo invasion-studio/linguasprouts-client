@@ -27,6 +27,7 @@ type ColumnProp = { key: string; header: string }[];
 const columns = [
   { key: "name", header: "Name" },
   { key: "email", header: "Email" },
+  { key: "orderId", header: "Order Id" },
   { key: "amountToPay", header: "Amount" },
   { key: "paymentStatus", header: "Payment Status" },
   { key: "action", header: "Action" },
