@@ -63,7 +63,7 @@ export default function Home() {
             fontFamily="playpen sans"
             marginTop={"16px"}
             sx={{
-              fontSize: { xs: "20x", md: "24px" },
+              fontSize: { xs: "20px", md: "24px" },
               lineHeight: { xs: "32px", md: "40px" },
             }}
           >
@@ -89,14 +89,18 @@ export default function Home() {
             world early.
           </Typography>
 
-          {mediumBreakpoint && (
+          <Box
+            height={211.36}
+            width={237.33}
+            sx={{ display: { xs: "none", md: "block" } }}
+          >
             <Image
               src={"/vector1.png"}
               alt="elipse with child image"
               width={237.33}
               height={211.36}
             />
-          )}
+          </Box>
         </Stack>
 
         <Stack
@@ -164,6 +168,7 @@ const useDrawerContext = () => useContext(drawerContext);
 
 function AppBar() {
   const menuBreakpoint = useMediaQuery("(max-width: 1024px)");
+  const menuBreakpoint2 = useMediaQuery("(min-width: 1025px)");
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
@@ -179,7 +184,7 @@ function AppBar() {
       >
         <Logo />
 
-        {!menuBreakpoint && (
+        {menuBreakpoint2 && (
           <PrimaryButton
             color="secondary"
             href="/summercamp2026"
