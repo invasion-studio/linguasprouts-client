@@ -48,7 +48,7 @@
 }
 
 .adminLink:hover {
-  color: #75C30A;
+  color: #75c30a;
 }
 
 .registerBtn {
@@ -58,7 +58,7 @@
   line-height: 22px;
   letter-spacing: 0;
   color: #ffffff;
-  background: #75C30A;
+  background: #75c30a;
   border: none;
   border-radius: 100px;
   padding: 8px 28px;
@@ -128,7 +128,7 @@
   line-height: 24px;
   letter-spacing: 0;
   color: #ffffff;
-  background: #75C30A;
+  background: #75c30a;
   border-radius: 100px;
   padding: 12px 40px;
   text-decoration: none;

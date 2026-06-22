@@ -54,8 +54,10 @@ const theme = createTheme({
   },
 
   cssVariables: { cssVarPrefix: "" },
+
   typography: {
-    fontFamily: "var(--font-plus-jakarta-sans), Plus Jakarta Sans, sans-serif",
+    fontFamily:
+      "var(--font-plus-jakarta-sans), Plus Jakarta Sans, sans-serif, playpen sans",
     h1: {
       fontSize: "61px",
       fontWeight: 400,
@@ -106,7 +108,7 @@ const theme = createTheme({
       fontSize: "16px",
       fontWeight: 400,
       fontFamily: "Plus Jakarta Sans, sans-serif",
-      lineHeight: "32px",
+      lineHeight: "25.6px",
     },
     body2: {
       fontSize: "14px",
@@ -116,16 +118,23 @@ const theme = createTheme({
     },
     caption: {
       fontSize: "12px",
+      lineHeight: "20px",
       fontWeight: 400,
       fontFamily: "Plus Jakarta Sans, sans-serif",
+    },
+    button: {
+      fontSize: "14px",
+      fontWeight: 700,
+      fontFamily: "Plus Jakarta Sans, sans-serif",
+      lineHeight: "22px",
     },
   },
   palette: {
     primary: {
-      main: "#75C30A",
+      main: "#32D411",
     },
     secondary: {
-      main: "#0C9EEA",
+      main: "#12ABDE",
     },
     error: {
       main: "#DF221D",
