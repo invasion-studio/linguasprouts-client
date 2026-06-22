@@ -289,7 +289,7 @@ const EarlySprouts = () => {
         position={"relative"}
         zIndex={2}
       >
-        <Typography variant="caption">12-15 years</Typography>
+        <Typography variant="caption">5-7 years</Typography>
       </Stack>
 
       <Box position={"relative"} zIndex={2}>
@@ -335,7 +335,7 @@ const YoungExplorers = () => {
         position={"relative"}
         zIndex={2}
       >
-        <Typography variant="caption">12-15 years</Typography>
+        <Typography variant="caption">8-11 years</Typography>
       </Stack>
 
       <Box position={"relative"} zIndex={2}>
