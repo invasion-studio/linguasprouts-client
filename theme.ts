@@ -64,7 +64,8 @@ const theme = createTheme({
       fontFamily: "Plus Jakarta Sans, sans-serif",
     },
     h2: {
-      fontSize: "49px",
+      fontSize: "40px",
+      lineHeight: "56px",
       fontWeight: 600,
       fontFamily: "Plus Jakarta Sans, sans-serif",
     },
