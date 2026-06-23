@@ -3,6 +3,7 @@
 import { PrimaryButton } from "@/components/PrimaryButton/PrimaryButton";
 import { Box, Stack, Typography } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function SummerCamp2026() {
   return (
@@ -40,7 +41,11 @@ export default function SummerCamp2026() {
             summer, where they’ll build confidence, make new friends, and
             explore new cultures through engaging, interactive experiences.
           </Typography>
-          <PrimaryButton href="/summercamp2026" color="primary">
+          <PrimaryButton
+            component={Link}
+            href="/summercamp2026"
+            color="primary"
+          >
             Learn More
           </PrimaryButton>
         </Box>
