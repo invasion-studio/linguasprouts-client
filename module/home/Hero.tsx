@@ -1,35 +1,27 @@
 "use client";
 
-import Logo from "@/components/Logo/Logo";
-import { PrimaryButton } from "@/components/PrimaryButton/PrimaryButton";
-import {
-  Box,
-  Drawer,
-  IconButton,
-  Stack,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
+import { Box, Stack, Typography, useMediaQuery } from "@mui/material";
 import Image from "next/image";
-import Link from "next/link";
-import MenuIcon from "@/public/hugeicons_menu-11.svg";
-import {
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useState,
-} from "react";
-import CloseIcon from "@mui/icons-material/Close";
+import AppBar from "@/components/AppBar/AppBar";
 
 export default function Hero() {
   const mediumBreakpoint = useMediaQuery("(min-width: 900px)");
   return (
-    <Box bgcolor={"#F3F8F2"}>
+    <Box>
       <AppBar />
 
-      <Box component={"div"} className="layout">
-        <Box maxWidth={"1024px"} margin={"0px auto"} marginBottom={"60px"}>
+      <Box
+        component={"div"}
+        className="layout"
+        bgcolor={"#F3F8F2"}
+        sx={{
+          margin: { xs: "0px 8px 80px 8px", md: "0px 20px 80px 20px" },
+          borderRadius: { xs: "24px", md: "32px" },
+          paddingTop: { xs: "70px", md: "80px" },
+          paddingBottom: "60px",
+        }}
+      >
+        <Box maxWidth={"1024px"} margin={"0px auto"}>
           <Box>
             <Typography
               align="center"
@@ -39,7 +31,6 @@ export default function Hero() {
               sx={{
                 fontSize: { xs: "48px", md: "80px" },
                 lineHeight: { xs: "64px", md: "108px" },
-                marginTop: { xs: "70px", md: "80px" },
               }}
             >
               Speak. Play.{" "}
@@ -118,113 +109,6 @@ export default function Hero() {
     </Box>
   );
 }
-
-export const appBarHeight = "72px";
-
-type DrawerContextType = {
-  drawerOpen: boolean;
-  setDrawerOpen?: Dispatch<SetStateAction<boolean>>;
-};
-const drawerContext = createContext<DrawerContextType>({ drawerOpen: false });
-const useDrawerContext = () => useContext(drawerContext);
-
-function AppBar() {
-  const menuBreakpoint = useMediaQuery("(max-width: 1024px)");
-  const menuBreakpoint2 = useMediaQuery("(min-width: 1025px)");
-  const [drawerOpen, setDrawerOpen] = useState(false);
-
-  return (
-    <drawerContext.Provider value={{ drawerOpen, setDrawerOpen }}>
-      <Stack
-        component={"div"}
-        className="layout"
-        bgcolor={"white"}
-        height={"72px"}
-        flexDirection={"row"}
-        alignItems={"center"}
-        justifyContent={"space-between"}
-      >
-        <Logo />
-
-        {menuBreakpoint2 && (
-          <PrimaryButton
-            color="secondary"
-            href="/summercamp2026"
-            LinkComponent={Link}
-          >
-            Summer Camp 2026
-          </PrimaryButton>
-        )}
-
-        {menuBreakpoint && (
-          <IconButton onClick={() => setDrawerOpen && setDrawerOpen(true)}>
-            <MenuIcon />
-          </IconButton>
-        )}
-
-        {menuBreakpoint && (
-          <NavDrawer open={drawerOpen} setOpen={setDrawerOpen} />
-        )}
-      </Stack>
-    </drawerContext.Provider>
-  );
-}
-
-const NavDrawer = ({
-  open,
-  setOpen,
-}: {
-  open: boolean;
-  setOpen: Dispatch<SetStateAction<boolean>>;
-}) => {
-  const toggleDrawer = (isOpen: boolean) => () => {
-    setOpen(isOpen);
-  };
-
-  return (
-    <Drawer
-      open={open}
-      onClose={toggleDrawer(false)}
-      anchor="top"
-      elevation={0}
-      sx={{
-        ["& .MuiPaper-root"]: {
-          borderRadius: "0px 0px 32px 32px",
-        },
-      }}
-    >
-      <Box component={"div"} className="layout">
-        <Stack
-          component={"div"}
-          bgcolor={"white"}
-          height={appBarHeight}
-          flexDirection={"row"}
-          alignItems={"center"}
-          justifyContent={"space-between"}
-          marginBottom={"32px"}
-        >
-          <Logo />
-
-          <IconButton onClick={() => setOpen(false)}>
-            <CloseIcon />
-          </IconButton>
-        </Stack>
-
-        <Box padding={"16px 0px 20px 0px"}>
-          <Link href={"/summercamp2026"}>
-            <PrimaryButton
-              sx={{ width: "100%" }}
-              onClick={() => setOpen(false)}
-              color="secondary"
-            >
-              Summer Camp 2026{" "}
-            </PrimaryButton>
-          </Link>
-        </Box>
-      </Box>
-    </Drawer>
-  );
-};
 
 const EarlySprouts = () => {
   return (

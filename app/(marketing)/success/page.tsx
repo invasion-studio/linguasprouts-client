@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { verifyPayment } from "@/lib/api";
 import style from "./page.module.css";
-import AppBar from "@/components/AppBar/AppBar";
+import AppBar from "@/components/AppBar/AppBar2";
 
 type Status = "loading" | "paid" | "pending" | "failed";
 

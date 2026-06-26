@@ -12,7 +12,7 @@ export default function Logo() {
         width={132}
         height={26}
         loading="eager"
-        style={{ marginTop: 8 }}
+        style={{ marginTop: 8, marginRight: "38px" }}
       />
     </Link>
   );

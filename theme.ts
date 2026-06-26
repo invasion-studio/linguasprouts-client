@@ -59,7 +59,8 @@ const theme = createTheme({
     fontFamily:
       "var(--font-plus-jakarta-sans), Plus Jakarta Sans, sans-serif, playpen sans",
     h1: {
-      fontSize: "61px",
+      fontSize: "56px",
+      lineHeight: "72px",
       fontWeight: 400,
       fontFamily: "Plus Jakarta Sans, sans-serif",
     },

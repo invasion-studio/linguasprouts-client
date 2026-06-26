@@ -1,5 +1,6 @@
 "use client";
 
+import JoinToday from "@/components/JoinToday/JoinToday";
 import Footer from "@/module/home/Footer";
 import Hero from "@/module/home/Hero";
 import SummerCamp2026 from "@/module/home/SummerCamp2026";
@@ -13,6 +14,7 @@ export default function Home() {
       <WhatWeTeach />
       <SummerCamp2026 />
       <Testimonial />
+      <JoinToday />
       <Footer />
     </>
   );

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import AppBar from "@/components/AppBar/AppBar";
+import AppBar from "@/components/AppBar/AppBar2";
 import { useCreateInteracPayments } from "@/hooks/useCreateInteracPayments";
 import {
   ChildInfoForm,

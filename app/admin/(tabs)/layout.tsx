@@ -1,4 +1,4 @@
-import AppBar from "@/components/AppBar/AppBar";
+import AppBar from "@/components/AppBar/AppBar2";
 import { Box } from "@mui/material";
 import { ReactNode } from "react";
 import AdminTab from "./Tab";
