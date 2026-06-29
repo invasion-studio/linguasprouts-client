@@ -56,7 +56,15 @@ function ContactUs() {
           <Stack gap={"12px"}>
             <Stack gap={"20px"} flexDirection={"row"} alignItems={"center"}>
               <EmailIcon color="primary" fontSize="small" />
-              <Typography>info@linguasprouts</Typography>
+              <Typography
+                component={"a"}
+                href="mailto:info@linguasprouts.ca"
+                sx={{
+                  "&:hover": { color: (theme) => theme.palette.primary.main },
+                }}
+              >
+                info@linguasprouts.ca
+              </Typography>
             </Stack>
             <Stack gap={"20px"} flexDirection={"row"} alignItems={"center"}>
               <PhoneIcon color="primary" fontSize="small" />
