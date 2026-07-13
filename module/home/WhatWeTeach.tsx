@@ -17,7 +17,6 @@ export default function WhatWeTeach() {
         <Typography
           variant="h2"
           color="textSecondary"
-          fontFamily={"playpen sans"}
           align="center"
           sx={{
             marginBottom: { xs: "60px", md: "80px" },

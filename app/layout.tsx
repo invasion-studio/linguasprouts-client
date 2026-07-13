@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Playpen_Sans } from "next/font/google";
+import {
+  Plus_Jakarta_Sans,
+  Playpen_Sans,
+  DM_Serif_Display,
+} from "next/font/google";
 import "./globals.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
 import { Providers } from "./providers";
@@ -16,6 +20,12 @@ const playpenSans = Playpen_Sans({
   weight: ["600", "700"],
 });
 
+const dmSerifDisplay = DM_Serif_Display({
+  variable: "--font-dm-serif-display",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
 export const metadata: Metadata = {
   title: "Linguasprouts Academy",
   description: "French/Spanish Summer Camp 2026 Registration",
@@ -29,7 +39,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${plusJakartaSans.variable} ${playpenSans.variable}  h-full`}
+      className={`${plusJakartaSans.variable} ${playpenSans.variable} ${dmSerifDisplay.variable}  h-full`}
     >
       <head>
         <link

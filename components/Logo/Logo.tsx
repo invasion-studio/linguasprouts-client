@@ -3,11 +3,15 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Logo() {
+export default function Logo({ variant }: { variant?: "white" }) {
   return (
     <Link href="/">
       <Image
-        src={"/Logo-LinguaSprouts.svg"}
+        src={
+          variant == "white"
+            ? "/WhiteLogo-LinguaSprouts.svg"
+            : "/Logo-LinguaSprouts.svg"
+        }
         alt="Logo"
         width={132}
         height={26}

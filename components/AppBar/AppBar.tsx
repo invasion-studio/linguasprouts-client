@@ -11,11 +11,18 @@ import {
   Typography,
 } from "@mui/material";
 import Link from "next/link";
-import { Dispatch, SetStateAction, useContext, useState } from "react";
+import {
+  CSSProperties,
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useState,
+} from "react";
 import { createContext } from "react";
 import MenuIcon from "@/public/hugeicons_menu-11.svg";
 import CloseIcon from "@mui/icons-material/Close";
 import { usePathname } from "next/navigation";
+import { BorderColor } from "@mui/icons-material";
 
 export const appBarHeight = "72px";
 
@@ -26,7 +33,7 @@ type DrawerContextType = {
 const drawerContext = createContext<DrawerContextType>({ drawerOpen: false });
 const useDrawerContext = () => useContext(drawerContext);
 
-export default function AppBar() {
+export default function AppBar({ transparent }: { transparent?: boolean }) {
   const maxWidth1024px = useMediaQuery("(max-width: 899px)");
   const minWidth1024px = useMediaQuery("(min-width: 900px)");
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -37,35 +44,67 @@ export default function AppBar() {
       <Stack
         component={"div"}
         className="layout"
-        bgcolor={"white"}
+        bgcolor={transparent ? "transparent" : "white"}
         height={"72px"}
         flexDirection={"row"}
         alignItems={"center"}
         justifyContent={"space-between"}
       >
-        <Logo />
+        <Logo variant={transparent ? "white" : undefined} />
 
         {minWidth1024px && (
           <Stack gap={"24px"} flexDirection={"row"}>
             {NavLinks.map((link, i) => (
               <Link key={i} href={link.href}>
-                <Typography
-                  variant={pathname == link.href ? "subtitle2" : "body2"}
-                  color={pathname == link.href ? "primary" : "textSecondary"}
-                  sx={{
-                    "&:hover": { color: (theme) => theme.palette.primary.main },
-                  }}
-                >
-                  {link.name}
-                </Typography>
+                {!transparent && (
+                  <Typography
+                    variant={pathname == link.href ? "subtitle2" : "body2"}
+                    color={pathname == link.href ? "primary" : "textSecondary"}
+                    sx={{
+                      "&:hover": {
+                        color: (theme) => theme.palette.primary.main,
+                      },
+                    }}
+                  >
+                    {link.name}
+                  </Typography>
+                )}
+
+                {transparent && (
+                  <Typography
+                    variant={pathname == link.href ? "subtitle2" : "body2"}
+                    color="white"
+                    sx={{
+                      "&:hover": {
+                        color: (theme) => "#1AFF1A",
+                      },
+                    }}
+                  >
+                    {link.name}
+                  </Typography>
+                )}
               </Link>
             ))}
           </Stack>
         )}
 
-        {minWidth1024px && (
+        {transparent && minWidth1024px && (
           <PrimaryButton
-            color="secondary"
+            color={transparent ? "inherit" : "secondary"}
+            href="/summercamp2026"
+            LinkComponent={Link}
+            style={{
+              color: "#063747",
+              background: "#33E5FF",
+            }}
+          >
+            Summer Camp 2026
+          </PrimaryButton>
+        )}
+
+        {!transparent && minWidth1024px && (
+          <PrimaryButton
+            color={"secondary"}
             href="/summercamp2026"
             LinkComponent={Link}
           >
@@ -74,7 +113,14 @@ export default function AppBar() {
         )}
 
         {maxWidth1024px && (
-          <IconButton onClick={() => setDrawerOpen && setDrawerOpen(true)}>
+          <IconButton
+            onClick={() => setDrawerOpen && setDrawerOpen(true)}
+            sx={{
+              "& svg path": {
+                stroke: transparent ? "white" : undefined,
+              },
+            }}
+          >
             <MenuIcon />
           </IconButton>
         )}
