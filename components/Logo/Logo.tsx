@@ -16,6 +16,8 @@ export default function Logo({ variant }: { variant?: "white" }) {
         width={132}
         height={26}
         loading="eager"
+        priority
+        preload
         style={{ marginTop: 8, marginRight: "38px" }}
       />
     </Link>
