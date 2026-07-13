@@ -12,14 +12,7 @@ export default function Hero2() {
         <AppBar transparent />
       </Box>
 
-      <Image
-        src={"/homebanner.jpg"}
-        alt="children studying"
-        fill
-        style={{
-          objectFit: "cover",
-        }}
-      />
+      <VideoPlayer />
 
       <Box
         position="absolute"
@@ -30,7 +23,7 @@ export default function Hero2() {
         position="absolute"
         sx={{
           background:
-            "linear-gradient(to bottom, rgba(0,0,0,.20) 0%, transparent 20%)",
+            "linear-gradient(to bottom, rgba(0,0,0,.35) 0%, transparent 20%)",
           inset: 0,
         }}
       />
@@ -39,7 +32,7 @@ export default function Hero2() {
         position="absolute"
         sx={{
           background:
-            "linear-gradient(to top, rgba(0,0,0,0.25) 0%, transparent 40%)",
+            "linear-gradient(to top, rgba(0,0,0,0.40) 0%, transparent 50%)",
           inset: 0,
         }}
       />
@@ -104,3 +97,43 @@ export default function Hero2() {
     </Box>
   );
 }
+
+const VideoPlayer = () => {
+  return (
+    <Stack
+      position="absolute"
+      justifyContent={"center"}
+      alignItems={"center"}
+      sx={{
+        inset: 0,
+        backgroundColor: "#1a1a1a",
+      }}
+    >
+      <Box
+        component="div"
+        sx={{
+          position: "absolute",
+          // paddingTop: "56.25%",
+          overflow: "hidden",
+          minHeight: "120vh",
+          minWidth: "100vw",
+          aspectRatio: 16 / 9,
+        }}
+      >
+        <iframe
+          src="https://player.mediadelivery.net/embed/703840/6b7954af-1698-4684-b11a-262e374c7e0e?autoplay=true&loop=true&muted=true&preload=true&responsive=true"
+          loading="lazy"
+          style={{
+            border: 0,
+            position: "absolute",
+            top: 0,
+            height: "100%",
+            width: "100%",
+          }}
+          allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;"
+          allowFullScreen
+        />
+      </Box>
+    </Stack>
+  );
+};
