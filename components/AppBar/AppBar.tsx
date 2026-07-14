@@ -117,7 +117,7 @@ export default function AppBar({ transparent }: { transparent?: boolean }) {
             onClick={() => setDrawerOpen && setDrawerOpen(true)}
             sx={{
               "& svg path": {
-                stroke: transparent ? "white" : undefined,
+                stroke: (theme) => (transparent ? "white" : undefined),
               },
             }}
           >
