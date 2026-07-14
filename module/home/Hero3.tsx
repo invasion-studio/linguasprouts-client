@@ -26,11 +26,13 @@ export default function Hero3() {
         className="layout"
         bgcolor={"#0F91BD"}
         position={"relative"}
+        overflow={"hidden"}
         sx={{
           paddingTop: "80px",
           paddingBottom: "80px",
         }}
       >
+        {/* Translated box 8% transparency */}
         <Box
           height={"600px"}
           width={"600px"}
@@ -42,6 +44,33 @@ export default function Hero3() {
             left: { xs: -450, sm: -350, md: -250 },
           }}
         />
+
+        {/* circle box 8% transparency */}
+        <Stack
+          bgcolor={"rgba(255,255,255,0.08)"}
+          position={"absolute"}
+          alignItems={"center"}
+          justifyContent={"center"}
+          borderRadius={"2000px"}
+          sx={{
+            display: { xs: "none", sm: "flex" },
+            height: { sm: "400px", md: "520px" },
+            width: { sm: "400px", md: "520px" },
+            right: -180,
+            bottom: { sm: -200, md: -250 },
+          }}
+        >
+          <Box
+            height={"220px"}
+            width={"220px"}
+            borderRadius={"2000px"}
+            bgcolor={"#0F91BD"}
+            sx={{
+              height: { sm: "200px", md: "220px" },
+              width: { sm: "200px", md: "220px" },
+            }}
+          />
+        </Stack>
 
         <Stack
           flexDirection={"row"}
@@ -121,9 +150,11 @@ export default function Hero3() {
               style={{
                 width: "100%",
                 minWidth: 1,
-                maxWidth: 400,
+                maxWidth: 420,
                 marginLeft: "auto",
                 marginRight: "20px",
+                position: "relative",
+                zIndex: 2,
               }}
             />
           </Box>
