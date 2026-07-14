@@ -25,122 +25,110 @@ export default function Hero3() {
         component={"div"}
         className="layout"
         bgcolor={"#0F91BD"}
+        position={"relative"}
         sx={{
-          paddingTop: "120px",
-          paddingBottom: "120px",
+          paddingTop: "80px",
+          paddingBottom: "80px",
         }}
       >
-        <Box>
-          <Typography
-            variant="h1"
-            color="white"
-            marginBottom={"16px"}
-            sx={{
-              font: { xs: "var(--font-h2)", md: "var(--font-h1)" },
-            }}
-            style={{ fontWeight: 800 }}
-          >
-            Speak. Play.{" "}
+        <Box
+          height={"600px"}
+          width={"600px"}
+          bgcolor={"rgba(255,255,255,0.08)"}
+          position={"absolute"}
+          sx={{
+            transform: "rotate(30deg)",
+            bottom: { xs: -250, md: -150 },
+            left: { xs: -450, sm: -350, md: -250 },
+          }}
+        />
+
+        <Stack
+          flexDirection={"row"}
+          gap={"64px"}
+          alignItems={"center"}
+          maxWidth={"1200px"}
+          margin="0px auto"
+        >
+          <Box width={"100%"}>
             <Typography
-              component={"span"}
-              position={"relative"}
-              style={{ font: "inherit" }}
-              zIndex={2}
+              variant="h1"
+              color="white"
+              marginBottom={"16px"}
               sx={{
-                "& #line-vector": {
-                  width: { xs: "140px", md: "150px" },
-                  right: { xs: 0, md: 16 },
-                },
+                font: { xs: "var(--font-h2)", md: "var(--font-h1)" },
               }}
+              style={{ fontWeight: 800 }}
             >
-              Grow.{" "}
-              <Image
-                src={"/lineVector.svg"}
-                id="line-vector"
-                alt="illustration"
-                width={150}
-                height={11}
-                style={{
-                  display: "inline-block",
-                  position: "absolute",
-                  bottom: -8,
-                  zIndex: -1,
+              Speak. Play.{" "}
+              <Typography
+                component={"span"}
+                position={"relative"}
+                style={{ font: "inherit" }}
+                zIndex={2}
+                sx={{
+                  "& #line-vector": {
+                    width: { xs: "140px", md: "150px" },
+                    right: { xs: 0, md: 16 },
+                  },
                 }}
-              />
+              >
+                Grow.{" "}
+                <Image
+                  src={"/lineVector.svg"}
+                  id="line-vector"
+                  alt="illustration"
+                  width={150}
+                  height={11}
+                  style={{
+                    display: "inline-block",
+                    position: "absolute",
+                    bottom: -8,
+                    zIndex: -1,
+                  }}
+                />
+              </Typography>
             </Typography>
-          </Typography>
-          <Typography color="white" maxWidth={480}>
-            From their first words to full conversations, we guide children on a
-            joyful journey into new languages—helping them connect with the
-            world early.
-          </Typography>
-        </Box>
+            <Typography color="white" maxWidth={480} marginBottom={"32px"}>
+              From their first words to full conversations, we guide children on
+              a joyful journey into new languages—helping them connect with the
+              world early.
+            </Typography>
+            <Stack flexDirection={"row"} gap={"8px"}>
+              <PrimaryButton
+                color="primary"
+                sx={{
+                  bgcolor: (theme) => theme.palette.primary.light,
+                  "&:hover": { bgcolor: (theme) => theme.palette.primary.main },
+                  color: "#0E3D05",
+                }}
+              >
+                Learn more
+              </PrimaryButton>
+              <PrimaryButton variant="outlined" color="inherit">
+                Get in touch
+              </PrimaryButton>
+            </Stack>
+          </Box>
+
+          <Box width={"100%"} sx={{ display: { xs: "none", md: "block" } }}>
+            <Image
+              src={"/home-Illustration.png"}
+              alt="home illustration"
+              id="hero-illustration"
+              width={397}
+              height={399}
+              style={{
+                width: "100%",
+                minWidth: 1,
+                maxWidth: 400,
+                marginLeft: "auto",
+                marginRight: "20px",
+              }}
+            />
+          </Box>
+        </Stack>
       </Box>
-
-      {/* <VideoPlayer /> */}
-
-      {/* <Box
-        position="absolute"
-        sx={{ backgroundColor: "rgba(0, 0, 0, 0.35)", inset: 0 }}
-      /> */}
-
-      {/* <Box
-        position="absolute"
-        sx={{
-          background:
-            "linear-gradient(to bottom, rgba(0,0,0,.35) 0%, transparent 20%)",
-          inset: 0,
-        }}
-      /> */}
-
-      {/* <Box
-        position="absolute"
-        sx={{
-          background:
-            "linear-gradient(to top, rgba(0,0,0,0.40) 0%, transparent 50%)",
-          inset: 0,
-        }}
-      /> */}
     </Box>
   );
 }
-
-const VideoPlayer = () => {
-  return (
-    <Stack
-      position="absolute"
-      justifyContent={"center"}
-      alignItems={"center"}
-      sx={{
-        inset: 0,
-        backgroundColor: "#1a1a1a",
-      }}
-    >
-      <Box
-        component="div"
-        sx={{
-          position: "absolute",
-          // paddingTop: "56.25%",
-          overflow: "hidden",
-          minHeight: "120vh",
-          minWidth: "100vw",
-          aspectRatio: 16 / 9,
-        }}
-      >
-        <iframe
-          src="https://player.mediadelivery.net/embed/703840/6b7954af-1698-4684-b11a-262e374c7e0e?autoplay=true&loop=true&muted=true&preload=true&responsive=true"
-          loading="lazy"
-          style={{
-            border: 0,
-            position: "absolute",
-            top: 0,
-            height: "100%",
-            width: "100%",
-          }}
-          allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;"
-          allowFullScreen
-        />
-      </Box>
-    </Stack>
-  );
-};
