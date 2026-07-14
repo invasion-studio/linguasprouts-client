@@ -7,6 +7,7 @@ import Hero2 from "@/module/home/Hero2";
 import Hero3 from "@/module/home/Hero3";
 import SummerCamp2026 from "@/module/home/SummerCamp2026";
 import Testimonial from "@/module/home/Testimonial";
+import Value from "@/module/home/Value";
 import WhatWeTeach from "@/module/home/WhatWeTeach";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
     <>
       {/* <Hero /> */}
       <Hero3 />
+      <Value />
       <WhatWeTeach />
       <SummerCamp2026 />
       <Testimonial />

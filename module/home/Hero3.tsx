@@ -145,6 +145,7 @@ export default function Hero3() {
               src={"/home-Illustration.png"}
               alt="home illustration"
               id="hero-illustration"
+              loading="eager"
               width={397}
               height={399}
               style={{
