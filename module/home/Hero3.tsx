@@ -3,7 +3,11 @@
 import AppBar from "@/components/AppBar/AppBar";
 import { PrimaryButton } from "@/components/PrimaryButton/PrimaryButton";
 import { Box, Stack, Typography } from "@mui/material";
+import { motion } from "motion/react";
 import Image from "next/image";
+
+const MotionBox = motion(Box);
+const MotionStack = motion(Stack);
 
 export default function Hero3() {
   return (
@@ -33,7 +37,10 @@ export default function Hero3() {
         }}
       >
         {/* Translated box 8% transparency */}
-        <Box
+        <MotionBox
+          initial={{ opacity: 0, x: -90, y: 40, rotate: -25 }}
+          animate={{ opacity: 1, x: 0, y: 0, rotate: 30 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
           height={"600px"}
           width={"600px"}
           bgcolor={"rgba(255,255,255,0.08)"}
@@ -46,7 +53,10 @@ export default function Hero3() {
         />
 
         {/* circle box 8% transparency */}
-        <Stack
+        <MotionStack
+          initial={{ opacity: 0, x: 90, y: 40, rotate: 25 }}
+          animate={{ opacity: 1, x: 0, y: 0, rotate: 0 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           bgcolor={"rgba(255,255,255,0.08)"}
           position={"absolute"}
           alignItems={"center"}
@@ -70,7 +80,7 @@ export default function Hero3() {
               width: { sm: "200px", md: "220px" },
             }}
           />
-        </Stack>
+        </MotionStack>
 
         <Stack
           flexDirection={"row"}
