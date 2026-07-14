@@ -19,9 +19,10 @@ export default function Value() {
         sx={{
           flexDirection: { xs: "column", md: "row" },
           gap: { xs: "60px", md: "120px" },
+          alignItems: { xs: undefined, md: "center" },
         }}
       >
-        <Box flex={3} width={"100%"}>
+        <Box flex={5} width={"100%"}>
           <Typography
             variant="h2"
             marginBottom={"28px"}
@@ -44,7 +45,8 @@ export default function Value() {
             color="textSecondary"
             sx={{
               font: { xs: "var(--font-body1)", md: "var(--font-h4)" },
-              lineHeight: { xs: undefined, md: "36px" },
+              fontSize: { md: "18px" },
+              lineHeight: { xs: undefined, md: "32px" },
             }}
             style={{ fontWeight: 400 }}
           >
@@ -58,7 +60,7 @@ export default function Value() {
           </Typography>
         </Box>
 
-        <Box flex={2} width={"100%"}>
+        <Box flex={4} width={"100%"}>
           <Box
             position={"relative"}
             // marginLeft={"auto"}
