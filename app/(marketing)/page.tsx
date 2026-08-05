@@ -10,6 +10,7 @@ import SummerCamp2026 from "@/modules/home/SummerCamp2026";
 import Testimonial from "@/modules/home/Testimonial";
 import Value from "@/modules/home/Value";
 import WhatWeTeach from "@/modules/home/WhatWeTeach";
+import FrenchImmigration from "@/modules/programs/components/frenchImmigrationSprint/FrenchImmigration";
 
 export default function Home() {
   return (
@@ -19,7 +20,8 @@ export default function Home() {
       <Value />
       {/* <WhatWeTeach /> */}
       <OurPrograms />
-      <SummerCamp2026 />
+      {/* <SummerCamp2026 /> */}
+      <FrenchImmigration />
       <Testimonial />
       <JoinToday />
       <Footer />

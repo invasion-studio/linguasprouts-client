@@ -91,24 +91,24 @@ export default function AppBar({
         {transparent && minWidth1024px && (
           <PrimaryButton
             color={transparent ? "inherit" : "secondary"}
-            href="/summercamp2026"
+            href="/french-immigration-sprint/register"
             LinkComponent={Link}
             style={{
               color: "#063747",
               background: "#33E5FF",
             }}
           >
-            Summer Camp 2026
+            French Immigration
           </PrimaryButton>
         )}
 
         {!transparent && minWidth1024px && (
           <PrimaryButton
             color={"secondary"}
-            href="/summercamp2026"
+            href="/french-immigration-sprint/register"
             LinkComponent={Link}
           >
-            Summer Camp 2026
+            French Immigration
           </PrimaryButton>
         )}
 

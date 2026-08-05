@@ -186,6 +186,20 @@ export default function RegistrationPage() {
         mainColor="#AEFA9E"
         secondaryColor="#81EE6A"
       />
+      <Box component={"div"} className="layout2">
+        <Stack
+          bgcolor={"white"}
+          marginTop={"32px"}
+          padding={"40px 24px"}
+          borderRadius={"24px"}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          <Typography color="textSecondary">
+            Registration Form will be avaialable soon
+          </Typography>
+        </Stack>
+      </Box>
       {/* <FormWrapper sections={sections} onSubmit={handleSubmit} /> */}
       {/* <Footer /> */}
     </Box>

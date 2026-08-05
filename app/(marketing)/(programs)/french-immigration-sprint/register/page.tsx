@@ -4,9 +4,6 @@ import AppBar from "@/components/AppBar/AppBar";
 import Footer from "@/components/Footer";
 import FormWrapper from "@/modules/programs/components/FormWrapper";
 import RegistrationBanner from "@/modules/programs/components/RegistrationBanner";
-import SuccessModal from "@/modules/programs/components/SuccessModal";
-import { useCreateAfterSchoolReg } from "@/modules/programs/hooks/afterschool/useCreateAfterSchoolReg";
-import { AfterSchoolRegPayload } from "@/modules/programs/types/afterschoolReg";
 import {
   Box,
   Stack,
@@ -21,9 +18,34 @@ import {
   Checkbox,
   Dialog,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-type FormData = AfterSchoolRegPayload;
+type FormData = {
+  child: {
+    fullName: string;
+    language: string;
+    ageGroup: string;
+  };
+  parent: {
+    fullName: string;
+    relationship: string;
+    email: string;
+    phoneNo: string;
+    homeAddress: string;
+    emergencyContact: {
+      name: string;
+      phoneNo: string;
+      homeAddress: string;
+    };
+  };
+  schedule: string[];
+  terms: {
+    acceptedTerms: boolean;
+    truthfulness: boolean;
+    consentPersonalInfo: boolean;
+    consentMedia?: boolean;
+  };
+};
 
 const days = [
   "Monday",
@@ -62,10 +84,6 @@ export default function RegistrationPage() {
     },
   });
 
-  const [successModalOpen, setSuccessModalOpen] = useState(false);
-  const { mutateAsync, mutate, isPending, error, isError } =
-    useCreateAfterSchoolReg();
-
   const updateChild = (patch: Partial<FormData["child"]>) => {
     setFormData((p) => ({ ...p, child: { ...p.child, ...patch } }));
   };
@@ -95,19 +113,22 @@ export default function RegistrationPage() {
     field: "day" | "time",
     value: string,
   ) => {
-    if (index === 0) {
-      setFormData((p) => ({
-        ...p,
-        schedule: [{ ...p.schedule[0], [field]: value }, p.schedule[1]],
-      }));
-    }
+    setFormData((p) => {
+      const nextSchedule = [...p.schedule];
+      const current = nextSchedule[index] ?? "";
+      const [currentDay = "", currentTime = ""] = current.split("-");
 
-    if (index === 1) {
-      setFormData((p) => ({
-        ...p,
-        schedule: [p.schedule[0], { ...p.schedule[1], [field]: value }],
-      }));
-    }
+      const day = field === "day" ? value : currentDay;
+      const time = field === "time" ? value : currentTime;
+
+      if (!day || !time) {
+        nextSchedule[index] = "";
+        return { ...p, schedule: nextSchedule.slice(0, 2) };
+      }
+
+      nextSchedule[index] = `${day}-${time}`;
+      return { ...p, schedule: nextSchedule.slice(0, 2) };
+    });
   };
 
   const handleSubmit = () => {
@@ -122,12 +143,6 @@ export default function RegistrationPage() {
         false,
       terms: formData.terms,
     };
-
-    mutate(payload, {
-      onSuccess() {
-        setSuccessModalOpen(true);
-      },
-    });
   };
 
   const sections = [
@@ -164,20 +179,28 @@ export default function RegistrationPage() {
     <Box bgcolor={"#FAFAFA"} minHeight={"100vh"}>
       <AppBar layout="narrow" />
       <RegistrationBanner
-        title="After School Language Registration"
+        title="French Immigration Sprint Registration"
         textColor="#1B7109"
         mainColor="#AEFA9E"
         secondaryColor="#81EE6A"
       />
-      <FormWrapper
-        sections={sections}
-        onSubmit={handleSubmit}
-        submitting={isPending}
-        isError={isError}
-        errorMessage={error?.message || ""}
-      />
-      <SuccessModal open={successModalOpen} />
-      <Footer />
+
+      <Box component={"div"} className="layout2">
+        <Stack
+          bgcolor={"white"}
+          marginTop={"32px"}
+          padding={"40px 24px"}
+          borderRadius={"24px"}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          <Typography color="textSecondary">
+            Registration Form will be avaialable soon
+          </Typography>
+        </Stack>
+      </Box>
+      {/* <FormWrapper sections={sections} onSubmit={handleSubmit} />
+      <Footer /> */}
     </Box>
   );
 }
@@ -312,9 +335,6 @@ function ScheduleSection({
     value: string,
   ) => void;
 }) {
-  useEffect(() => {
-    console.log(formData.schedule.toString());
-  }, [formData.schedule.toString()]);
   return (
     <Stack gap={3}>
       <Typography>
@@ -322,8 +342,7 @@ function ScheduleSection({
       </Typography>
       {[0, 1].map((index) => {
         const selected = formData.schedule[index] ?? "";
-        const dayValue = selected.day;
-        const timeValue = selected.time;
+        const [dayValue, timeValue] = selected.split("-");
 
         return (
           <Stack key={index} direction={{ xs: "column", sm: "row" }} gap={2}>
@@ -332,10 +351,9 @@ function ScheduleSection({
               <Select
                 value={dayValue ?? ""}
                 label={`Day ${index + 1}`}
-                onChange={(e) => {
-                  handleScheduleChange(index, "day", e.target.value as string);
-                  console.log(e.target.value);
-                }}
+                onChange={(e) =>
+                  handleScheduleChange(index, "day", e.target.value as string)
+                }
               >
                 <MenuItem value="">None</MenuItem>
                 {days.map((day) => (
@@ -351,10 +369,9 @@ function ScheduleSection({
               <Select
                 value={timeValue ?? ""}
                 label={`Time ${index + 1}`}
-                onChange={(e) => {
-                  handleScheduleChange(index, "time", e.target.value as string);
-                  console.log(e.target.value);
-                }}
+                onChange={(e) =>
+                  handleScheduleChange(index, "time", e.target.value as string)
+                }
               >
                 <MenuItem value="">None</MenuItem>
                 {scheduleOptions.map((opt) => (
