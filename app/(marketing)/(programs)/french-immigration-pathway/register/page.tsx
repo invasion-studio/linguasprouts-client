@@ -186,8 +186,8 @@ export default function RegistrationPage() {
         mainColor="#AEFA9E"
         secondaryColor="#81EE6A"
       />
-      <FormWrapper sections={sections} onSubmit={handleSubmit} />
-      <Footer />
+      {/* <FormWrapper sections={sections} onSubmit={handleSubmit} /> */}
+      {/* <Footer /> */}
     </Box>
   );
 }
