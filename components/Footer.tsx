@@ -17,7 +17,7 @@ export default function Footer() {
         flexDirection: { xs: "column", md: "row" },
         justifyContent: { xs: "start", md: "space-between" },
       }}
-      bgcolor={"white"}
+      // bgcolor={"white"}
     >
       <Typography variant="body2" color="textSecondary">
         &copy; {new Date().getUTCFullYear()} Linguasprouts Academy

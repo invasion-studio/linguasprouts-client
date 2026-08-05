@@ -56,6 +56,10 @@ p {
   padding: 0px 24px;
 }
 
+.layout2 {
+  padding: 0px 40px;
+}
+
 @media (max-width: 1024px) {
   .layout {
     padding: 0px 40px;
@@ -63,6 +67,10 @@ p {
 
   .adminLayout {
     padding: 0px 20px;
+  }
+
+  .layout2 {
+    padding: 0px 40px;
   }
 }
 
@@ -73,5 +81,9 @@ p {
 
   .adminLayout {
     padding: 0px 16px;
+  }
+
+  .layout2 {
+    padding: 0px 20px;
   }
 }

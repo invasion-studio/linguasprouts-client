@@ -26,8 +26,7 @@ function Hero() {
     <Box
       bgcolor={"#F3F8F2"}
       sx={{
-        margin: { xs: "0px 8px 80px 8px", md: "0px 20px 80px 20px" },
-        borderRadius: { xs: "24px", md: "32px" },
+        margin: { xs: "0px 0px 80px 0px", md: "0px 0px 80px 0px" },
         padding: { xs: "40px 20px 0px 20px", sm: "64px 20px 0px 20px" },
       }}
     >

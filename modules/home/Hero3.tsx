@@ -99,7 +99,7 @@ export default function Hero3() {
               }}
               style={{ fontWeight: 800 }}
             >
-              Speak. Play.{" "}
+              Learn. Speak.{" "}
               <Typography
                 component={"span"}
                 position={"relative"}

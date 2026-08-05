@@ -1,4 +1,3 @@
-import { adminTheme } from "@/theme";
 import theme from "@/theme";
 import { ThemeProvider } from "@mui/material";
 import { ReactNode } from "react";

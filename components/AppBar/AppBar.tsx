@@ -11,18 +11,12 @@ import {
   Typography,
 } from "@mui/material";
 import Link from "next/link";
-import {
-  CSSProperties,
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useState,
-} from "react";
+import { Dispatch, SetStateAction, useContext, useState } from "react";
 import { createContext } from "react";
 import MenuIcon from "@/public/hugeicons_menu-11.svg";
 import CloseIcon from "@mui/icons-material/Close";
 import { usePathname } from "next/navigation";
-import { BorderColor } from "@mui/icons-material";
+import style from "./AppBar.module.css";
 
 export const appBarHeight = "72px";
 
@@ -33,7 +27,13 @@ type DrawerContextType = {
 const drawerContext = createContext<DrawerContextType>({ drawerOpen: false });
 const useDrawerContext = () => useContext(drawerContext);
 
-export default function AppBar({ transparent }: { transparent?: boolean }) {
+export default function AppBar({
+  transparent,
+  layout = "normal",
+}: {
+  transparent?: boolean;
+  layout?: "normal" | "narrow";
+}) {
   const maxWidth1024px = useMediaQuery("(max-width: 899px)");
   const minWidth1024px = useMediaQuery("(min-width: 900px)");
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -43,7 +43,7 @@ export default function AppBar({ transparent }: { transparent?: boolean }) {
     <drawerContext.Provider value={{ drawerOpen, setDrawerOpen }}>
       <Stack
         component={"div"}
-        className="layout"
+        className={layout == "normal" ? "layout" : style.layout}
         bgcolor={transparent ? "transparent" : "white"}
         height={"72px"}
         flexDirection={"row"}

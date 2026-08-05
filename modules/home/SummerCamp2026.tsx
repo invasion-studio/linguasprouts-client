@@ -16,16 +16,16 @@ export default function SummerCamp2026() {
       }}
     >
       <Stack
-        maxWidth={"1024px"}
+        maxWidth={"1200px"}
         margin={"0px auto"}
-        gap={"64px"}
+        gap={"60px"}
         sx={{
           flexDirection: { xs: "column", md: "row" },
           alignItems: "center",
           justifyContent: { xs: "start", md: "space-between" },
         }}
       >
-        <Box maxWidth={"450px"}>
+        <Box flex={1}>
           <Typography variant="h2" marginBottom={"20px"}>
             Get Started With Summer Camp{" "}
             <Typography
@@ -50,12 +50,20 @@ export default function SummerCamp2026() {
           </PrimaryButton>
         </Box>
 
-        <Image
-          src={"/illustration-group1.png"}
-          alt={"Illustration"}
-          width={390}
-          height={330}
-        />
+        <Box flex={1}>
+          <Image
+            src={"/illustration-group1.png"}
+            alt={"Illustration"}
+            width={390}
+            height={330}
+            style={{
+              width: "100%",
+              margin: "0px auto",
+              maxWidth: 420,
+              minWidth: 1,
+            }}
+          />
+        </Box>
       </Stack>
     </Box>
   );

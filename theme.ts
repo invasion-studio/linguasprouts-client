@@ -143,7 +143,7 @@ const theme = createTheme({
       main: "#DF221D",
     },
     text: {
-      primary: Ibmgrey[100],
+      primary: Ibmgrey[90],
       secondary: Ibmgrey[70],
       disabled: Ibmgrey[40],
     },
