@@ -36,10 +36,6 @@ export default function RegistrationPage() {
     },
   });
 
-  useEffect(() => {
-    console.log(formData.schedule);
-  }, [formData]);
-
   const [successModalOpen, setSuccessModalOpen] = useState(false);
   const { mutateAsync, mutate, isPending, error, isError } =
     useCreateAfterSchoolReg();
