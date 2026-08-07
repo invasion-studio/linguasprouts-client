@@ -6,7 +6,7 @@ import ChildSection from "@/modules/programs/components/afterschool/ChildSection
 import ParentSection from "@/modules/programs/components/afterschool/ParentSection";
 import ScheduleSection from "@/modules/programs/components/afterschool/ScheduleSection";
 import FormWrapper from "@/modules/programs/components/FormWrapper";
-import RegistrationBanner from "@/modules/programs/components/RegistrationBanner";
+import RegistrationBanner from "@/modules/programs/components/Banner";
 import SuccessModal from "@/modules/programs/components/SuccessModal";
 import TermsSection from "@/modules/programs/components/Terms";
 import { useCreateAfterSchoolReg } from "@/modules/programs/hooks/afterschool/useCreateAfterSchoolReg";

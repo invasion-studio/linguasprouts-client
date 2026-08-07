@@ -1,7 +1,7 @@
 "use server";
 
 import axios from "@/lib/axios";
-import { FrenchImmigRegResponse } from "./types";
+import { FrenchImmigRegResponse } from "../../types/frenchImmigrationSprint";
 
 export async function getFrenchImmigRegById(
   id: string,

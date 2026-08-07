@@ -3,7 +3,7 @@
 import AppBar from "@/components/AppBar/AppBar";
 import Footer from "@/components/Footer";
 import FormWrapper from "@/modules/programs/components/FormWrapper";
-import RegistrationBanner from "@/modules/programs/components/RegistrationBanner";
+import RegistrationBanner from "@/modules/programs/components/Banner";
 import {
   Box,
   Stack,

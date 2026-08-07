@@ -1,8 +1,6 @@
 "use client";
 
-import AppBar from "@/components/AppBar/AppBar2";
-import { Box, CircularProgress, Stack } from "@mui/material";
-import { useGetInteracPayments } from "@/hooks/usegetInteracPayments";
+import { Box } from "@mui/material";
 import { useVerifyInteracPayment } from "@/hooks/useVerifyInteracPayments";
 import OrdersTable from "@/components/OrdersTable/OrdersTable";
 

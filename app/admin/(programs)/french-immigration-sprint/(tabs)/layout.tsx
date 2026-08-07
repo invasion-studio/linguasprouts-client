@@ -10,7 +10,7 @@ export default async function TabLayout({ children }: { children: ReactNode }) {
   return (
     <Box minHeight={"100vh"} bgcolor={"var(--palette-ibmgrey-10)"}>
       <AppBar variant="admin" />
-      <Banner title="Summer Camp 2026" />
+      <Banner title="French Immigration Sprint" height="180px" />
       <Box
         component={"div"}
         className="adminLayout"

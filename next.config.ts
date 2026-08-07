@@ -24,7 +24,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/admin",
-        destination: "/admin/orders",
+        destination: "/admin/dashboard",
         permanent: false,
       },
     ];

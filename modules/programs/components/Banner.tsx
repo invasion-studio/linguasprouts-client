@@ -2,18 +2,20 @@
 
 import { Box, Stack, Typography } from "@mui/material";
 
-export default function RegistrationBanner({
+export default function Banner({
   title,
-  textColor,
-  mainColor,
-  secondaryColor,
+  textColor = "#1B7109",
+  mainColor = "#AEFA9E",
+  secondaryColor = "#81EE6A",
+  height,
 }: {
   title: string;
-  textColor: string;
-  mainColor: string;
-  secondaryColor: string;
+  textColor?: string;
+  mainColor?: string;
+  secondaryColor?: string;
+  height?: string;
 }) {
-  const bannerHeight = "220px";
+  const bannerHeight = height || "220px";
   return (
     <>
       <Box
