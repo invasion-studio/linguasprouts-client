@@ -36,6 +36,10 @@ export default function RegistrationPage() {
     },
   });
 
+  useEffect(() => {
+    console.log(formData.schedule);
+  }, [formData]);
+
   const [successModalOpen, setSuccessModalOpen] = useState(false);
   const { mutateAsync, mutate, isPending, error, isError } =
     useCreateAfterSchoolReg();
@@ -65,9 +69,30 @@ export default function RegistrationPage() {
   };
 
   const handleScheduleChange = (value: string) => {
+    const resetTime = () => {
+      setFormData((p) => ({
+        ...p,
+        schedule: p.schedule.map((s) => ({ ...s, time: "" })),
+      }));
+    };
+
+    // Reset time when moving fron Weekend to Weekday
+    //
+    // checks form data if current schedule is weekend
+    // and resets before applying new schedule
+    if (formData.schedule.some((s) => s.day == "Saturday")) {
+      resetTime();
+    }
+
     if (!value) {
       setFormData((p) => ({ ...p, schedule: [] }));
       return;
+    }
+
+    // Reset time when moving from Weekday to Saturday
+    // checks new schedule if weekend then resets time
+    if (value == "Friday & Saturday") {
+      resetTime();
     }
 
     const groupMap: Record<string, [string, string]> = {
@@ -78,15 +103,35 @@ export default function RegistrationPage() {
 
     const [firstDay, secondDay] = groupMap[value] ?? [];
 
+    // sets new schedule value
     setFormData((p) => ({
       ...p,
       schedule:
         firstDay && secondDay
           ? [
-              { day: firstDay, time: "" },
-              { day: secondDay, time: "" },
+              { ...p.schedule[0], day: firstDay },
+              { ...p.schedule[1], day: secondDay },
             ]
           : [],
+    }));
+  };
+
+  const handleScheduleTimeChange = (value: string, saturday?: boolean) => {
+    if (saturday) {
+      setFormData((p) => ({
+        ...p,
+        schedule: p.schedule.map((s) =>
+          s.day == "Saturday" ? { ...s, time: value } : s,
+        ),
+      }));
+      return;
+    }
+
+    setFormData((p) => ({
+      ...p,
+      schedule: p.schedule.map((s) =>
+        s.day == "Saturday" ? s : { ...s, time: value },
+      ),
     }));
   };
 
@@ -131,6 +176,7 @@ export default function RegistrationPage() {
         <ScheduleSection
           formData={formData}
           handleScheduleChange={handleScheduleChange}
+          handleScheduleTimeChange={handleScheduleTimeChange}
         />
       ),
     },
