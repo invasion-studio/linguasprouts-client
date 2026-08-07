@@ -16,8 +16,8 @@ const scheduleGroups = [
   "Friday & Saturday",
 ];
 
-const timeSlots = ["3:20pm", "4:40pm", "6:00pm", "7:20pm"];
-const SaturdayTimeSlots = ["9:00am", "10:20am", "11:40am", "1:00pm"];
+const timeSlots = ["2:00pm", "3:20pm", "4:40pm", "6:00pm", "7:20pm"];
+const SaturdayTimeSlots = ["9:00am", "10:20am", "11:40am", "1:00pm", "2:20pm"];
 
 export default function ScheduleSection({
   formData,

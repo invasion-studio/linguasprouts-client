@@ -35,6 +35,8 @@ export default function ChildSection({
           <MenuItem value="French">French</MenuItem>
           <MenuItem value="Spanish">Spanish</MenuItem>
           <MenuItem value="Mandarin">Mandarin</MenuItem>
+          <MenuItem value="Igbo">Igbo</MenuItem>
+          <MenuItem value="Yoruba">Yoruba</MenuItem>
         </Select>
       </FormControl>
 
