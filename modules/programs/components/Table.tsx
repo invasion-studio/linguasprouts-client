@@ -154,7 +154,9 @@ const MobileItem = ({
       component={"div"}
       onClick={() => onClick && onClick(row.id)}
     >
-      <Typography variant="subtitle2">{row[headerKey]}</Typography>
+      <Typography variant="subtitle2" fontWeight={600}>
+        {row[headerKey]}
+      </Typography>
 
       {columns.map((c) => (
         <Box key={c.key} display={"contents"}>
