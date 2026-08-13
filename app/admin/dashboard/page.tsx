@@ -37,6 +37,10 @@ export default function DashboardPage() {
           }}
         >
           <ProgramCard
+            label="After School Language"
+            href="/admin/after-school-language"
+          />
+          <ProgramCard
             label="French Immigration Sprint"
             href="/admin/french-immigration-sprint/orders"
           />
