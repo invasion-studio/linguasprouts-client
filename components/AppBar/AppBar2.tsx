@@ -18,6 +18,11 @@ export default function AppBar({
       direction="row"
       alignItems="center"
       justifyContent="space-between"
+      position={"sticky"}
+      top={0}
+      zIndex={3}
+      borderBottom={"1px solid"}
+      borderColor={(theme) => theme.palette.divider}
     >
       <Link href={"/"} style={{ paddingTop: "8px" }}>
         <Image

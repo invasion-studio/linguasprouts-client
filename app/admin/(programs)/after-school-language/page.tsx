@@ -1,11 +1,12 @@
 "use client";
 
 import AppBar from "@/components/AppBar/AppBar2";
-import { Box, Typography } from "@mui/material";
+import { Alert, alpha, Box, Stack, Typography } from "@mui/material";
 import Banner from "@/modules/programs/components/Banner";
 import StyledTable from "@/modules/programs/components/Table";
 import { useGetAfterSchoolReg } from "@/modules/programs/hooks/afterschool/useGetAfterSchoolReg";
 import { useListAfterSchoolRegs } from "@/modules/programs/hooks/afterschool/useListAfterSchoolRegs";
+import { useRouter } from "next/navigation";
 
 const columns = [
   { key: "parentName", header: "Parent name" },
@@ -16,6 +17,7 @@ const columns = [
 
 export default function Page() {
   const { data, isPending } = useListAfterSchoolRegs();
+  const router = useRouter();
 
   const rows = data?.data.map((r) => ({
     id: r.id,
@@ -25,16 +27,31 @@ export default function Page() {
     child: r.child.fullName,
   }));
 
-  const handleRowClick = () => {};
+  const handleRowClick = (id?: string) => {
+    if (id) router.push(`/admin/after-school-language/${id}`);
+  };
+
   return (
-    <Box minHeight={"100vh"} bgcolor={"var(--palette-ibmgrey-10)"}>
-      <AppBar variant="admin" />
+    <>
       <Banner title="After School Language" height="180px" />
 
-      <Box component={"div"} margin={"32px 0px"} className="adminLayout">
-        <Typography variant="h4" marginBottom={"24px"}>
-          Registrations
-        </Typography>
+      <Stack
+        gap={"24px"}
+        component={"div"}
+        margin={"32px 0px"}
+        className="adminLayout"
+      >
+        <Typography variant="h4">Registrations</Typography>
+
+        {/* <Box
+          padding={"16px"}
+          bgcolor={(theme) => alpha(theme.palette.info.main, 0.12)}
+          borderRadius={"8px"}
+        >
+          <Typography color="Se">
+            Click on an item to see more details
+          </Typography>
+        </Box> */}
 
         <StyledTable
           columns={columns}
@@ -42,7 +59,7 @@ export default function Page() {
           isPending={isPending}
           onRowClick={handleRowClick}
         />
-      </Box>
-    </Box>
+      </Stack>
+    </>
   );
 }
