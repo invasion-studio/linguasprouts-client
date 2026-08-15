@@ -68,7 +68,7 @@ export default function OurPrograms() {
           imageSrc="/home/adult-learning1.jpg"
           title="Adult French Language Program"
           description="For adults who want to learn French for personal growth, travel, career, and everyday life."
-          href="/adult-french-language/register"
+          href="/adult-french-language"
           mainColor="#AE293F"
           secondaryColor="#FF8A9D"
         />

@@ -30,9 +30,11 @@ const useDrawerContext = () => useContext(drawerContext);
 export default function AppBar({
   transparent,
   layout = "normal",
+  border = false,
 }: {
   transparent?: boolean;
   layout?: "normal" | "narrow";
+  border?: boolean;
 }) {
   const maxWidth1024px = useMediaQuery("(max-width: 899px)");
   const minWidth1024px = useMediaQuery("(min-width: 900px)");
@@ -49,6 +51,8 @@ export default function AppBar({
         flexDirection={"row"}
         alignItems={"center"}
         justifyContent={"space-between"}
+        borderBottom={border ? "1px solid" : undefined}
+        borderColor={border ? (theme) => theme.palette.divider : undefined}
       >
         <Logo variant={transparent ? "white" : undefined} />
 

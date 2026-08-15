@@ -47,3 +47,23 @@ export const SecondaryButton = ({
     </StyledPrimaryButton>
   );
 };
+
+export const HeroButton = ({ children, ...props }: PrimaryButtonProps) => {
+  return (
+    <StyledPrimaryButton
+      variant="contained"
+      disableElevation
+      size="large"
+      color="primary"
+      {...props}
+      sx={{
+        bgcolor: (theme) => theme.palette.primary.light,
+        "&:hover": { bgcolor: (theme) => theme.palette.primary.main },
+        color: "#0E3D05",
+        ...props.sx,
+      }}
+    >
+      {children}
+    </StyledPrimaryButton>
+  );
+};
