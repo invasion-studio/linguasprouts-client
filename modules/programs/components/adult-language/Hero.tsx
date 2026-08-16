@@ -6,11 +6,47 @@ import {
 } from "@/components/PrimaryButton/PrimaryButton";
 import { alpha, Box, Stack, Typography } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
   return (
     <>
-      <Box component={"div"} className="layout">
+      <Box
+        component={"div"}
+        className="layout"
+        position={"relative"}
+        overflow={"hidden"}
+      >
+        <Stack
+          height={"513px"}
+          width={"513px"}
+          borderRadius={"2000px"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          position={"absolute"}
+          left={"-200px"}
+          top={"-320px"}
+          bgcolor={(theme) => alpha(theme.palette.primary.main, 0.08)}
+          zIndex={-1}
+          sx={{
+            height: { xs: "270px", sm: "513px" },
+            width: { xs: "270px", sm: "513px" },
+            left: { xs: "-110px", sm: "-200px" },
+            top: { xs: "-130px", sm: "-320px" },
+          }}
+        >
+          <Box
+            bgcolor={"white"}
+            borderRadius={"1000px"}
+            height={"222px"}
+            width={"222px"}
+            sx={{
+              height: { xs: "116px", sm: "222px" },
+              width: { xs: "116px", sm: "222px" },
+            }}
+          />
+        </Stack>
+
         <Stack
           justifyContent={"space-between"}
           sx={{
@@ -56,6 +92,8 @@ export default function Hero() {
                 marginTop: { xs: "16px", md: "0px" },
                 marginBottom: { xs: "16px", md: "20px" },
                 textAlign: { xs: "center", md: "left" },
+                position: "relative",
+                zIndex: 2,
               }}
             >
               Learn French and Spanish at your own pace.
@@ -74,7 +112,12 @@ export default function Hero() {
               gap={"8px"}
               // sx={{ justifyContent: { xs: "center", md: "unset" } }}
             >
-              <HeroButton>Register Now</HeroButton>
+              <HeroButton
+                component={Link}
+                href="/adult-french-language/register"
+              >
+                Register Now
+              </HeroButton>
               <PrimaryButton
                 color="inherit"
                 variant="outlined"
@@ -99,8 +142,41 @@ export default function Hero() {
                 "& #heroImage": {
                   position: { xs: "relative", md: "absolute" },
                 },
+                "& #vector": {
+                  width: { xs: "60px", sm: "120px" },
+                  left: { xs: "0px", sm: "-60px" },
+                },
+
+                "& #dot-vector": {
+                  width: { xs: "220px", sm: "315px" },
+                  right: { xs: "30px", sm: "-31px" },
+                },
               }}
             >
+              <Image
+                id="vector"
+                src={"/program/adult-language/Vector 7.svg"}
+                alt="vector"
+                width={109}
+                height={88}
+                style={{
+                  position: "absolute",
+                  top: "80px",
+                }}
+              />
+
+              <Image
+                src={"/program/adult-language/dot-vector.svg"}
+                alt="dot-vector"
+                id="dot-vector"
+                width={315}
+                height={315}
+                style={{
+                  position: "absolute",
+                  top: "-50px",
+                }}
+              />
+
               <Image
                 id="heroImage"
                 src={"/program/adult-language/hero-adult-language.png"}
@@ -195,6 +271,9 @@ export default function Hero() {
         sx={{
           paddingTop: { xs: "16px", md: "24px" },
           paddingBottom: { xs: "16px", md: "24px" },
+          "& p": {
+            font: { xs: "var(--font-caption)" },
+          },
         }}
       >
         <Stack

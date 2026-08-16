@@ -2,4 +2,8 @@
   h1 {
     font: var(--font-h2) !important;
   }
+
+  h2 {
+    font: var(--font-h3) !important;
+  }
 }
