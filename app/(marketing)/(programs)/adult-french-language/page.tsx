@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import CEFR from "@/modules/programs/components/adult-language/CEFR";
 import Included from "@/modules/programs/components/adult-language/Included";
 import Schedule from "@/modules/programs/components/adult-language/Schedule";
+import Why from "@/modules/programs/components/adult-language/Why";
 
 export default function AdultFrenchLanguage() {
   return (
@@ -18,6 +19,7 @@ export default function AdultFrenchLanguage() {
       <Hero />
       <LearningType />
       <Schedule />
+      <Why />
       <CEFR />
       <Included />
       <Enroll />

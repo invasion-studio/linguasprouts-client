@@ -1,11 +1,44 @@
 "use client";
 
-import { Box, Stack, Typography } from "@mui/material";
+import { alpha, Box, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 
 export default function Schedule() {
   return (
-    <Box component={"div"} className="layout section" bgcolor={"#F6FAF5"}>
+    <Box
+      component={"div"}
+      className="layout section"
+      bgcolor={"#F6FAF5"}
+      position={"relative"}
+      overflow={"hidden"}
+    >
+      {/* Circle vector */}
+      <Stack
+        height={"513px"}
+        width={"513px"}
+        borderRadius={"2000px"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        position={"absolute"}
+        right={"-220px"}
+        top={"-220px"}
+        bgcolor={(theme) => alpha(theme.palette.primary.main, 0.08)}
+        sx={{
+          display: { xs: "none", md: "flex" },
+        }}
+      >
+        <Box
+          bgcolor={"#F6FAF5"}
+          borderRadius={"1000px"}
+          height={"222px"}
+          width={"222px"}
+          sx={{
+            height: { xs: "116px", sm: "222px" },
+            width: { xs: "116px", sm: "222px" },
+          }}
+        />
+      </Stack>
+
       <Stack
         justifyContent={"space-between"}
         sx={{
