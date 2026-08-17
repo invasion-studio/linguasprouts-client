@@ -201,13 +201,13 @@ const NavDrawer = ({
             ))}
           </Stack>
 
-          <Link href={"/summercamp2026"}>
+          <Link href={"/french-immigration-sprint/register"}>
             <PrimaryButton
               sx={{ width: "100%" }}
               onClick={() => setOpen(false)}
               color="secondary"
             >
-              Summer Camp 2026{" "}
+              French Immigration
             </PrimaryButton>
           </Link>
         </Box>
