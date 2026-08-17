@@ -9,6 +9,7 @@ import { Box } from "@mui/material";
 import Footer from "@/components/Footer";
 import CEFR from "@/modules/programs/components/adult-language/CEFR";
 import Included from "@/modules/programs/components/adult-language/Included";
+import Schedule from "@/modules/programs/components/adult-language/Schedule";
 
 export default function AdultFrenchLanguage() {
   return (
@@ -16,6 +17,7 @@ export default function AdultFrenchLanguage() {
       <AppBar border />
       <Hero />
       <LearningType />
+      <Schedule />
       <CEFR />
       <Included />
       <Enroll />

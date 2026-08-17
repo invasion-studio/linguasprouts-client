@@ -52,7 +52,7 @@ export default function Included() {
             </Typography>
 
             <Typography color="textSecondary">
-              Unit 201 TBD - 10090 152 Street Surrey, BC V3R 8X8
+              Unit 204B 10190 152A St, Surrey, BC V3R 1J7
             </Typography>
           </Box>
 
