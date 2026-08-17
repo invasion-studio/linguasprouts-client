@@ -8,6 +8,7 @@ import LearningType from "@/modules/programs/components/adult-language/LearningT
 import { Box } from "@mui/material";
 import Footer from "@/components/Footer";
 import CEFR from "@/modules/programs/components/adult-language/CEFR";
+import Included from "@/modules/programs/components/adult-language/Included";
 
 export default function AdultFrenchLanguage() {
   return (
@@ -16,6 +17,7 @@ export default function AdultFrenchLanguage() {
       <Hero />
       <LearningType />
       <CEFR />
+      <Included />
       <Enroll />
       <Footer />
     </Box>

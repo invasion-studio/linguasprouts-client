@@ -41,6 +41,7 @@ export default function LearningType() {
         }}
       >
         <Box
+          flex={1}
           padding={"20px"}
           borderRadius={"12px"}
           bgcolor={"#F6FAF5"}
@@ -57,6 +58,7 @@ export default function LearningType() {
         </Box>
 
         <Box
+          flex={1}
           padding={"20px"}
           borderRadius={"12px"}
           bgcolor={"#F6FAF5"}
@@ -73,6 +75,7 @@ export default function LearningType() {
         </Box>
 
         <Box
+          flex={1}
           padding={"20px"}
           borderRadius={"12px"}
           bgcolor={"#F6FAF5"}
