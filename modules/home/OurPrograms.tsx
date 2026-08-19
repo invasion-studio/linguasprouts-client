@@ -52,7 +52,7 @@ export default function OurPrograms() {
           imageSrc="/home/after-school.jpg"
           title="After School Language Program"
           description="An engaging afterschool program that helps children learn, French, Spanish or Mandarin."
-          href="/afterschool/register"
+          href="/afterschool"
           mainColor="#2EC610"
           secondaryColor="#8AFF8A"
         />
