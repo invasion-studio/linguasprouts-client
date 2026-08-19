@@ -17,7 +17,7 @@ export default function AfterSchoolPage() {
       <Language />
       <Why />
       <Included />
-      <Enroll link="/adult-french-language/register" />
+      <Enroll link="/afterschool/register" />
       <Footer />
     </>
   );
