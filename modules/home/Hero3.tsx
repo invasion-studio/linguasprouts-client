@@ -6,8 +6,8 @@ import { Box, Stack, Typography } from "@mui/material";
 import { motion } from "motion/react";
 import Image from "next/image";
 
-const MotionBox = motion(Box);
-const MotionStack = motion(Stack);
+const MotionBox = motion.create(Box);
+const MotionStack = motion.create(Stack);
 
 export default function Hero3() {
   return (
