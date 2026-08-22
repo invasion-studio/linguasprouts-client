@@ -92,12 +92,7 @@ export default function Hero() {
               Spanish or Mandarin in a fun, caring and structured environment.
             </Typography>
 
-            <Stack
-              flexDirection={"row"}
-              gap={"8px"}
-
-              // sx={{ justifyContent: { xs: "center", md: "unset" } }}
-            >
+            <Stack flexDirection={"row"} gap={"8px"}>
               <HeroButton
                 component={Link}
                 href="/afterschool/register"
@@ -137,12 +132,7 @@ export default function Hero() {
               marginTop={"32px"}
               sx={{ display: { xs: "none", md: "block" } }}
             >
-              <Stack
-                flexDirection={"row"}
-                gap={"8px"}
-                alignItems={"center"}
-                // flexWrap={"wrap"}
-              >
+              <Stack flexDirection={"row"} gap={"8px"} alignItems={"center"}>
                 <Stack flex={1} flexDirection={"row"} alignItems={"flex-end"}>
                   <Typography variant="h2" color="textSecondary">
                     $249
@@ -167,6 +157,32 @@ export default function Hero() {
           </Stack>
 
           <Box width={"100%"} sx={{ maxWidth: { xs: "unset", md: "600px" } }}>
+            {/* Flower vector */}
+            <Box
+              position={"relative"}
+              maxWidth={"460px"}
+              margin={"0px auto"}
+              zIndex={2}
+              sx={{
+                "& #after-school-vector2": {
+                  width: { xs: "80px", md: "120px" },
+                  top: { xs: "-25px", md: "-30px" },
+                  left: { xs: "-25px", md: "-55px" },
+                },
+              }}
+            >
+              <Image
+                src={"/program/afterschool/after-school-vector2.svg"}
+                alt="Vector"
+                id="after-school-vector2"
+                height={87.71}
+                width={109}
+                style={{
+                  position: "absolute",
+                  height: "auto",
+                }}
+              />
+            </Box>
             <Box
               borderRadius={"24px"}
               sx={{ height: { xs: "366px", md: "455px" } }}

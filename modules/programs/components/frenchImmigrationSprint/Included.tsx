@@ -47,15 +47,15 @@ export default function Included() {
         position={"relative"}
         zIndex={1}
         sx={{
-          gap: { xs: "40px", md: "80px" },
+          gap: { xs: "40px", md: "60px" },
           flexDirection: { xs: "column", md: "row" },
           justifyContent: "space-between",
           alignItems: { xs: "stretch", md: "flex-start" },
         }}
       >
-        <Box sx={{ maxWidth: { xs: "unset", md: "600px" } }}>
+        <Box flex={2} sx={{ maxWidth: { xs: "unset", md: "600px" } }}>
           <Typography variant="h3" marginBottom={"32px"}>
-            Everything included in your monthly fee
+            Full support from day one to exam day
           </Typography>
           <Stack gap={"12px"}>
             {includedList.map((inc) => (
@@ -75,6 +75,7 @@ export default function Included() {
         </Box>
 
         <Stack
+          flex={3}
           bgcolor={"white"}
           borderRadius={"16px"}
           gap={"32px"}
@@ -124,13 +125,15 @@ export default function Included() {
 }
 
 const includedList = [
-  "Twice weekly classes, your chosen schedule",
-  "Flexible learning — virtual, asynchronous or in-person",
+  "Live interactive classes (small batch — max 6 students)",
   "CEFR-aligned curriculum",
-  "Textbooks & workbooks",
-  "Learning materials & digital resources",
-  "Interactive activities & practice",
-  "Progress tracking & feedback",
-  "Community & conversation sessions",
-  "Certificate of achievement",
+  "TEF Canada focused training",
+  "Weekly speaking lab & practice",
+  "Homework with personalized feedback",
+  "Mock tests & progress assessments",
+  "Learning materials & workbooks",
+  "Monthly progress reports",
+  "Certificate of completion",
+  "Student success manager support",
+  "Access to student portal & resources",
 ];

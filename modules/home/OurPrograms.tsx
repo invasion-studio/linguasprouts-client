@@ -60,7 +60,7 @@ export default function OurPrograms() {
           imageSrc="/home/immigration-pathways1.png"
           title="French Immigration Pathway"
           description="A structured, setp-by-step French learning pathway designed for Canadian immigration success."
-          href="/french-immigration-pathway/register"
+          href="/french-immigration-pathway"
           mainColor="#0F91BD"
           secondaryColor="#88EFFE"
         />

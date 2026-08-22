@@ -55,7 +55,7 @@ export default function Included() {
         {/* Section 1 */}
         <Box flex={2} sx={{ maxWidth: { xs: "unset", md: "600px" } }}>
           <Typography variant="h3" marginBottom={"32px"}>
-            Everything included in your monthly fee
+            Everything your child needs to thrive
           </Typography>
           <Stack gap={"12px"}>
             {includedList.map((inc) => (
