@@ -4,6 +4,10 @@ import { useGetAfterSchoolReg } from "@/modules/programs/hooks/afterschool/useGe
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { PrimaryButton } from "@/components/PrimaryButton/PrimaryButton";
+import PaymentQrDialog from "@/components/PaymentQrDialog/PaymentQrDialog";
+import theme from "@/theme";
+import { useState } from "react";
 
 export default function RegistrationDetailsPage() {
   const { id } = useParams();
@@ -52,6 +56,7 @@ export default function RegistrationDetailsPage() {
       </Stack>
 
       <Stack gap={"20px"} borderRadius={"8px"} overflow={"clip"}>
+        <SubscriptionInfo registrationId={(id as string) || ""} />
         <RegistrationDetails header="Parent Information" rows={parentArray} />
         <RegistrationDetails header="Child Information" rows={childArray} />
         <RegistrationDetails
@@ -89,8 +94,8 @@ function RegistrationDetails({
           gap: "20px",
         }}
       >
-        {rows.map((r) => (
-          <Box>
+        {rows.map((r, i) => (
+          <Box key={i}>
             <Typography variant="body2" color="textSecondary">
               {r.label}
             </Typography>
@@ -99,5 +104,55 @@ function RegistrationDetails({
         ))}
       </Box>
     </Box>
+  );
+}
+
+function SubscriptionInfo({ registrationId }: { registrationId: string }) {
+  const [qrDialogOpen, setQrDialogOpen] = useState(false);
+
+  const handleCreatePayment = () => {
+    setQrDialogOpen(true);
+  };
+
+  return (
+    <Stack padding={"24px"} borderRadius={"8px"} bgcolor={"white"} gap={"28px"}>
+      <Typography variant="subtitle1">Subscription Information</Typography>
+
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "1fr 1fr 1fr" },
+          gap: "20px",
+        }}
+      >
+        <Box>
+          <Typography variant="body2" color="textSecondary">
+            Status
+          </Typography>
+          <Typography variant="body1" color="warning">
+            Pending
+          </Typography>
+        </Box>
+
+        <PrimaryButton
+          variant="outlined"
+          onClick={handleCreatePayment}
+          color="inherit"
+          sx={{
+            width: "fit-content",
+            color: theme.palette.secondary.dark,
+            height: "fit-content",
+          }}
+        >
+          Generate Payment Session
+        </PrimaryButton>
+      </Box>
+
+      <PaymentQrDialog
+        open={qrDialogOpen}
+        onClose={() => setQrDialogOpen(false)}
+        registrationId={registrationId}
+      />
+    </Stack>
   );
 }
