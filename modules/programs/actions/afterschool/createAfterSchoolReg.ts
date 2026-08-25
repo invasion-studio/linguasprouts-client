@@ -4,10 +4,11 @@ import axios from "@/lib/axios";
 import apiResponse from "@/lib/serverActionResponse";
 import { AfterSchoolRegPayload } from "@/modules/programs/types/afterschoolReg";
 import { ResponsePayload } from "@/lib/types";
+import { AfterSchoolRegResponse, ResponseMeta } from "./types";
 
 export async function createAfterSchoolReg(
   payload: AfterSchoolRegPayload,
-): Promise<ResponsePayload<unknown>> {
+): Promise<ResponsePayload<ResponseMeta & AfterSchoolRegPayload>> {
   try {
     const response = await axios.post("/afterschoolreg", payload);
     return response.data;

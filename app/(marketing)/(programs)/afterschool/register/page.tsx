@@ -13,10 +13,16 @@ import { useCreateAfterSchoolReg } from "@/modules/programs/hooks/afterschool/us
 import { AfterSchoolRegPayload } from "@/modules/programs/types/afterschoolReg";
 import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type FormData = AfterSchoolRegPayload;
 
 export default function RegistrationPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const checkoutSuccess =
+    searchParams.get("payment_success") === "true" ? true : false;
+
   const [formData, setFormData] = useState<FormData>({
     child: { fullName: "", language: "", ageGroup: "" },
     parent: {
@@ -36,9 +42,7 @@ export default function RegistrationPage() {
     },
   });
 
-  const [successModalOpen, setSuccessModalOpen] = useState(false);
-  const { mutateAsync, mutate, isPending, error, isError } =
-    useCreateAfterSchoolReg();
+  const { mutate, isPending, error, isError } = useCreateAfterSchoolReg();
 
   const updateChild = (patch: Partial<FormData["child"]>) => {
     setFormData((p) => ({ ...p, child: { ...p.child, ...patch } }));
@@ -145,8 +149,11 @@ export default function RegistrationPage() {
     };
 
     mutate(payload, {
-      onSuccess() {
-        setSuccessModalOpen(true);
+      onSuccess(data) {
+        console.log(data);
+        if (data.sessionUrl && typeof data.sessionUrl === "string") {
+          router.push(data.sessionUrl);
+        }
       },
     });
   };
@@ -197,8 +204,9 @@ export default function RegistrationPage() {
         submitting={isPending}
         isError={isError}
         errorMessage={error?.message || ""}
+        hasPayment
       />
-      <SuccessModal open={successModalOpen} />
+      <SuccessModal open={checkoutSuccess} />
       <Footer />
     </Box>
   );

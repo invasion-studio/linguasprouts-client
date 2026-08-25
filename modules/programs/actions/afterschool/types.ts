@@ -1,7 +1,8 @@
 import { AfterSchoolRegPayload } from "@/modules/programs/types/afterschoolReg";
 
-type ResponseMeta = {
+export type ResponseMeta = {
   id: string;
+  sessionUrl: string | null;
 };
 
 export interface AfterSchoolRegListResponse {
