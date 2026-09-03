@@ -2,15 +2,17 @@
 
 import axios from "@/lib/axios";
 import apiResponse from "@/lib/serverActionResponse";
-import { AfterSchoolRegPayload } from "@/modules/programs/types/afterschoolReg";
 import { ResponsePayload } from "@/lib/types";
-import { AfterSchoolRegResponse, ResponseMeta } from "./types";
 
-export async function createAfterSchoolReg(
-  payload: AfterSchoolRegPayload,
-): Promise<ResponsePayload<ResponseMeta & AfterSchoolRegPayload>> {
+interface CreateCheckoutData {
+  sessionUrl: string;
+}
+
+export async function createCheckout(
+  id: string,
+): Promise<ResponsePayload<CreateCheckoutData>> {
   try {
-    const response = await axios.post("/afterschoolreg", payload);
+    const response = await axios.post(`/afterschoolreg/${id}/checkout`);
     return response.data;
   } catch (error: any) {
     const message =

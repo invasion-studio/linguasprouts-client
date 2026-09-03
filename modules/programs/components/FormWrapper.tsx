@@ -10,17 +10,29 @@ export default function FormWrapper({
   submitting,
   isError,
   errorMessage,
+  hasPayment,
 }: {
   sections: { title: string; content: ReactNode }[];
   onSubmit: () => void;
   submitting: boolean;
   isError: boolean;
   errorMessage: string;
+  hasPayment?: boolean;
 }) {
   const [activeSection, setActiveSection] = useState(0);
 
   const isFirstSection = activeSection === 0;
   const isLastSection = activeSection === sections.length - 1;
+
+  const actionButtonLabel = () => {
+    if (!isLastSection) {
+      return "Next";
+    }
+    if (hasPayment) {
+      return "Continue to payment";
+    }
+    return "Register";
+  };
 
   const handleSectionChange = (index: number) => {
     setActiveSection(index);
@@ -124,7 +136,7 @@ export default function FormWrapper({
             Back
           </PrimaryButton>
           <PrimaryButton onClick={handleNext} loading={submitting}>
-            {isLastSection ? "Register" : "Next"}
+            {actionButtonLabel()}
           </PrimaryButton>
         </Stack>
       </Stack>
