@@ -10,6 +10,7 @@ import Link from "next/link";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
+import LinguaSproutsMap from "@/components/Map";
 
 export default function ContactPage() {
   return (
@@ -30,10 +31,10 @@ function ContactUs() {
       paddingTop={"80px"}
       paddingBottom={"80px"}
     >
-      <Box margin={"0px auto"} maxWidth={"600px"}>
+      <Stack margin={"0px auto"} gap={"80px"} alignItems={"center"}>
         <Stack
           gap={"44px"}
-          marginBottom={"80px"}
+          maxWidth={"600px"}
           sx={{
             textAlign: { xs: "left", md: "center" },
             alignItems: { xs: "start", md: "center" },
@@ -77,13 +78,23 @@ function ContactUs() {
           </Stack>
         </Stack>
 
-        <Image
+        <Box
+          height={"350px"}
+          width={"100%"}
+          borderRadius={"16px"}
+          overflow={"hidden"}
+          bgcolor={(theme) => theme.palette.ibmgrey[20]}
+        >
+          <LinguaSproutsMap />
+        </Box>
+
+        {/* <Image
           src={"/contact/contact-illustration.png"}
           alt="child drawing rocket"
           width={600}
           height={400}
-        />
-      </Box>
+        /> */}
+      </Stack>
     </Box>
   );
 }

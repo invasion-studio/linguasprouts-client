@@ -60,6 +60,11 @@ p {
   padding: 0px 40px;
 }
 
+.section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
 @media (max-width: 1024px) {
   .layout {
     padding: 0px 40px;
@@ -71,6 +76,13 @@ p {
 
   .layout2 {
     padding: 0px 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 }
 
