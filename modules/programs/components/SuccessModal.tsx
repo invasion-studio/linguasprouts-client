@@ -12,7 +12,15 @@ import {
 import Link from "next/link";
 import DoneIcon from "@mui/icons-material/Done";
 
-export default function SuccessModal({ open }: { open: boolean }) {
+export default function SuccessModal({
+  open,
+  variant = "default",
+  onPaymentClick,
+}: {
+  open: boolean;
+  variant?: "default" | "toPayment";
+  onPaymentClick?: () => void;
+}) {
   return (
     <Dialog
       open={open}
@@ -25,7 +33,7 @@ export default function SuccessModal({ open }: { open: boolean }) {
       }}
     >
       <Box>
-        <Stack gap={"24px"} marginBottom={"48px"}>
+        <Stack gap={"24px"} marginBottom={"48px"} alignItems={"center"}>
           <Stack
             padding={"20px"}
             borderRadius={"2000px"}
@@ -35,18 +43,40 @@ export default function SuccessModal({ open }: { open: boolean }) {
             <DoneIcon fontSize="large" color="primary" />
           </Stack>
 
-          <Typography variant="h3">You are set!!</Typography>
+          <Typography variant="h3" textAlign={"center"}>
+            You are set!!
+          </Typography>
 
-          <Typography color="textSecondary">
+          <Typography color="textSecondary" textAlign={"center"}>
             Your registration was successful. We'll send you an email shortly
             with everything you need to get started. Please check your inbox
             (and spam folder if needed).
           </Typography>
         </Stack>
 
-        <PrimaryButton LinkComponent={Link} href="/">
-          Go to Home
-        </PrimaryButton>
+        {variant === "default" ? (
+          <PrimaryButton LinkComponent={Link} href="/" fullWidth>
+            Go to Home
+          </PrimaryButton>
+        ) : (
+          <Stack gap={"16px"}>
+            <PrimaryButton
+              onClick={() => onPaymentClick && onPaymentClick()}
+              fullWidth
+            >
+              Continue to payment
+            </PrimaryButton>
+            <PrimaryButton
+              variant="outlined"
+              LinkComponent={Link}
+              href="/"
+              fullWidth
+              sx={{ color: (theme) => theme.palette.primary.main }}
+            >
+              Go to Home
+            </PrimaryButton>
+          </Stack>
+        )}
       </Box>
     </Dialog>
   );

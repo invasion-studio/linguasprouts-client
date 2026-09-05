@@ -23,6 +23,8 @@ export default function RegistrationPage() {
   const checkoutSuccess =
     searchParams.get("payment_success") === "true" ? true : false;
 
+  const [successModalOpen, setSuccessModalOpen] = useState(false);
+  const [sessionUrl, setSessionUrl] = useState("");
   const [formData, setFormData] = useState<FormData>({
     child: { fullName: "", language: "", ageGroup: "" },
     parent: {
@@ -150,12 +152,18 @@ export default function RegistrationPage() {
 
     mutate(payload, {
       onSuccess(data) {
-        console.log(data);
+        setSuccessModalOpen(true);
         if (data.sessionUrl && typeof data.sessionUrl === "string") {
-          router.push(data.sessionUrl);
+          setSessionUrl(data.sessionUrl);
         }
       },
     });
+  };
+
+  const handleToPayment = () => {
+    if (sessionUrl) {
+      router.push(sessionUrl);
+    }
   };
 
   const sections = [
@@ -204,7 +212,11 @@ export default function RegistrationPage() {
         submitting={isPending}
         isError={isError}
         errorMessage={error?.message || ""}
-        hasPayment
+      />
+      <SuccessModal
+        variant="toPayment"
+        open={successModalOpen}
+        onPaymentClick={handleToPayment}
       />
       <SuccessModal open={checkoutSuccess} />
       <Footer />
