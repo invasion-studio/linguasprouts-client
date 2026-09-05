@@ -7,6 +7,8 @@ import StyledTable from "@/modules/programs/components/Table";
 import { useGetAfterSchoolReg } from "@/modules/programs/hooks/afterschool/useGetAfterSchoolReg";
 import { useListAfterSchoolRegs } from "@/modules/programs/hooks/afterschool/useListAfterSchoolRegs";
 import { useRouter } from "next/navigation";
+import { PrimaryButton } from "@/components/PrimaryButton/PrimaryButton";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 const columns = [
   { key: "parentName", header: "Parent name" },
@@ -32,34 +34,46 @@ export default function Page() {
   };
 
   return (
-    <>
-      <Banner title="After School Language" height="180px" />
-
-      <Stack
-        gap={"24px"}
-        component={"div"}
-        margin={"32px 0px"}
-        className="adminLayout"
-      >
-        <Typography variant="h4">Registrations</Typography>
-
-        {/* <Box
-          padding={"16px"}
-          bgcolor={(theme) => alpha(theme.palette.info.main, 0.12)}
-          borderRadius={"8px"}
+    <Box
+      gap={"24px"}
+      component={"div"}
+      margin={"22px 0px 32px 0px"}
+      className="adminLayout"
+    >
+      <Box marginBottom={"36px"}>
+        <PrimaryButton
+          variant="text"
+          color="inherit"
+          startIcon={<ArrowBackIosIcon fontSize="small" />}
+          onClick={() => router.back()}
+          sx={{
+            color: (theme) => theme.palette.text.secondary,
+            marginBottom: "8px",
+            marginLeft: "-10px",
+          }}
         >
-          <Typography color="Se">
-            Click on an item to see more details
-          </Typography>
-        </Box> */}
+          Back
+        </PrimaryButton>
 
-        <StyledTable
-          columns={columns}
-          rows={rows || []}
-          isPending={isPending}
-          onRowClick={handleRowClick}
-        />
-      </Stack>
-    </>
+        <Typography variant="h3" lineHeight={"40px"}>
+          After School Language Program
+        </Typography>
+      </Box>
+
+      <Typography
+        marginBottom={"16px"}
+        variant="subtitle1"
+        color="textSecondary"
+      >
+        Registrations
+      </Typography>
+
+      <StyledTable
+        columns={columns}
+        rows={rows || []}
+        isPending={isPending}
+        onRowClick={handleRowClick}
+      />
+    </Box>
   );
 }

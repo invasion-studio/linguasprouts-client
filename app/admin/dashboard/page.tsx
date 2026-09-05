@@ -31,7 +31,7 @@ export default function DashboardPage() {
               lg: "1fr 1fr 1fr 1fr",
               xl: "1fr 1fr 1fr 1fr 1fr",
             },
-            gap: { xs: "4px", sm: "24px" },
+            gap: { xs: "4px", sm: "16px" },
             borderRadius: { xs: "8px", sm: "0px" },
             overflow: "clip",
           }}

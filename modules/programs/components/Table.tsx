@@ -118,9 +118,8 @@ const MobileTable = ({
 }) => {
   return (
     <Stack
-      borderRadius={"8px"}
       overflow={"hidden"}
-      gap={"4px"}
+      gap={"16px"}
       sx={{ display: { xs: "flex", md: "none" } }}
     >
       {/* Skeleton */}
@@ -148,36 +147,21 @@ const MobileItem = ({
   const headerKey = columns[0].key;
   return (
     <Stack
+      borderRadius={"8px"}
       bgcolor={"white"}
       padding={"16px"}
-      gap={"12px"}
+      gap={"16px"}
       component={"div"}
       onClick={() => onClick && onClick(row.id)}
     >
-      <Typography variant="subtitle2" fontWeight={600}>
-        {row[headerKey]}
-      </Typography>
-
       {columns.map((c) => (
         <Box key={c.key} display={"contents"}>
-          {c.key !== headerKey ? (
-            <Stack
-              flexDirection={"row"}
-              justifyContent={"space-between"}
-              gap={"32px"}
-            >
-              <Typography
-                variant="caption"
-                color="textSecondary"
-                flexShrink={0}
-              >
-                {c.header}
-              </Typography>
-              <Typography variant="caption" textAlign={"right"} noWrap>
-                {row[c.key]}
-              </Typography>
-            </Stack>
-          ) : undefined}
+          <Stack justifyContent={"space-between"} gap={"4px"}>
+            <Typography variant="caption" color="textSecondary" flexShrink={0}>
+              {c.header}
+            </Typography>
+            <Typography variant="body2">{row[c.key]}</Typography>
+          </Stack>
         </Box>
       ))}
     </Stack>
