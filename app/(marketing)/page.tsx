@@ -1,7 +1,7 @@
 "use client";
 
+import Footer from "@/components/Footer";
 import JoinToday from "@/components/JoinToday/JoinToday";
-import Footer from "@/modules/home/Footer";
 import Hero from "@/modules/home/Hero";
 import Hero2 from "@/modules/home/Hero2";
 import Hero3 from "@/modules/home/Hero3";
