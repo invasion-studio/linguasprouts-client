@@ -4,13 +4,13 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import AppBar from "@/components/AppBar/AppBar2";
-import { useCreateInteracPayments } from "@/hooks/useCreateInteracPayments";
+import AppBar from "@/src/shared/ui/AppBar/AppBar2";
+import { useCreateInteracPayments } from "@/src/features/summercamp2026/hooks/useCreateInteracPayments";
 import {
   ChildInfoForm,
   ParentInfoForm,
   PaymentsSection,
-} from "@/modules/registration/components";
+} from "@/src/features/summercamp2026/ui";
 
 import style from "./page.module.css";
 

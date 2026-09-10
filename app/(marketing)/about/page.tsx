@@ -1,8 +1,8 @@
 "use client";
 
-import AppBar from "@/components/AppBar/AppBar";
-import Footer from "@/components/Footer";
-import { PrimaryButton } from "@/components/PrimaryButton/PrimaryButton";
+import AppBar from "@/src/shared/ui/AppBar/AppBar";
+import Footer from "@/src/shared/ui/Footer";
+import { PrimaryButton } from "@/src/shared/ui/PrimaryButton";
 import { Box, Stack, Typography, useMediaQuery } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";

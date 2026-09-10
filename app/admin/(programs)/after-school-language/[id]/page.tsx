@@ -1,12 +1,12 @@
 "use client";
 
-import { useGetAfterSchoolReg } from "@/modules/programs/hooks/afterschool/useGetAfterSchoolReg";
+import { useGetAfterSchoolReg } from "@/src/entities/afterSchoolReg/hooks/useGetAfterSchoolReg";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import { PrimaryButton } from "@/components/PrimaryButton/PrimaryButton";
-import PaymentQrDialog from "@/components/PaymentQrDialog/PaymentQrDialog";
-import theme from "@/theme";
+import { PrimaryButton } from "@/src/shared/ui/PrimaryButton";
+import PaymentQrDialog from "@/src/shared/ui/PaymentQrDialog";
+import theme from "@/src/_app/styles/theme";
 import { useState } from "react";
 
 export default function RegistrationDetailsPage() {

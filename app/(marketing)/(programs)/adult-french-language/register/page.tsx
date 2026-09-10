@@ -1,9 +1,9 @@
 "use client";
 
-import AppBar from "@/components/AppBar/AppBar";
-import Footer from "@/components/Footer";
-import FormWrapper from "@/modules/programs/components/FormWrapper";
-import RegistrationBanner from "@/modules/programs/components/Banner";
+import AppBar from "@/src/shared/ui/AppBar/AppBar";
+import Footer from "@/src/shared/ui/Footer";
+import FormWrapper from "@/src/features/registrations/ui/FormWrapper";
+import RegistrationBanner from "@/src/shared/ui/Banner";
 import {
   Box,
   Stack,

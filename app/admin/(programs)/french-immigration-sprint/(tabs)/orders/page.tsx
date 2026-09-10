@@ -1,8 +1,8 @@
 "use client";
 
 import { Box } from "@mui/material";
-import FrenchImmigOrders from "@/modules/programs/components/frenchImmigrationSprint/OrdersTable";
-import { useVerifyInteracPayment } from "@/modules/programs/hooks/frenchImmigrationSprint/useVerifyInteracPayments";
+import FrenchImmigOrders from "@/src/_pages/frenchImmigrationSprint/ui/OrdersTable";
+import { useVerifyInteracPayment } from "@/src/entities/frenchImmigSprintReg/hooks/useVerifyInteracPayments";
 
 export default function OrdersPage() {
   const verifyMutation = useVerifyInteracPayment();

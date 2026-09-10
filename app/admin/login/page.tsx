@@ -12,8 +12,8 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import { login } from "@/actions/login";
-import theme from "@/theme";
+import { login } from "@/src/features/adminAuth/action/login";
+import theme from "@/src/_app/styles/theme";
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState("");

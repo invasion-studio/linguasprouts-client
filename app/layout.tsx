@@ -1,4 +1,4 @@
-import "./globals.css";
+import "@/src/_app/styles/globals.css";
 
 import type { Metadata } from "next";
 import {
@@ -8,7 +8,7 @@ import {
 } from "next/font/google";
 
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
-import { Providers } from "./providers";
+import { Providers } from "../src/_app/providers/providers";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",

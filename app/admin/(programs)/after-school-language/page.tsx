@@ -1,13 +1,13 @@
 "use client";
 
-import AppBar from "@/components/AppBar/AppBar2";
+import AppBar from "@/src/shared/ui/AppBar/AppBar2";
 import { Alert, alpha, Box, Stack, Typography } from "@mui/material";
-import Banner from "@/modules/programs/components/Banner";
-import StyledTable from "@/modules/programs/components/Table";
-import { useGetAfterSchoolReg } from "@/modules/programs/hooks/afterschool/useGetAfterSchoolReg";
-import { useListAfterSchoolRegs } from "@/modules/programs/hooks/afterschool/useListAfterSchoolRegs";
+import Banner from "@/src/shared/ui/Banner";
+import StyledTable from "@/src/shared/ui/Table";
+import { useGetAfterSchoolReg } from "@/src/entities/afterSchoolReg/hooks/useGetAfterSchoolReg";
+import { useListAfterSchoolRegs } from "@/src/entities/afterSchoolReg/hooks/useListAfterSchoolRegs";
 import { useRouter } from "next/navigation";
-import { PrimaryButton } from "@/components/PrimaryButton/PrimaryButton";
+import { PrimaryButton } from "@/src/shared/ui/PrimaryButton";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 const columns = [

@@ -1,9 +1,9 @@
-import AppBar from "@/components/AppBar/AppBar2";
+import AppBar from "@/src/shared/ui/AppBar/AppBar2";
 import { Box } from "@mui/material";
 import { ReactNode } from "react";
 import AdminTab from "./Tab";
 import { connection } from "next/server";
-import Banner from "@/modules/programs/components/Banner";
+import Banner from "@/src/shared/ui/Banner";
 
 export default async function TabLayout({ children }: { children: ReactNode }) {
   await connection();

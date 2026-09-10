@@ -1,8 +1,8 @@
 "use client";
 
 import { Box } from "@mui/material";
-import { useVerifyInteracPayment } from "@/hooks/useVerifyInteracPayments";
-import OrdersTable from "@/components/OrdersTable/OrdersTable";
+import { useVerifyInteracPayment } from "@/src/features/summercamp2026/hooks/useVerifyInteracPayments";
+import OrdersTable from "@/src/features/admin/ui/OrdersTable";
 
 export default function OrdersPage() {
   const verifyMutation = useVerifyInteracPayment();

@@ -1,16 +1,16 @@
 "use client";
 
-import AppBar from "@/components/AppBar/AppBar";
-import Footer from "@/components/Footer";
-import ChildSection from "@/modules/programs/components/afterschool/ChildSection";
-import ParentSection from "@/modules/programs/components/afterschool/ParentSection";
-import ScheduleSection from "@/modules/programs/components/afterschool/ScheduleSection";
-import FormWrapper from "@/modules/programs/components/FormWrapper";
-import RegistrationBanner from "@/modules/programs/components/Banner";
-import SuccessModal from "@/modules/programs/components/SuccessModal";
-import TermsSection from "@/modules/programs/components/Terms";
-import { useCreateAfterSchoolReg } from "@/modules/programs/hooks/afterschool/useCreateAfterSchoolReg";
-import { AfterSchoolRegPayload } from "@/modules/programs/types/afterschoolReg";
+import AppBar from "@/src/shared/ui/AppBar/AppBar";
+import Footer from "@/src/shared/ui/Footer";
+import ChildSection from "@/src/_pages/afterschool/ui/ChildSection";
+import ParentSection from "@/src/_pages/afterschool/ui/ParentSection";
+import ScheduleSection from "@/src/_pages/afterschool/ui/ScheduleSection";
+import FormWrapper from "@/src/features/registrations/ui/FormWrapper";
+import RegistrationBanner from "@/src/shared/ui/Banner";
+import SuccessModal from "@/src/features/registrations/ui/SuccessModal";
+import TermsSection from "@/src/features/registrations/ui/Terms";
+import { useCreateAfterSchoolReg } from "@/src/entities/afterSchoolReg/hooks/useCreateAfterSchoolReg";
+import { AfterSchoolRegPayload } from "@/src/entities/afterSchoolReg/model/afterschoolReg";
 import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";

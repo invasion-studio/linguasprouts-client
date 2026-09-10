@@ -1,28 +1,24 @@
 "use client";
 
-import Footer from "@/components/Footer";
-import JoinToday from "@/components/JoinToday/JoinToday";
-import Hero from "@/modules/home/Hero";
-import Hero2 from "@/modules/home/Hero2";
-import Hero3 from "@/modules/home/Hero3";
-import OurPrograms from "@/modules/home/OurPrograms";
-import SummerCamp2026 from "@/modules/home/SummerCamp2026";
-import Testimonial from "@/modules/home/Testimonial";
-import Value from "@/modules/home/Value";
-import VisitUs from "@/modules/home/VisitUs";
-import WhatWeTeach from "@/modules/home/WhatWeTeach";
-import FrenchImmigration from "@/modules/programs/components/frenchImmigrationSprint/FrenchImmigration";
+import Footer from "@/src/shared/ui/Footer";
+import JoinToday from "@/src/shared/ui/JoinToday";
+import Hero from "@/src/_pages/home/ui/Hero";
+import Hero2 from "@/src/_pages/home/ui/Hero2";
+import Hero3 from "@/src/_pages/home/ui/Hero3";
+import OurPrograms from "@/src/_pages/home/ui/OurPrograms";
+import SummerCamp2026 from "@/src/_pages/home/ui/SummerCamp2026";
+import Testimonial from "@/src/_pages/home/ui/Testimonial";
+import Value from "@/src/_pages/home/ui/Value";
+import VisitUs from "@/src/_pages/home/ui/VisitUs";
+import WhatWeTeach from "@/src/_pages/home/ui/WhatWeTeach";
+import FrenchImmigration from "@/src/_pages/frenchImmigrationSprint/ui/FrenchImmigration";
 
 export default function Home() {
   return (
     <>
-      {/* <Hero /> */}
       <Hero3 />
       <Value />
-      {/* <WhatWeTeach /> */}
       <OurPrograms />
-      {/* <SummerCamp2026 /> */}
-      {/* <FrenchImmigration /> */}
       <VisitUs />
       <Testimonial />
       <JoinToday />

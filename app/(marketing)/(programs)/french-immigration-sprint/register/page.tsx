@@ -1,15 +1,15 @@
 "use client";
 
-import AppBar from "@/components/AppBar/AppBar";
-import Footer from "@/components/Footer";
-import FormWrapper from "@/modules/programs/components/FormWrapper";
-import RegistrationBanner from "@/modules/programs/components/Banner";
-import SuccessModal from "@/modules/programs/components/SuccessModal";
-import EmergencyContactSection from "@/modules/programs/components/frenchImmigrationSprint/EmergencyContactSection";
-import StudentSection from "@/modules/programs/components/frenchImmigrationSprint/StudentSection";
-import TermsSection from "@/modules/programs/components/Terms";
-import { useCreateFrenchImmigReg } from "@/modules/programs/hooks/frenchImmigrationSprint/useCreateFrenchImmigReg";
-import { FrenchImmigSprintRegPayload } from "@/modules/programs/types/frenchImmigrationSprint";
+import AppBar from "@/src/shared/ui/AppBar/AppBar";
+import Footer from "@/src/shared/ui/Footer";
+import FormWrapper from "@/src/features/registrations/ui/FormWrapper";
+import RegistrationBanner from "@/src/shared/ui/Banner";
+import SuccessModal from "@/src/features/registrations/ui/SuccessModal";
+import EmergencyContactSection from "@/src/_pages/frenchImmigrationSprint/ui/EmergencyContactSection";
+import StudentSection from "@/src/_pages/frenchImmigrationSprint/ui/StudentSection";
+import TermsSection from "@/src/features/registrations/ui/Terms";
+import { useCreateFrenchImmigReg } from "@/src/entities/frenchImmigSprintReg/hooks/useCreateFrenchImmigReg";
+import { FrenchImmigSprintRegPayload } from "@/src/entities/frenchImmigSprintReg/model/frenchImmigrationSprint";
 import { Box } from "@mui/material";
 import { useState } from "react";
 

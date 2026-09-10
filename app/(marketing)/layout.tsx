@@ -1,4 +1,4 @@
-import theme from "@/theme";
+import theme from "@/src/_app/styles/theme";
 import { ThemeProvider } from "@mui/material";
 import { connection } from "next/server";
 import { ReactNode } from "react";

@@ -1,0 +1,54 @@
+"use client";
+
+import { Box, Stack, Button } from "@mui/material";
+import Image from "next/image";
+import Link from "next/link";
+import { logout } from "@/src/features/adminAuth/action/logout";
+
+export default function AppBar({
+  variant = "default",
+}: {
+  variant?: "default" | "admin";
+}) {
+  return (
+    <Stack
+      bgcolor={"white"}
+      className={variant == "admin" ? "adminLayout" : "layout"}
+      height={"64px"}
+      direction="row"
+      alignItems="center"
+      justifyContent="space-between"
+      position={"sticky"}
+      top={0}
+      zIndex={3}
+      borderBottom={"1px solid"}
+      borderColor={(theme) => theme.palette.divider}
+    >
+      <Link href={"/"} style={{ paddingTop: "8px" }}>
+        <Image
+          src={
+            variant == "admin"
+              ? "/LiguaSprouts-Admin-Logo.svg"
+              : "/Logo-LinguaSprouts.svg"
+          }
+          alt="Logo"
+          width={variant == "admin" ? 169 : 132}
+          height={variant == "admin" ? 24 : 26}
+          loading="eager"
+        />
+      </Link>
+      {variant == "admin" ? (
+        <Button
+          onClick={() => logout()}
+          variant="outlined"
+          sx={{
+            borderRadius: "100px",
+            textTransform: "none",
+          }}
+        >
+          Logout
+        </Button>
+      ) : undefined}
+    </Stack>
+  );
+}

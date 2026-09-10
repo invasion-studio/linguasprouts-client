@@ -4,9 +4,9 @@ import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { verifyPayment } from "@/lib/api";
+import { verifyPayment } from "@/src/shared/lib/api";
 import style from "./page.module.css";
-import AppBar from "@/components/AppBar/AppBar2";
+import AppBar from "@/src/shared/ui/AppBar/AppBar2";
 
 type Status = "loading" | "paid" | "pending" | "failed";
 

@@ -2,10 +2,10 @@
 
 import AdminMetrics, {
   AdminMetric,
-} from "@/components/AdminMetrics/AdminMetrics";
+} from "@/src/features/admin/ui/AdminMetrics/AdminMetrics";
 import { Box, Stack } from "@mui/material";
-import { useGetRegistrationMetrics } from "@/hooks/useGetRegistrationMetrics";
-import RegisteredTable from "@/components/RegisteredTable/RegisteredTable";
+import { useGetRegistrationMetrics } from "@/src/features/summercamp2026/hooks/useGetRegistrationMetrics";
+import RegisteredTable from "@/src/features/admin/ui/RegisteredTable";
 
 export default function RegistrationsPage() {
   const { data } = useGetRegistrationMetrics();

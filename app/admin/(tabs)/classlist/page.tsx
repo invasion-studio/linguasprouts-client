@@ -2,10 +2,10 @@
 
 import AdminMetrics, {
   AdminMetric,
-} from "@/components/AdminMetrics/AdminMetrics";
+} from "@/src/features/admin/ui/AdminMetrics/AdminMetrics";
 import { Box, Stack } from "@mui/material";
-import { useGetClasslistMetrics } from "@/hooks/useGetClasslistMetrics";
-import ClassListTable from "@/components/ClassListTable/ClassListTable";
+import { useGetClasslistMetrics } from "@/src/features/summercamp2026/hooks/useGetClasslistMetrics";
+import ClassListTable from "@/src/features/admin/ui/ClassListTable";
 
 export default function ClassListPage() {
   const { data } = useGetClasslistMetrics();
