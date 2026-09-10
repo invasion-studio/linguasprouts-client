@@ -14,17 +14,18 @@ import {
   Divider,
   Alert,
 } from "@mui/material";
-import { useGetInteracPayments } from "@/src/features/summercamp2026/hooks/usegetInteracPayments";
-import { InteracPayment } from "@/src/shared/lib/api";
-import FilterGroup, {
+import {
+  useGetInteracPayments,
+  FilterGroup,
   FilterButton,
-} from "../../../features/admin/ui/FilterGroup";
+} from "@/src/features/summercamp2026";
+import { InteracPayment } from "@/src/shared/lib/api";
 import {
   DesktopTableSkeleton,
   MobileTableSkeleton,
   NoDataSkeleton,
-} from "../../../features/admin/ui/AdminTableSkeleton";
-import { useGetFrenchImmigRegs } from "../../../entities/frenchImmigSprintReg/hooks/useGetFrenchImmigRegs";
+} from "../../admin";
+import { useGetFrenchImmigRegs } from "../../../entities/frenchImmigSprintReg";
 
 type ColumnProp = { key: string; header: string }[];
 const columns = [

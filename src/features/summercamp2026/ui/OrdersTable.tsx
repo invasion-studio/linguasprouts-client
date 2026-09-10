@@ -15,13 +15,12 @@ import {
 } from "@mui/material";
 import { useGetInteracPayments } from "@/src/features/summercamp2026/hooks/usegetInteracPayments";
 import { InteracPayment } from "@/src/shared/lib/api";
-import theme from "@/src/_app/styles/theme";
 import FilterGroup, { FilterButton } from "./FilterGroup";
 import {
   DesktopTableSkeleton,
   MobileTableSkeleton,
   NoDataSkeleton,
-} from "./AdminTableSkeleton";
+} from "../../../_pages/admin";
 
 type ColumnProp = { key: string; header: string }[];
 const columns = [

@@ -5,12 +5,16 @@ import Footer from "@/src/shared/ui/Footer";
 import ChildSection from "@/src/_pages/afterschool/ui/ChildSection";
 import ParentSection from "@/src/_pages/afterschool/ui/ParentSection";
 import ScheduleSection from "@/src/_pages/afterschool/ui/ScheduleSection";
-import FormWrapper from "@/src/features/registrations/ui/FormWrapper";
+import {
+  FormWrapper,
+  SuccessModal,
+  TermsSection,
+} from "@/src/features/registrations";
 import RegistrationBanner from "@/src/shared/ui/Banner";
-import SuccessModal from "@/src/features/registrations/ui/SuccessModal";
-import TermsSection from "@/src/features/registrations/ui/Terms";
-import { useCreateAfterSchoolReg } from "@/src/entities/afterSchoolReg/hooks/useCreateAfterSchoolReg";
-import { AfterSchoolRegPayload } from "@/src/entities/afterSchoolReg/model/afterschoolReg";
+import {
+  useCreateAfterSchoolReg,
+  AfterSchoolRegPayload,
+} from "@/src/entities/afterSchoolReg";
 import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";

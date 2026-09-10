@@ -4,7 +4,6 @@ import { Button, Stack } from "@mui/material";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { createContext, ReactNode, useContext } from "react";
 import DoneIcon from "@mui/icons-material/Done";
-import theme from "@/src/_app/styles/theme";
 
 const FilterContext = createContext<{ queryKey: string }>({ queryKey: "" });
 const useFilterContext = () => useContext(FilterContext);

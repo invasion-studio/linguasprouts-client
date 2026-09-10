@@ -1,48 +1,38 @@
 "use client";
 
 import { Box, Divider, Stack, Typography } from "@mui/material";
-import { useGetRegistrations } from "@/src/features/summercamp2026/hooks/useGetRegistrations";
+import { useGetRegisteredChildren } from "@/src/features/summercamp2026/hooks/useGetRegisteredChildren";
+import FilterGroup, { FilterButton } from "./FilterGroup";
 import {
   DesktopTableSkeleton,
   MobileTableSkeleton,
   NoDataSkeleton,
-} from "./AdminTableSkeleton";
+} from "../../../_pages/admin";
 
 type ColumnProp = { key: string; header: string }[];
 const columns = [
-  { key: "parentName", header: "Parent name" },
-  { key: "email", header: "Email" },
-  { key: "noOfChildren", header: "No of Registered Children" },
-  { key: "date", header: "Date" },
+  { key: "fullName", header: "Child Name" },
+  { key: "age", header: "Age" },
+  { key: "class", header: "Class" },
+  { key: "registrationId", header: "Registration ID" },
 ];
 
-export default function RegisteredTable() {
-  const { data: regs, isPending } = useGetRegistrations();
-  const rows =
-    regs?.data.map((reg) => ({
-      ...reg,
-      parentName: reg.parent?.fullName ?? reg.parentId,
-      email: reg.parent?.email ?? "N/A",
-      noOfChildren: reg.children?.length ?? 0,
-      date: new Date(reg.createdAt).toLocaleDateString("en-CA", {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-      }),
-    })) || [];
+export default function ClassListTable() {
+  const { data, isPending } = useGetRegisteredChildren();
+  const rows = data?.data || [];
 
   return (
     <>
       <DesktopTable
         columns={columns}
         rows={rows}
-        keyProp="registrationId"
+        keyProp="childId"
         isPending={isPending}
       />
       <MobileTable
         columns={columns}
         rows={rows}
-        keyProp="registrationId"
+        keyProp="childId"
         isPending={isPending}
       />
     </>
@@ -67,14 +57,23 @@ const MobileTable = ({
       gap={"4px"}
       sx={{ display: { xs: "flex", md: "none" } }}
     >
+      {/* Filter */}
+      <Box padding={"16px"} bgcolor={"white"}>
+        <FilterGroup queryKey="class">
+          <FilterButton queryValue={null}>All</FilterButton>
+          <FilterButton queryValue={"french"}>French</FilterButton>
+          <FilterButton queryValue={"spanish"}>Spanish</FilterButton>
+        </FilterGroup>
+      </Box>
+
       {/* Skeleton */}
       {isPending && <MobileTableSkeleton />}
 
       {/* Row Empty */}
       {rows.length === 0 && !isPending && <NoDataSkeleton />}
 
-      {rows.map((r) => (
-        <MobileItem key={r[keyProp]} columns={columns} row={r} />
+      {rows.map((r, i) => (
+        <MobileItem key={i} columns={columns} row={r} />
       ))}
     </Stack>
   );
@@ -89,11 +88,11 @@ const MobileItem = ({
 }) => {
   return (
     <Stack bgcolor={"white"} padding={"16px"} gap={"12px"}>
-      <Typography variant="subtitle2">{row.parentName}</Typography>
+      <Typography variant="subtitle2">{row.fullName}</Typography>
 
       {columns.map((c) => (
         <Box key={c.key} display={"contents"}>
-          {c.key !== "parentName" ? (
+          {c.key !== "fullName" ? (
             <Stack
               flexDirection={"row"}
               justifyContent={"space-between"}
@@ -106,7 +105,22 @@ const MobileItem = ({
               >
                 {c.header}
               </Typography>
-              <Typography variant="caption" textAlign={"right"} noWrap>
+              <Typography
+                variant="caption"
+                textAlign={"right"}
+                noWrap
+                sx={
+                  c.key === "class"
+                    ? {
+                        color: (theme) =>
+                          row[c.key] === "french"
+                            ? theme.palette.primary.main
+                            : theme.palette.secondary.main,
+                        fontWeight: 600,
+                      }
+                    : {}
+                }
+              >
                 {row[c.key]}
               </Typography>
             </Stack>
@@ -135,6 +149,15 @@ const DesktopTable = ({
       borderRadius={"8px"}
       sx={{ display: { xs: "none", md: "block" } }}
     >
+      {/* Filter */}
+      <Box marginBottom={"20px"} marginTop={"16px"}>
+        <FilterGroup queryKey="class">
+          <FilterButton queryValue={null}>All</FilterButton>
+          <FilterButton queryValue={"french"}>French</FilterButton>
+          <FilterButton queryValue={"spanish"}>Spanish</FilterButton>
+        </FilterGroup>
+      </Box>
+
       {/* Header */}
       <Stack flexDirection={"row"} gap={"20px"} padding={"12px 0px"}>
         {columns.map((c) => (
@@ -162,9 +185,9 @@ const DesktopTable = ({
       )}
 
       {/* Rows */}
-      {rows.map((r) => (
+      {rows.map((r, i) => (
         <Stack
-          key={r[keyProp]}
+          key={i}
           flexDirection={"row"}
           gap={"20px"}
           padding={"16px 0px"}
@@ -178,7 +201,16 @@ const DesktopTable = ({
               flex={1}
               variant="body2"
               noWrap
-              sx={{ wordBreak: "break-all" }}
+              sx={{
+                wordBreak: "break-all",
+                ...(c.key === "class" && {
+                  color: (theme) =>
+                    r[c.key] === "french"
+                      ? theme.palette.primary.main
+                      : theme.palette.secondary.main,
+                  fontWeight: 600,
+                }),
+              }}
             >
               {r[c.key]}
             </Typography>

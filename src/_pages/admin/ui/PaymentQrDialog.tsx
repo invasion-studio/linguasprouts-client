@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import QRCode from "qrcode";
-import { useCreateCheckout } from "@/src/entities/afterSchoolReg/hooks/useCreateCheckout";
+import { useCreateCheckout } from "@/src/entities/afterSchoolReg";
 
 export default function PaymentQrDialog({
   open,

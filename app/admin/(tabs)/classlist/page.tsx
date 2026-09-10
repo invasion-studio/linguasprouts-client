@@ -1,11 +1,11 @@
 "use client";
 
-import AdminMetrics, {
-  AdminMetric,
-} from "@/src/features/admin/ui/AdminMetrics/AdminMetrics";
+import { AdminMetrics, AdminMetric } from "@/src/_pages/admin";
 import { Box, Stack } from "@mui/material";
-import { useGetClasslistMetrics } from "@/src/features/summercamp2026/hooks/useGetClasslistMetrics";
-import ClassListTable from "@/src/features/admin/ui/ClassListTable";
+import {
+  useGetClasslistMetrics,
+  ClassListTable,
+} from "@/src/features/summercamp2026";
 
 export default function ClassListPage() {
   const { data } = useGetClasslistMetrics();

@@ -8,7 +8,7 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
-import { AfterSchoolRegPayload } from "../../../entities/afterSchoolReg/model/afterschoolReg";
+import { AfterSchoolRegPayload } from "../../../entities/afterSchoolReg";
 
 const scheduleGroups = [
   "Monday & Wednesday",

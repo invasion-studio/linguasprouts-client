@@ -4,7 +4,7 @@ import {
   DesktopTableSkeleton,
   MobileTableSkeleton,
   NoDataSkeleton,
-} from "@/src/features/admin/ui/AdminTableSkeleton";
+} from "@/src/_pages/admin";
 import { Box, Divider, Stack, Typography } from "@mui/material";
 
 type ColumnProp = { key: string; header: string };

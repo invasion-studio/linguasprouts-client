@@ -5,12 +5,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import AppBar from "@/src/shared/ui/AppBar/AppBar2";
-import { useCreateInteracPayments } from "@/src/features/summercamp2026/hooks/useCreateInteracPayments";
 import {
+  useCreateInteracPayments,
   ChildInfoForm,
   ParentInfoForm,
   PaymentsSection,
-} from "@/src/features/summercamp2026/ui";
+} from "@/src/features/summercamp2026";
 
 import style from "./page.module.css";
 

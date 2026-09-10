@@ -2,7 +2,7 @@
 
 import { Box } from "@mui/material";
 import FrenchImmigOrders from "@/src/_pages/frenchImmigrationSprint/ui/OrdersTable";
-import { useVerifyInteracPayment } from "@/src/entities/frenchImmigSprintReg/hooks/useVerifyInteracPayments";
+import { useVerifyInteracPayment } from "@/src/entities/frenchImmigSprintReg";
 
 export default function OrdersPage() {
   const verifyMutation = useVerifyInteracPayment();

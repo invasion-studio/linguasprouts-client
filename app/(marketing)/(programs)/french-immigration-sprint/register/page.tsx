@@ -2,14 +2,18 @@
 
 import AppBar from "@/src/shared/ui/AppBar/AppBar";
 import Footer from "@/src/shared/ui/Footer";
-import FormWrapper from "@/src/features/registrations/ui/FormWrapper";
+import {
+  FormWrapper,
+  SuccessModal,
+  TermsSection,
+} from "@/src/features/registrations";
 import RegistrationBanner from "@/src/shared/ui/Banner";
-import SuccessModal from "@/src/features/registrations/ui/SuccessModal";
 import EmergencyContactSection from "@/src/_pages/frenchImmigrationSprint/ui/EmergencyContactSection";
 import StudentSection from "@/src/_pages/frenchImmigrationSprint/ui/StudentSection";
-import TermsSection from "@/src/features/registrations/ui/Terms";
-import { useCreateFrenchImmigReg } from "@/src/entities/frenchImmigSprintReg/hooks/useCreateFrenchImmigReg";
-import { FrenchImmigSprintRegPayload } from "@/src/entities/frenchImmigSprintReg/model/frenchImmigrationSprint";
+import {
+  useCreateFrenchImmigReg,
+  FrenchImmigSprintRegPayload,
+} from "@/src/entities/frenchImmigSprintReg";
 import { Box } from "@mui/material";
 import { useState } from "react";
 

@@ -9,7 +9,7 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
-import { AfterSchoolRegPayload } from "../../../entities/afterSchoolReg/model/afterschoolReg";
+import { AfterSchoolRegPayload } from "../../../entities/afterSchoolReg";
 
 export default function ParentSection({
   formData,

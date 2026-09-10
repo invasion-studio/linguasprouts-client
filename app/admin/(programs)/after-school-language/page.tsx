@@ -3,9 +3,11 @@
 import AppBar from "@/src/shared/ui/AppBar/AppBar2";
 import { Alert, alpha, Box, Stack, Typography } from "@mui/material";
 import Banner from "@/src/shared/ui/Banner";
-import StyledTable from "@/src/shared/ui/Table";
-import { useGetAfterSchoolReg } from "@/src/entities/afterSchoolReg/hooks/useGetAfterSchoolReg";
-import { useListAfterSchoolRegs } from "@/src/entities/afterSchoolReg/hooks/useListAfterSchoolRegs";
+import StyledTable from "@/src/_pages/admin/ui/Table";
+import {
+  useGetAfterSchoolReg,
+  useListAfterSchoolRegs,
+} from "@/src/entities/afterSchoolReg";
 import { useRouter } from "next/navigation";
 import { PrimaryButton } from "@/src/shared/ui/PrimaryButton";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";

@@ -1,6 +1,6 @@
 "use client";
 
-import { PrimaryButton } from "@/src/shared/ui/PrimaryButton";
+import { PrimaryButton } from "./PrimaryButton";
 import { Box, Stack, Typography } from "@mui/material";
 import Link from "next/link";
 

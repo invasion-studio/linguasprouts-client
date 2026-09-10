@@ -1,11 +1,11 @@
 "use client";
 
-import { useGetAfterSchoolReg } from "@/src/entities/afterSchoolReg/hooks/useGetAfterSchoolReg";
+import { useGetAfterSchoolReg } from "@/src/entities/afterSchoolReg";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { PrimaryButton } from "@/src/shared/ui/PrimaryButton";
-import PaymentQrDialog from "@/src/shared/ui/PaymentQrDialog";
+import PaymentQrDialog from "@/src/_pages/admin/ui/PaymentQrDialog";
 import theme from "@/src/_app/styles/theme";
 import { useState } from "react";
 

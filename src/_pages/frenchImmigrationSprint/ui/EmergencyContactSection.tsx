@@ -1,7 +1,7 @@
 "use client";
 
 import { Stack, TextField, Typography } from "@mui/material";
-import { FrenchImmigSprintRegPayload } from "../../../entities/frenchImmigSprintReg/model/frenchImmigrationSprint";
+import { FrenchImmigSprintRegPayload } from "../../../entities/frenchImmigSprintReg";
 
 export default function EmergencyContactSection({
   formData,

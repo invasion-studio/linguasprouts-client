@@ -3,7 +3,7 @@
 import { Box, Stack, Button } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import { logout } from "@/src/features/adminAuth/action/logout";
+import { logout } from "@/src/features/auth";
 
 export default function AppBar({
   variant = "default",
