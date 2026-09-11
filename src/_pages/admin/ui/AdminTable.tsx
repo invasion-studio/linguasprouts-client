@@ -4,20 +4,13 @@ import {
   DesktopTableSkeleton,
   MobileTableSkeleton,
   NoDataSkeleton,
-} from "@/src/_pages/admin";
+} from "@/src/_pages/admin/ui/AdminTableSkeleton";
 import { Box, Divider, Stack, Typography } from "@mui/material";
 
 type ColumnProp = { key: string; header: string };
 type RowProp = { id: string } & { [key: string]: any };
 
-const columns = [
-  { key: "parentName", header: "Parent name" },
-  { key: "email", header: "Email" },
-  { key: "noOfChildren", header: "No of Registered Children" },
-  { key: "date", header: "Date" },
-];
-
-export default function StyledTable(props: {
+export default function AdminTable(props: {
   columns: ColumnProp[];
   rows: RowProp[];
   isPending: boolean;

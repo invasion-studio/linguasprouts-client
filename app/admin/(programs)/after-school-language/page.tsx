@@ -1,16 +1,18 @@
 "use client";
 
 import AppBar from "@/src/shared/ui/AppBar/AppBar2";
-import { Alert, alpha, Box, Stack, Typography } from "@mui/material";
+import { Alert, alpha, Box, Stack, Tab, Typography } from "@mui/material";
 import Banner from "@/src/shared/ui/Banner";
-import StyledTable from "@/src/_pages/admin/ui/Table";
+import AdminTable from "@/src/_pages/admin/ui/AdminTable";
 import {
   useGetAfterSchoolReg,
   useListAfterSchoolRegs,
 } from "@/src/entities/afterSchoolReg";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { PrimaryButton } from "@/src/shared/ui/PrimaryButton";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { StyledTabs } from "@/src/shared/ui/StyledTabs";
 
 const columns = [
   { key: "parentName", header: "Parent name" },
@@ -22,6 +24,7 @@ const columns = [
 export default function Page() {
   const { data, isPending } = useListAfterSchoolRegs();
   const router = useRouter();
+  const [selectedTab, setSelectedTab] = useState(0);
 
   const rows = data?.data.map((r) => ({
     id: r.id,
@@ -36,46 +39,73 @@ export default function Page() {
   };
 
   return (
-    <Box
-      gap={"24px"}
-      component={"div"}
-      margin={"22px 0px 32px 0px"}
-      className="adminLayout"
-    >
-      <Box marginBottom={"36px"}>
-        <PrimaryButton
-          variant="text"
-          color="inherit"
-          startIcon={<ArrowBackIosIcon fontSize="small" />}
-          onClick={() => router.back()}
-          sx={{
-            color: (theme) => theme.palette.text.secondary,
-            marginBottom: "8px",
-            marginLeft: "-10px",
-          }}
-        >
-          Back
-        </PrimaryButton>
+    <>
+      <Banner title="After School Language Program" height="180px" />
 
-        <Typography variant="h3" lineHeight={"40px"}>
-          After School Language Program
-        </Typography>
-      </Box>
-
-      <Typography
-        marginBottom={"16px"}
-        variant="subtitle1"
-        color="textSecondary"
+      <Box
+        gap={"24px"}
+        component={"div"}
+        margin={"32px 0px 32px 0px"}
+        className="adminLayout"
       >
-        Registrations
-      </Typography>
+        <StyledTabs
+          value={selectedTab}
+          onChange={(_, value) => setSelectedTab(value)}
+        >
+          <Tab value={0} label="Registrations" />
+          <Tab value={1} label="Class list" />
+        </StyledTabs>
 
-      <StyledTable
-        columns={columns}
-        rows={rows || []}
+        {selectedTab === 0 ? (
+          <AdminTable
+            columns={columns}
+            rows={rows || []}
+            isPending={isPending}
+            onRowClick={handleRowClick}
+          />
+        ) : (
+          <ClassList />
+        )}
+      </Box>
+    </>
+  );
+}
+
+const ClassList = () => {
+  const childListColumns = [
+    { key: "fullName", header: "Child Name" },
+    { key: "ageGroup", header: "Age Group" },
+    { key: "language", header: "Language" },
+    { key: "schedule", header: "Schedule" },
+  ];
+
+  const { data, isPending } = useListAfterSchoolRegs();
+  const children = data?.data.map((r) => ({
+    id: r.id,
+    ...r.child,
+    schedule: r.schedule.map((s) => `${s.day} ${s.time}`).join(", "),
+  }));
+
+  return (
+    <Box>
+      <Stack
+        flexDirection={"row"}
+        paddingLeft={"24px"}
+        alignItems={"center"}
+        height={"40px"}
+        marginBottom={"8px"}
+      >
+        <Typography variant="caption">
+          Count:{" " + children?.length}
+        </Typography>
+      </Stack>
+
+      <AdminTable
+        columns={childListColumns}
+        rows={children || []}
         isPending={isPending}
-        onRowClick={handleRowClick}
+        onRowClick={() => {}}
       />
     </Box>
   );
-}
+};

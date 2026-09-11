@@ -1,7 +1,7 @@
 "use server";
 
 import axios from "@/src/shared/lib/axios";
-import { AfterSchoolRegResponse } from "./types";
+import { AfterSchoolRegResponse } from "./../model/afterschoolReg";
 
 export async function getAfterSchoolReg(
   id: string,

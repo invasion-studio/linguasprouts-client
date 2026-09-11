@@ -5,3 +5,4 @@ export {
   DesktopTableSkeleton,
   NoDataSkeleton,
 } from "./ui/AdminTableSkeleton";
+export { default as AdminTable } from "./ui/AdminTable";
