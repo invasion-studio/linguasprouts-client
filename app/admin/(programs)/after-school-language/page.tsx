@@ -157,7 +157,11 @@ const ClassList = () => {
         {filterOpen && (
           <Box
             borderRadius={"8px"}
-            height={"calc(100vh - 64px - 16px)"}
+            height={
+              CSS.supports("calc(100dvh - 64px - 16px)")
+                ? "calc(100dvh - 64px - 16px)"
+                : "calc(100vh - 64px - 16px)"
+            }
             overflow={"auto"}
             position={"sticky"}
             top={`calc(64px + 8px)`}
