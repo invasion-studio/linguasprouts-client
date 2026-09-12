@@ -12,7 +12,7 @@ import {
   useTheme,
 } from "@mui/material";
 import Banner from "@/src/shared/ui/Banner";
-import AdminTable from "@/src/_pages/admin/ui/AdminTable";
+import AdminTable from "@/src/shared/ui/admin/AdminTable";
 import { useListAfterSchoolRegs } from "@/src/entities/afterSchoolReg";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

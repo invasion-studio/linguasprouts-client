@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 import {
   useVerifyInteracPayment,
   OrdersTable,
-} from "@/src/features/summercamp2026";
+} from "@/src/_pages/marketing/summercamp2026";
 
 export default function OrdersPage() {
   const verifyMutation = useVerifyInteracPayment();

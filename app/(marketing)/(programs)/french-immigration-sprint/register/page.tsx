@@ -1,15 +1,12 @@
 "use client";
 
-import AppBar from "@/src/shared/ui/AppBar/AppBar";
+import AppBar from "@/src/_app/layout/AppBar/AppBar";
 import Footer from "@/src/shared/ui/Footer";
-import {
-  FormWrapper,
-  SuccessModal,
-  TermsSection,
-} from "@/src/features/registrations";
+import { FormWrapper, SuccessModal } from "@/src/features/registrations";
+import { TermsSection } from "@/src/features/registrations";
 import RegistrationBanner from "@/src/shared/ui/Banner";
-import EmergencyContactSection from "@/src/_pages/frenchImmigrationSprint/ui/EmergencyContactSection";
-import StudentSection from "@/src/_pages/frenchImmigrationSprint/ui/StudentSection";
+import EmergencyContactSection from "@/src/_pages/marketing/frenchImmigrationSprint/ui/EmergencyContactSection";
+import StudentSection from "@/src/_pages/marketing/frenchImmigrationSprint/ui/StudentSection";
 import {
   useCreateFrenchImmigReg,
   FrenchImmigSprintRegPayload,

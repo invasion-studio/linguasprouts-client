@@ -1,6 +1,6 @@
 "use client";
 
-import AppBar from "@/src/shared/ui/AppBar/AppBar";
+import AppBar from "@/src/_app/layout/AppBar/AppBar";
 import Footer from "@/src/shared/ui/Footer";
 import { PrimaryButton } from "@/src/shared/ui/PrimaryButton";
 import { Box, Stack, Typography, useMediaQuery } from "@mui/material";

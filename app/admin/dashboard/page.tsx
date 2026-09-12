@@ -1,6 +1,6 @@
 "use client";
 
-import AppBar from "@/src/shared/ui/AppBar/AppBar2";
+import AppBar from "@/src/_app/layout/AppBar/AppBar2";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import Link from "next/link";
 

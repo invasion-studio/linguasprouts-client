@@ -1,7 +1,7 @@
 "use client";
 
 import { Box } from "@mui/material";
-import FrenchImmigOrders from "@/src/_pages/frenchImmigrationSprint/ui/OrdersTable";
+import FrenchImmigOrders from "@/src/_pages/marketing/frenchImmigrationSprint/ui/OrdersTable";
 import { useVerifyInteracPayment } from "@/src/entities/frenchImmigSprintReg";
 
 export default function OrdersPage() {

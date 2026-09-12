@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import { login } from "@/src/features/auth";
+import { login } from "@/src/features/authentication";
 import theme from "@/src/_app/styles/theme";
 
 export default function AdminLoginPage() {
