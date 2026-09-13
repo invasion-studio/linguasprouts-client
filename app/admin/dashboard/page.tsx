@@ -12,10 +12,10 @@ export default function DashboardPage() {
       <Box
         component={"div"}
         className="adminLayout"
-        marginTop={"36px"}
+        marginTop={"32px"}
         marginBottom={"20px"}
       >
-        <Stack gap={"4px"} marginBottom={"40px"}>
+        <Stack gap={"4px"} marginBottom={"48px"}>
           <Greeting />
           <Typography
             variant="h3"

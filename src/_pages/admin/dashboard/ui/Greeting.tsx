@@ -17,8 +17,8 @@ export default function Greeting() {
         {greeting},
       </Typography>
       <Icon
-        htmlColor={hour < 12 ? "#FF8D28" : hour < 18 ? "#FFCC00" : "#CB30E0"}
-        fontSize="small"
+        htmlColor={hour < 12 ? "#f99d4c" : hour < 18 ? "#FFCC00" : "#dc68eb"}
+        sx={{ fontSize: "14px" }}
       />
     </Stack>
   );

@@ -24,6 +24,7 @@ import { DesktopTableSkeleton } from "@/src/shared/ui/admin/AdminTableSkeleton";
 import { MobileTableSkeleton } from "@/src/shared/ui/admin/AdminTableSkeleton";
 import { NoDataSkeleton } from "@/src/shared/ui/admin/AdminTableSkeleton";
 import { useGetFrenchImmigRegs } from "../../../../entities/frenchImmigSprintReg";
+import { useSearchParams } from "next/navigation";
 
 type ColumnProp = { key: string; header: string }[];
 const columns = [
@@ -46,14 +47,24 @@ export default function FrenchImmigOrders({
   isError: boolean;
   error: Error | null;
 }) {
-  const { data, isPending } = useGetFrenchImmigRegs();
+  const searchParam = useSearchParams();
+  const startDate = searchParam.get("startDate");
+  const endDate = searchParam.get("endDate");
+
+  const { data, isPending } = useGetFrenchImmigRegs({
+    startDate: startDate || undefined,
+    endDate: endDate || undefined,
+  });
 
   // interac payments list is extracted but the interac id is replaced
-  // with registration id to match backend needs.
+  // with registration id to match backend needs
+  // (Backend need registration id for verification action,
+  // so we give the id to the table for onclick action).
   // not the best approach but definitely the fasetest
   const rows =
     data?.data.map((r) => ({ ...r.interacPayment, interacPaymentId: r.id })) ||
     [];
+
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedPayment, setSelectedPayment] = useState<InteracPayment | null>(
     null,
