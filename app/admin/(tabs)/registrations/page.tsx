@@ -1,11 +1,12 @@
 "use client";
 
-import { AdminMetrics, AdminMetric } from "@/src/_pages/admin";
+import AdminMetrics from "@/src/shared/ui/admin/AdminMetrics/AdminMetrics";
+import { AdminMetric } from "@/src/shared/ui/admin/AdminMetrics/AdminMetrics";
 import { Box, Stack } from "@mui/material";
 import {
   useGetRegistrationMetrics,
   RegisteredTable,
-} from "@/src/features/summercamp2026";
+} from "@/src/_pages/marketing/summercamp2026";
 
 export default function RegistrationsPage() {
   const { data } = useGetRegistrationMetrics();

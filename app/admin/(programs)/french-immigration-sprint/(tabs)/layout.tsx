@@ -1,16 +1,16 @@
-import AppBar from "@/src/shared/ui/AppBar/AppBar2";
+import AppBar from "@/src/_app/layout/AppBar/AppBar2";
 import { Box } from "@mui/material";
 import { ReactNode } from "react";
-import AdminTab from "./Tab";
+import AdminTab from "../../../../../src/_pages/admin/french-immigration-sprint/ui/Tab";
 import { connection } from "next/server";
-import Banner from "@/src/shared/ui/Banner";
+import FrenchSprintBanner from "@/src/_pages/admin/french-immigration-sprint/ui/FrenchSprintBanner";
 
 export default async function TabLayout({ children }: { children: ReactNode }) {
   await connection();
   return (
     <Box minHeight={"100vh"} bgcolor={"var(--palette-ibmgrey-10)"}>
       <AppBar variant="admin" />
-      <Banner title="French Immigration Sprint" height="180px" />
+      <FrenchSprintBanner />
       <Box
         component={"div"}
         className="adminLayout"

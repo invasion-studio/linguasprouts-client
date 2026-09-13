@@ -5,7 +5,7 @@ import { Box, IconButton, Stack, Typography } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { PrimaryButton } from "@/src/shared/ui/PrimaryButton";
-import PaymentQrDialog from "@/src/_pages/admin/ui/PaymentQrDialog";
+import PaymentQrDialog from "@/src/features/generate-payments-qrcode/ui/PaymentQrDialog";
 import theme from "@/src/_app/styles/theme";
 import { useState } from "react";
 

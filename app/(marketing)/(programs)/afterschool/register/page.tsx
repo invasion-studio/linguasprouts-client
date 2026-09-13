@@ -1,15 +1,12 @@
 "use client";
 
-import AppBar from "@/src/shared/ui/AppBar/AppBar";
+import AppBar from "@/src/_app/layout/AppBar/AppBar";
 import Footer from "@/src/shared/ui/Footer";
-import ChildSection from "@/src/_pages/afterschool/ui/ChildSection";
-import ParentSection from "@/src/_pages/afterschool/ui/ParentSection";
-import ScheduleSection from "@/src/_pages/afterschool/ui/ScheduleSection";
-import {
-  FormWrapper,
-  SuccessModal,
-  TermsSection,
-} from "@/src/features/registrations";
+import ChildSection from "@/src/_pages/marketing/afterschool/ui/ChildSection";
+import ParentSection from "@/src/_pages/marketing/afterschool/ui/ParentSection";
+import ScheduleSection from "@/src/_pages/marketing/afterschool/ui/ScheduleSection";
+import { FormWrapper, SuccessModal } from "@/src/features/registrations";
+import { TermsSection } from "@/src/features/registrations";
 import RegistrationBanner from "@/src/shared/ui/Banner";
 import {
   useCreateAfterSchoolReg,

@@ -12,7 +12,7 @@ import {
   useTheme,
 } from "@mui/material";
 import Banner from "@/src/shared/ui/Banner";
-import AdminTable from "@/src/_pages/admin/ui/AdminTable";
+import AdminTable from "@/src/shared/ui/admin/AdminTable";
 import { useListAfterSchoolRegs } from "@/src/entities/afterSchoolReg";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -97,16 +97,20 @@ const childListColumns = [
 ];
 
 const ClassList = () => {
+  const smallBreakpoint = useMediaQuery(useTheme().breakpoints.up("sm"));
   const [filterOpen, setFilterOpen] = useState(false);
   const [filters, setFilters] = useState<FilterValue>({});
-  const { data, isPending } = useListAfterSchoolRegs();
+
+  const { data, isPending } = useListAfterSchoolRegs({
+    ageGroup: filters["Age Group"],
+    language: filters["Language"],
+  });
+
   const children = data?.data.map((r) => ({
     id: r.id,
     ...r.child,
     schedule: r.schedule.map((s) => `${s.day} ${s.time}`).join(", "),
   }));
-
-  const smallBreakpoint = useMediaQuery(useTheme().breakpoints.up("sm"));
 
   const handleFilterButtonClick = () => {
     setFilterOpen(!filterOpen);
@@ -123,7 +127,7 @@ const ClassList = () => {
         justifyContent={"space-between"}
       >
         <Typography variant="caption">
-          Count:{" " + children?.length}
+          Count:{" " + (children?.length || 0)}
         </Typography>
 
         <PrimaryButton
