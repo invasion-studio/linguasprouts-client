@@ -1,8 +1,9 @@
 "use client";
 
 import AppBar from "@/src/_app/layout/AppBar/AppBar2";
-import { Box, Button, Stack, Typography } from "@mui/material";
-import Link from "next/link";
+import Greeting from "@/src/_pages/admin/dashboard/ui/Greeting";
+import ProgramList from "@/src/_pages/admin/dashboard/ui/ProgramList";
+import { Box, Stack, Typography } from "@mui/material";
 
 export default function DashboardPage() {
   return (
@@ -11,67 +12,30 @@ export default function DashboardPage() {
       <Box
         component={"div"}
         className="adminLayout"
-        marginTop={"32px"}
+        marginTop={"36px"}
         marginBottom={"20px"}
       >
-        <Typography variant="h3" marginBottom={"32px"}>
-          Welcome, Admin
-        </Typography>
+        <Stack gap={"4px"} marginBottom={"40px"}>
+          <Greeting />
+          <Typography
+            variant="h3"
+            sx={{
+              fontSize: (theme) => ({
+                xs: "24px",
+                md: theme.typography.h3.fontSize,
+              }),
+              lineHeight: (theme) => ({
+                xs: "40px",
+                md: theme.typography.h3.fontSize,
+              }),
+            }}
+          >
+            Manage Language Programs
+          </Typography>
+        </Stack>
 
-        <Typography variant="body2" color="textSecondary" marginBottom={"24px"}>
-          Manage your active programs
-        </Typography>
-        <Box
-          display={"grid"}
-          sx={{
-            gridTemplateColumns: {
-              xs: "1fr",
-              sm: "1fr 1fr",
-              md: "1fr 1fr 1fr",
-              lg: "1fr 1fr 1fr 1fr",
-              xl: "1fr 1fr 1fr 1fr 1fr",
-            },
-            gap: { xs: "4px", sm: "16px" },
-            borderRadius: { xs: "8px", sm: "0px" },
-            overflow: "clip",
-          }}
-        >
-          <ProgramCard
-            label="After School Language"
-            href="/admin/after-school-language"
-          />
-          <ProgramCard
-            label="French Immigration Sprint"
-            href="/admin/french-immigration-sprint/orders"
-          />
-          <ProgramCard label="Summer Camp 2026" href="/admin/orders" />
-        </Box>
+        <ProgramList />
       </Box>
     </Box>
-  );
-}
-
-function ProgramCard({ label, href }: { label: string; href: string }) {
-  return (
-    <Button
-      LinkComponent={Link}
-      href={href}
-      sx={{
-        borderRadius: { xs: "0px", sm: "8px" },
-        border: 0,
-        padding: "20px",
-        bgcolor: "white",
-        height: "132px",
-        justifyContent: "flex-start",
-        alignItems: "flex-start",
-        textTransform: "unset",
-        ["&:hover"]: {
-          bgcolor: (theme) => theme.palette.ibmgrey[20],
-        },
-      }}
-      color="inherit"
-    >
-      <Typography>{label}</Typography>
-    </Button>
   );
 }
