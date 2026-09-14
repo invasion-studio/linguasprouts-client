@@ -42,7 +42,7 @@ export default function ProgramList() {
         >
           <ProgramCard
             label="French Immigration Sprint - Oct / Nov"
-            href="/admin/french-immigration-sprint/orders?startDate=2026-10-01&endDate=2026-11-01"
+            href="/admin/french-immigration-sprint/orders?startDate=2026-09-12&endDate=2026-11-01&session=Oct%20/%20Nov"
           />
           <ProgramCard
             label="After School Language"
@@ -87,7 +87,7 @@ export default function ProgramList() {
         >
           <ProgramCard
             label="French Immigration Sprint - Aug / Sep"
-            href="/admin/french-immigration-sprint/orders?startDate=2026-08-01&endDate=2026-09-01"
+            href="/admin/french-immigration-sprint/orders?startDate=2026-07-01&endDate=2026-09-01&session=Aug%20/%20Sep"
           />
           <ProgramCard label="Summer Camp 2026" href="/admin/orders" />
         </Box>

@@ -14,18 +14,11 @@ function getMonthLabel(dateString: string | null) {
 
 export default function FrenchSprintBanner() {
   const searchParam = useSearchParams();
-  const startDate = searchParam.get("startDate");
-  const endDate = searchParam.get("endDate");
+  const session = searchParam.get("session");
 
-  const startMonth = getMonthLabel(startDate);
-  const endMonth = getMonthLabel(endDate);
-
-  const title =
-    startMonth && endMonth
-      ? startMonth === endMonth
-        ? `French Immigration Sprint - ${startMonth}`
-        : `French Immigration Sprint - ${startMonth} / ${endMonth}`
-      : "French Immigration Sprint";
+  const title = session
+    ? `French Immigration Sprint - ${session}`
+    : "French Immigration Sprint";
 
   return <Banner title={title} height="180px" />;
 }
