@@ -5,6 +5,7 @@ import { PrimaryButton } from "@/src/shared/ui/PrimaryButton";
 import { Box, Stack, Typography } from "@mui/material";
 import { motion } from "motion/react";
 import Image from "next/image";
+import { TopAd } from "./Ad";
 
 const MotionBox = motion.create(Box);
 const MotionStack = motion.create(Stack);
@@ -12,6 +13,7 @@ const MotionStack = motion.create(Stack);
 export default function Hero3() {
   return (
     <Box>
+      <TopAd />
       <Box position={"relative"} zIndex={2}>
         <AppBar />
       </Box>

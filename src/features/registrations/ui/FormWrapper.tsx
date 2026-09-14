@@ -58,7 +58,8 @@ export default function FormWrapper({
       className="layout2"
       gap={"32px"}
       flexDirection={"row"}
-      margin={"32px 0px"}
+      paddingTop={"32px"}
+      paddingBottom={"36px"}
       sx={{ flexDirection: { xs: "column", md: "row" } }}
     >
       <Stack

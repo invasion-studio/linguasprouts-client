@@ -207,13 +207,15 @@ export default function RegistrationPage() {
         mainColor="#AEFA9E"
         secondaryColor="#81EE6A"
       />
-      <FormWrapper
-        sections={sections}
-        onSubmit={handleSubmit}
-        submitting={isPending}
-        isError={isError}
-        errorMessage={error?.message || ""}
-      />
+      <Box paddingBottom={"32px"}>
+        <FormWrapper
+          sections={sections}
+          onSubmit={handleSubmit}
+          submitting={isPending}
+          isError={isError}
+          errorMessage={error?.message || ""}
+        />
+      </Box>
       <SuccessModal
         variant="toPayment"
         open={successModalOpen}
