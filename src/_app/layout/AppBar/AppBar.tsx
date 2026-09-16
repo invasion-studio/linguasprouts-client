@@ -26,6 +26,7 @@ type DrawerContextType = {
 };
 const drawerContext = createContext<DrawerContextType>({ drawerOpen: false });
 const useDrawerContext = () => useContext(drawerContext);
+const buttonLabel = "French Sprint";
 
 export default function AppBar({
   transparent,
@@ -102,7 +103,7 @@ export default function AppBar({
               background: "#33E5FF",
             }}
           >
-            French Immigration
+            {buttonLabel}
           </PrimaryButton>
         )}
 
@@ -112,7 +113,7 @@ export default function AppBar({
             href="/french-immigration-sprint/register"
             LinkComponent={Link}
           >
-            French Immigration
+            {buttonLabel}
           </PrimaryButton>
         )}
 
@@ -207,7 +208,7 @@ const NavDrawer = ({
               onClick={() => setOpen(false)}
               color="secondary"
             >
-              French Immigration
+              {buttonLabel}
             </PrimaryButton>
           </Link>
         </Box>
