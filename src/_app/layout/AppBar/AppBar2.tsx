@@ -7,8 +7,10 @@ import { logout } from "@/src/features/authentication";
 
 export default function AppBar({
   variant = "default",
+  noBorder,
 }: {
   variant?: "default" | "admin";
+  noBorder?: boolean;
 }) {
   return (
     <Stack
@@ -21,7 +23,7 @@ export default function AppBar({
       position={"sticky"}
       top={0}
       zIndex={3}
-      borderBottom={"1px solid"}
+      borderBottom={noBorder ? undefined : "1px solid"}
       borderColor={(theme) => theme.palette.divider}
     >
       <Link href={"/"} style={{ paddingTop: "8px" }}>

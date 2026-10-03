@@ -38,3 +38,10 @@ export interface FrenchImmigRegResponse {
   data: FrenchImmigSprintRecord | null;
   error: null;
 }
+
+export interface FrenchImmigRegStripeCheckout {
+  success: boolean;
+  message: string;
+  data: { sessionUrl: string };
+  error: null;
+}
