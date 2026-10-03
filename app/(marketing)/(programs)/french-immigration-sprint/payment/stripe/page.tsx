@@ -4,6 +4,7 @@ import { Suspense, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import { useCreateFrenchImmigRegStripeCheckout } from "@/src/entities/frenchImmigSprintReg";
+import { PrimaryButton } from "@/src/shared/ui/PrimaryButton";
 
 function StripeRedirect() {
   const registrationId = useSearchParams().get("registration_id");
@@ -48,9 +49,7 @@ function StripeRedirect() {
               : error?.message || "Unable to start checkout."}
           </Typography>
           {registrationId && (
-            <Button variant="contained" onClick={start}>
-              Try again
-            </Button>
+            <PrimaryButton onClick={start}>Try again</PrimaryButton>
           )}
         </>
       ) : (
