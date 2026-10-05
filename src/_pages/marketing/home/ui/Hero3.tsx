@@ -13,7 +13,7 @@ const MotionStack = motion.create(Stack);
 export default function Hero3() {
   return (
     <Box>
-      <TopAd />
+      {/* <TopAd /> */}
       <Box position={"relative"} zIndex={2}>
         <AppBar />
       </Box>

@@ -38,14 +38,13 @@ export default function OurPrograms() {
       </Box>
 
       <Box
-        flexDirection={"row"}
         maxWidth={"1200px"}
         margin={"0px auto"}
         sx={{
-          display: "grid",
-          gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "1fr 1fr 1fr" },
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
           gap: { xs: "40px", sm: "24px", lg: "40px" },
-          // maxWidth: { xs: "1200px", sm: "350px", md: "1200px" },
         }}
       >
         <ProgramCard
@@ -72,6 +71,14 @@ export default function OurPrograms() {
           mainColor="#AE293F"
           secondaryColor="#FF8A9D"
         />
+        <ProgramCard
+          imageSrc="/home/daycamp2.jpg"
+          title="Day Camp for Kids"
+          description="A fun, immersive day camp where kids build confidence in French or Spanish through games, activities and play."
+          href="/daycamp/register"
+          mainColor="#2EC610"
+          secondaryColor="#8AFF8A"
+        />
       </Box>
     </Box>
   );
@@ -93,7 +100,19 @@ const ProgramCard = ({
   secondaryColor: string;
 }) => {
   return (
-    <Stack bgcolor={"white"} flex={1}>
+    <Stack
+      bgcolor={"white"}
+      sx={{
+        flexGrow: 0,
+        flexShrink: 0,
+        width: {
+          xs: "100%",
+          sm: "calc(50% - 12px)",
+          md: "calc(33.333% - 16px)",
+          lg: "calc(33.333% - 26.667px)",
+        },
+      }}
+    >
       <Box height={"164px"} position={"relative"}>
         <Image
           src={imageSrc}
