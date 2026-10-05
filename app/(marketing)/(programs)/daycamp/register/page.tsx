@@ -96,6 +96,8 @@ export default function RegistrationPage() {
       terms: formData.terms,
     };
 
+    console.log(payload);
+
     mutate(payload, {
       onSuccess() {
         setSuccessModalOpen(true);

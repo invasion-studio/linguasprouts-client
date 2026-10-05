@@ -74,7 +74,7 @@ export default function ChildrenSection({
               <FormControl fullWidth>
                 <InputLabel>Language</InputLabel>
                 <Select
-                  value={child.language}
+                  value={child.language.toLowerCase()}
                   label="Language"
                   onChange={(e) =>
                     onUpdateChild(index, {
@@ -83,7 +83,10 @@ export default function ChildrenSection({
                   }
                 >
                   {LANGUAGE_OPTIONS.map((language) => (
-                    <MenuItem key={language} value={language}>
+                    <MenuItem
+                      key={language}
+                      value={language.toLocaleLowerCase()}
+                    >
                       {language}
                     </MenuItem>
                   ))}
