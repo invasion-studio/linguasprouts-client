@@ -16,7 +16,7 @@ import {
   DayCampRegPayload,
 } from "@/src/entities/dayCampReg";
 import { Box } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type FormData = Omit<DayCampRegPayload, "children"> & {
   children: DayCampChildDraft[];
@@ -95,8 +95,6 @@ export default function RegistrationPage() {
       emergencyContact: formData.emergencyContact,
       terms: formData.terms,
     };
-
-    console.log(payload);
 
     mutate(payload, {
       onSuccess() {
