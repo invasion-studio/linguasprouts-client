@@ -1,7 +1,7 @@
 "use client";
 
 import AppBar from "@/src/_app/layout/AppBar/AppBar2";
-import Greeting from "@/src/_pages/admin/dashboard/ui/Greeting";
+import AdminEmailsNotice from "@/src/_pages/admin/dashboard/ui/AdminEmailsNotice";
 import ProgramList from "@/src/_pages/admin/dashboard/ui/ProgramList";
 import { Box, Stack, Typography } from "@mui/material";
 
@@ -15,6 +15,7 @@ export default function DashboardPage() {
         marginTop={"32px"}
         marginBottom={"20px"}
       >
+        <AdminEmailsNotice />
         <Stack marginBottom={"24px"}>
           <Typography
             variant="h3"
