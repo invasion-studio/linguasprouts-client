@@ -32,7 +32,7 @@ export default function AdminLoginPage() {
 
     try {
       await login(email, password);
-      router.push("/admin");
+      router.push("/admin", { scroll: false });
     } catch (err) {
       setError("Invalid email or password.");
       setLoading(false);
