@@ -6,10 +6,38 @@ import {
   NoDataSkeleton,
 } from "@/src/shared/ui/admin/AdminTableSkeleton";
 
-import { Box, Divider, Stack, Typography } from "@mui/material";
+import { alpha, Box, Divider, Stack, Theme, Typography } from "@mui/material";
 
 type ColumnProp = { key: string; header: string };
 type RowProp = { id: string } & { [key: string]: any };
+
+const interactiveSx = {
+  cursor: "pointer",
+  transition: "background-color 120ms ease",
+  "&:hover": {
+    bgcolor: (theme: Theme) => alpha(theme.palette.primary.main, 0.06),
+  },
+  "&:active": {
+    bgcolor: (theme: Theme) => alpha(theme.palette.primary.main, 0.14),
+  },
+  "&:focus-visible": {
+    outline: (theme: Theme) => `2px solid ${theme.palette.primary.main}`,
+    outlineOffset: "-2px",
+  },
+  "@media (prefers-reduced-motion: reduce)": { transition: "none" },
+};
+
+const clickableProps = (id: string, onClick?: (id: string) => void) => ({
+  role: "button",
+  tabIndex: 0,
+  onClick: () => onClick?.(id),
+  onKeyDown: (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onClick?.(id);
+    }
+  },
+});
 
 export default function AdminTable(props: {
   columns: ColumnProp[];
@@ -76,11 +104,13 @@ const DesktopTable = ({
           key={r.id}
           flexDirection={"row"}
           gap={"20px"}
-          padding={"16px 0px"}
+          padding={"16px 24px"}
+          margin={"0px -24px"}
           borderTop={"1px solid"}
           borderColor={(theme) => theme.palette.divider}
           alignItems={"center"}
-          onClick={() => onRowClick && onRowClick(r.id)}
+          {...clickableProps(r.id, onRowClick)}
+          sx={interactiveSx}
         >
           {columns.map((c) => (
             <Typography
@@ -146,7 +176,8 @@ const MobileItem = ({
       padding={"16px"}
       gap={"16px"}
       component={"div"}
-      onClick={() => onClick && onClick(row.id)}
+      {...clickableProps(row.id, onClick)}
+      sx={interactiveSx}
     >
       {columns.map((c) => (
         <Box key={c.key} display={"contents"}>

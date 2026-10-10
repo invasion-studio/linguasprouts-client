@@ -1,9 +1,12 @@
 "use client";
 
 import { useGetAfterSchoolReg } from "@/src/entities/afterSchoolReg";
-import { Box, IconButton, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import AdminDetailHeader from "@/src/shared/ui/admin/AdminDetailHeader";
+import AdminDetailSection, {
+  AdminDetailItem,
+} from "@/src/shared/ui/admin/AdminDetailSection";
 import { PrimaryButton } from "@/src/shared/ui/PrimaryButton";
 import PaymentQrDialog from "@/src/features/generate-payments-qrcode/ui/PaymentQrDialog";
 import theme from "@/src/_app/styles/theme";
@@ -12,10 +15,10 @@ import { useState } from "react";
 export default function RegistrationDetailsPage() {
   const { id } = useParams();
   const router = useRouter();
-  const { data } = useGetAfterSchoolReg((id as string) || "");
+  const { data, isPending } = useGetAfterSchoolReg((id as string) || "");
   const parent = data?.data?.parent;
 
-  const parentArray: RegistrationInfo[] = [
+  const parentArray: AdminDetailItem[] = [
     { label: "Full Name", value: parent?.fullName || "" },
     { label: "Relationship", value: parent?.relationship || "" },
     { label: "Email", value: parent?.email || "" || "" || "" },
@@ -23,19 +26,19 @@ export default function RegistrationDetailsPage() {
     { label: "Address", value: parent?.homeAddress || "" },
   ];
 
-  const childArray: RegistrationInfo[] = [
+  const childArray: AdminDetailItem[] = [
     { label: "Full Name", value: data?.data?.child?.fullName || "" },
     { label: "Language", value: data?.data?.child?.language || "" },
     { label: "Age Group", value: data?.data?.child?.ageGroup || "" },
   ];
 
-  const emergencyContactArray: RegistrationInfo[] = [
+  const emergencyContactArray: AdminDetailItem[] = [
     { label: "Full Name", value: parent?.emergencyContact?.name || "" },
     { label: "Phone No", value: parent?.emergencyContact?.phoneNo || "" },
     { label: "Address", value: parent?.emergencyContact?.homeAddress || "" },
   ];
 
-  const scheduleArray: RegistrationInfo[] =
+  const scheduleArray: AdminDetailItem[] =
     data?.data?.schedule?.map((s) => ({
       label: s.day,
       value: s.time,
@@ -43,66 +46,35 @@ export default function RegistrationDetailsPage() {
 
   return (
     <Box component={"div"} className="adminLayout" margin={"32px 0px"}>
-      <Stack
-        flexDirection={"row"}
-        gap={"8px"}
-        alignItems={"center"}
-        marginBottom={"24px"}
-      >
-        <IconButton color="inherit" size="small" onClick={() => router.back()}>
-          <ArrowBackIosIcon fontSize="small" color="action" />
-        </IconButton>
-        <Typography variant="h4">Registration Information</Typography>
-      </Stack>
+      <AdminDetailHeader
+        title="Registration Information"
+        onBack={() => router.back()}
+      />
 
-      <Stack gap={"20px"} borderRadius={"8px"} overflow={"clip"}>
+      <Stack gap={"16px"} borderRadius={"8px"} overflow={"clip"}>
         <SubscriptionInfo registrationId={(id as string) || ""} />
-        <RegistrationDetails header="Parent Information" rows={parentArray} />
-        <RegistrationDetails header="Child Information" rows={childArray} />
-        <RegistrationDetails
+        <AdminDetailSection
+          header="Parent Information"
+          rows={parentArray}
+          isPending={isPending}
+          skeletonRows={5}
+        />
+        <AdminDetailSection
+          header="Child Information"
+          rows={childArray}
+          isPending={isPending}
+        />
+        <AdminDetailSection
           header="Emergency Contact"
           rows={emergencyContactArray}
+          isPending={isPending}
         />
-        <RegistrationDetails header="Schedule" rows={scheduleArray} />
+        <AdminDetailSection
+          header="Schedule"
+          rows={scheduleArray}
+          isPending={isPending}
+        />
       </Stack>
-    </Box>
-  );
-}
-
-type RegistrationInfo = {
-  label: string;
-  value: string;
-};
-
-function RegistrationDetails({
-  header,
-  rows,
-}: {
-  header: string;
-  rows: RegistrationInfo[];
-}) {
-  return (
-    <Box padding={"24px"} borderRadius={"8px"} bgcolor={"white"}>
-      <Typography variant="subtitle1" marginBottom={"28px"}>
-        {header}
-      </Typography>
-
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "1fr 1fr 1fr" },
-          gap: "20px",
-        }}
-      >
-        {rows.map((r, i) => (
-          <Box key={i}>
-            <Typography variant="body2" color="textSecondary">
-              {r.label}
-            </Typography>
-            <Typography variant="body1">{r.value}</Typography>
-          </Box>
-        ))}
-      </Box>
     </Box>
   );
 }
