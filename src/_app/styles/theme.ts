@@ -31,6 +31,21 @@ const Ibmgrey = {
   black: "#000000",
 };
 
+const Ibmgrey2 = {
+  white: "#ffffff",
+  10: "#F6F6F8",
+  20: "#E3E3E8",
+  30: "#c6c6c6",
+  40: "#a8a8a8",
+  50: "#8d8d8d",
+  60: "#6f6f6f",
+  70: "#525252",
+  80: "#393939",
+  90: "#262626",
+  100: "#161616",
+  black: "#000000",
+};
+
 const theme = createTheme({
   colorSchemes: {
     light: true,
@@ -234,14 +249,14 @@ export const adminTheme = createTheme({
       main: "#12C3DE",
     },
     error: {
-      main: "#DF221D",
+      main: "#FF383C",
     },
     text: {
       primary: Ibmgrey[100],
       secondary: Ibmgrey[70],
       disabled: Ibmgrey[40],
     },
-    ibmgrey: Ibmgrey,
+    ibmgrey: Ibmgrey2,
     divider: "#EBEBEB",
   },
 });

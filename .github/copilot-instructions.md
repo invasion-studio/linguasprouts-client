@@ -80,7 +80,8 @@ things that would make sense in a completely different product:
   helpers, skeletons, a logo/footer only if truly cross-cutting). No entity/feature-specific copy,
   data types, or fetching logic here.
 - **`shared/lib`**: infra utilities — the `axios` instance, a generic `ResponsePayload<T>` type, the
-  `resolveServerAction` helper, generic constants. No business models.
+  `resolveServerAction` helper, the [getErrorMessage](/src/shared/lib/getErrorMessage.ts) helper,
+  generic constants. No business models.
 - **`shared/model`**: only generic cross-cutting types.
 
 **Known violation to be aware of**: [src/shared/lib/api.ts](/src/shared/lib/api.ts) currently holds
@@ -126,6 +127,10 @@ This is a **production** codebase — treat every component as something that sh
 - **Typed, not `any`.** Avoid `any` in new/edited code (several existing types in
   [shared/lib/api.ts](/src/shared/lib/api.ts) and [shared/lib/types.ts](/src/shared/lib/types.ts) use
   `any` — don't propagate that pattern into new code; tighten types you touch when in scope).
+  In server actions, write `catch (error)` (not `catch (error: any)`) and build the failure message
+  with [getErrorMessage](/src/shared/lib/getErrorMessage.ts):
+  `return apiResponse(false, getErrorMessage(error), null);`. Existing actions that still use
+  `error: any` are legacy — migrate them only when they're in scope.
 - **`"use client"` discipline.** Keep server actions (`actions/*.ts`) server-only (`"use server"`),
   keep hooks/components that need interactivity `"use client"`, and avoid turning a whole page client-
   side just to use one interactive child — push `"use client"` as far down the tree as practical.

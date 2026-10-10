@@ -8,15 +8,14 @@ import { Box, Stack, Typography } from "@mui/material";
 export default function DashboardPage() {
   return (
     <Box minHeight={"100vh"} bgcolor={"var(--palette-ibmgrey-10)"}>
-      <AppBar variant="admin" />
+      <AppBar variant="admin" noBorder />
       <Box
         component={"div"}
         className="adminLayout"
         marginTop={"32px"}
         marginBottom={"20px"}
       >
-        <Stack gap={"4px"} marginBottom={"48px"}>
-          <Greeting />
+        <Stack marginBottom={"24px"}>
           <Typography
             variant="h3"
             sx={{
@@ -30,7 +29,7 @@ export default function DashboardPage() {
               }),
             }}
           >
-            Manage Language Programs
+            Programs
           </Typography>
         </Stack>
 
